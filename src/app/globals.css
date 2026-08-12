@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens — SUZA (documentation-control) theme ────────── */
+:root {
+  --bg:          #F4F5F3;
+  --sidebar-bg:  #ECEDEB; /* light neutral surface — used for subtle section/pill backgrounds elsewhere in the app. The actual <Sidebar> is navy via the `bg-navy` Tailwind class directly, not this variable. */
+  --surface:     #FFFFFF;
+  --border:      #DCDFDD;
+  --accent:      #A2793F; /* bronze */
+  --accent-dark: #7C5A2E;
+  --accent-tint: #F1E7D8;
+  --ink-900:     #1B232B;
+  --ink-700:     #33414C;
+  --ink-500:     #5C6772;
+  --ink-300:     #8A939C;
+  --ok:          #3E6B52;
+  --sidebar-w:   260px;
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink-900);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+::selection { background: rgba(162,121,63,.22); }
+
+/* ─── Typography helpers ─────────────────────────── */
+.font-serif { font-family: var(--font-serif), Georgia, serif; }
+.font-sans  { font-family: var(--font-sans), system-ui, sans-serif; }
+.font-mono  { font-family: var(--font-mono), monospace; }
+
+/* ─── Card ───────────────────────────────────────── */
+/* A restrained, single hover cue (border colour only) instead of the
+   previous lift + shadow-depth combination — keeps things professional
+   and avoids the "bouncy" feel of a decorative hover animation. */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 1.5rem;
+  transition: border-color .18s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+}
+
+/* ─── Divider ────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); }
+
+/* ─── Accent tag / chip ──────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: .72rem;
+  font-family: var(--font-mono), monospace;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  border: 1px solid rgba(162,121,63,.35);
+  font-weight: 500;
+}
+
+/* ─── Nav active ─────────────────────────────────── */
+.nav-active {
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ─── Page transitions ───────────────────────────── */
+/* Single, understated fade + slight slide — no bounce/spring easing. */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: pageIn .3s ease forwards; }
+
+/* ─── Timeline ───────────────────────────────────── */
+.timeline-line { background: var(--border); }
+
+/* ─── Sidebar overlay (mobile) ───────────────────── */
+.sidebar-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,36,54,.55);
+  backdrop-filter: blur(2px);
+  z-index: 39;
+}
