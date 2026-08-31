@@ -6,7 +6,7 @@ import {
 import {GithubGlyph,LinkedinGlyph} from '@/components/icons/BrandGlyphs'
 import { workExperience, education, skills, projects, certifications } from '@/data'
 
-const CV_FILE = '/documents/Tofa-Kimani-Mwangi-CV.pdf'
+const CV_FILE = '/documents/Tofa-CV.pdf'
 
 const certIcons: Record<string, typeof BarChart3> = {
   chart: BarChart3,
@@ -97,7 +97,7 @@ export default function CVPage() {
   {/* CV Actions */}
   <div className="flex gap-2.5 shrink-0">
     <a
-      href="/documents/Tofa-CV.pdf"
+      href={CV_FILE}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
@@ -107,7 +107,7 @@ export default function CVPage() {
     </a>
 
     <a
-      href="/documents/Tofa-CV.pdf"
+      href={CV_FILE}
       download
       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
     >
