@@ -64,6 +64,47 @@ export default function HeroSection() {
               Currently, I’m going deeper into <strong className="text-white font-medium">data engineering, big data, and scalable architecture</strong>.
           </motion.p>
 
+          <motion.div variants={fade} className="flex items-center gap-3 mb-12">
+            <a 
+              href="https://github.com/TofaKM" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-doc border border-white/20 bg-white/[0.04] text-[#D6DEE5] hover:text-white hover:border-white/40 hover:bg-white/[0.08] transition-all"
+            >
+              <GithubGlyph
+                size={21}
+                aria-hidden
+                className="text-white"
+              />
+              <span className="font-mono text-[12px] tracking-wide">GitHub</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/tofa-mwangi"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-doc border border-white/20 bg-white/[0.04] text-[#D6DEE5] hover:text-white hover:border-white/40 hover:bg-white/[0.08] transition-all"
+            >
+              <LinkedinGlyph
+                size={21}
+                aria-hidden
+                className="text-white"
+              />
+              <span className="font-mono text-[12px] tracking-wide">LinkedIn</span>
+          </a>
+
+          <a
+            href="mailto:mwangitofa@gmail.com"
+            aria-label="Email"
+            className="w-10 h-10 rounded-doc border border-white/15 flex items-center justify-center text-[#9FB2C4] hover:text-white hover:border-white/30 transition-colors"
+          >
+            <Mail size={17} aria-hidden />
+          </a>
+          </motion.div>
+
+
           <motion.div variants={fade} className="flex flex-wrap items-center gap-3 mb-12">
             <Link
               href="/projects"
@@ -94,24 +135,7 @@ export default function HeroSection() {
             </Link>
           </motion.div>
 
-          <motion.div variants={fade} className="flex items-center gap-2 mb-12">
-            {[
-              { href: 'https://github.com/TofaKM', icon: GithubGlyph, label: 'GitHub' },
-              { href: 'https://www.linkedin.com/in/tofa-mwangi', icon: LinkedinGlyph, label: 'LinkedIn' },
-              { href: 'mailto:mwangitofa@gmail.com', icon: Mail, label: 'Email' },
-            ].map(({ href, icon: Icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="w-9 h-9 rounded-doc border border-white/15 flex items-center justify-center text-[#9FB2C4] hover:text-white hover:border-white/30 transition-colors"
-              >
-                <Icon size={15} aria-hidden />
-              </a>
-            ))}
-          </motion.div>
+          
 
           <motion.div variants={fade} className="grid grid-cols-3 gap-8 border-t border-white/[0.16] pt-6 max-w-md">
             {[
