@@ -36,6 +36,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tofa-portfolio.verc
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons:{
+    icon:'/tm_svg.svg'
+  },
   title: { default: 'Tofa Kimani Mwangi — Data Engineer & Developer', template: '%s | Tofa Kimani' },
   description: 'Data Engineer and Full-Stack Developer from Nairobi, Kenya. Specialising in Python, SQL, React, and data pipelines. BSc Applied Computing — KCA University.',
   keywords: ['Data Engineer', 'Software Developer', 'Python', 'SQL', 'React', 'Nairobi', 'Kenya', 'KCA University', 'ALX'],

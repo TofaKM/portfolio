@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Tofa Kimani Mwangi — TM Monogram</title>
+
+  <!-- Navy brand field -->
+  <rect
+    width="64"
+    height="64"
+    rx="12"
+    fill="#0F2436"
+  />
+
+  <!-- Subtle navy-2 inner detail -->
+  <rect
+    x="1"
+    y="1"
+    width="62"
+    height="62"
+    rx="11"
+    fill="none"
+    stroke="#16334F"
+    stroke-width="1"
+  />
+
+  <!-- TM monogram -->
+  <text
+    x="32"
+    y="39"
+    text-anchor="middle"
+    font-family="var(--font-serif), Georgia, serif"
+    font-size="27"
+    font-weight="700"
+    letter-spacing="-2"
+    fill="#FDFDFC"
+  >TM</text>
+
+  <!-- Brand accent -->
+  <path
+    d="M18 48H46"
+    fill="none"
+    stroke="#A2793F"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- Accent center point -->
+  <circle
+    cx="32"
+    cy="48"
+    r="1.5"
+    fill="#A2793F"
+  />
+</svg>
