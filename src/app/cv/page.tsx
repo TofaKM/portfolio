@@ -97,7 +97,7 @@ export default function CVPage() {
   {/* CV Actions */}
   <div className="flex gap-2.5 shrink-0">
     <a
-      href={CV_FILE}
+      href="/documents/Tofa-CV.pdf"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
@@ -107,7 +107,7 @@ export default function CVPage() {
     </a>
 
     <a
-      href={CV_FILE}
+      href="/documents/Tofa-CV.pdf"
       download
       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
     >
