@@ -119,14 +119,6 @@ export default function HeroSection() {
             >
               <Download size={14} strokeWidth={2} aria-hidden /> Download CV
             </a>
-            <a
-              href="/documents/Tofa_Certificate.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-semibold text-[13.5px] font-sans px-5 py-2.5 rounded-doc border border-white/35 text-white hover:border-white hover:bg-white/[0.06] transition-colors"
-            >
-              View Certificate
-            </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 font-semibold text-[13.5px] font-sans px-5 py-2.5 text-[#B7C4D2] hover:text-white transition-colors"

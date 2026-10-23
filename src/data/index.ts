@@ -165,7 +165,6 @@ export const education: Education[] = [
     period: 'September 2020 – November 2025',
     location: 'Nairobi, Kenya',
     grade: 'Graduate',
-    certificate:'/documents/Tofa_Certificate.pdf',
     details: [
       'Studied Data Analytics, Database Systems, Software Engineering, and Systems Analysis & Design',
       'Programming Concepts & Languages across multiple paradigms',
