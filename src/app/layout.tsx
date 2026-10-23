@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Source_Serif_4, Inter, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
-import Sidebar from '@/components/layout/Sidebar'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import ContactFab from '@/components/layout/ContactFab'
 import PageTransition from '@/components/ui/PageTransition'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 
@@ -66,16 +68,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${sourceSerif.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
-      <body className="bg-cream-100 text-ink-900">
+      <body className="bg-cream-100 text-ink-900 min-h-screen flex flex-col">
+        <Navbar />
         <ScrollProgress />
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main id="main" className="flex-1 pt-16 md:pt-0 md:ml-[260px] min-h-screen">
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </main>
-        </div>
+        <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </main>
+        <Footer />
+        <ContactFab />
       </body>
     </html>
   )

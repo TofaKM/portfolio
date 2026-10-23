@@ -9,8 +9,8 @@ import SectionHeading from '@/components/ui/SectionHeading'
 export default function FeaturedProjects() {
   const featured = projects.filter(p => p.featured)
   return (
-    <section className="py-24 px-8 md:px-14">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-24 px-5 md:px-10">
+      <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <SectionHeading
             eyebrow="Selected Work"
@@ -59,8 +59,7 @@ export default function FeaturedProjects() {
                     <a
                       href={p.demo}
                       target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-doc text-[12.5px] font-medium font-sans text-white hover:opacity-90 transition-opacity shadow-sm"
-                      style={{ background: 'var(--accent-dark)' }}
+                      className="btn btn-primary px-4 py-2 text-[12.5px]"
                     >
                       <ExternalLink size={12} /> Live Demo
                     </a>
@@ -69,7 +68,7 @@ export default function FeaturedProjects() {
                     <a
                       href={p.github}
                       target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-doc border border-[#DCDFDD] text-ink-500 text-[12.5px] font-medium font-sans hover:text-ink-900 hover:border-[#A2793F] transition-all"
+                      className="btn btn-secondary px-4 py-2 text-[12.5px]"
                     >
                       <GithubGlyph size={12} /> Source
                     </a>

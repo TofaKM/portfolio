@@ -18,15 +18,15 @@ const certIcons: Record<string, typeof BarChart3> = {
 
 export default function CertificationsPage() {
   return (
-    <div className="min-h-screen">
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+    <div>
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading
+            as="h1"
             eyebrow="Credentials"
             title="Certifications"
             subtitle="Completed and in-progress programs — each card links through to the original issuing platform for verification."
-            align="center"
-            className="mb-16"
+            className="mb-12"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

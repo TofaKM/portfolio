@@ -4,9 +4,7 @@ import {
   Rocket, Lightbulb, BarChart3, Cpu, Wrench, TrendingUp, FileCode2,
 } from 'lucide-react'
 import {GithubGlyph,LinkedinGlyph} from '@/components/icons/BrandGlyphs'
-import { workExperience, education, projects, certifications } from '@/data'
-
-const CV_FILE = '/documents/Tofa-CV.pdf'
+import { workExperience, education, projects, certifications, profile } from '@/data'
 
 const certIcons: Record<string, typeof BarChart3> = {
   chart: BarChart3,
@@ -23,99 +21,61 @@ export const metadata: Metadata = {
 
 export default function CVPage() {
   return (
-    <div className="min-h-screen">
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+    <div>
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
 
-          {/* Header */}
+          {/* Header — title left, primary action top-right */}
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
-  <div>
-    <p
-      className="text-[11px] uppercase tracking-[.2em] font-medium font-sans mb-4"
-      style={{ color: 'var(--accent-dark)' }}
-    >
-      Curriculum Vitae
-    </p>
+            <div>
+              <p className="eyebrow mb-3">Curriculum Vitae</p>
 
-    <h1
-      className="font-serif font-bold text-4xl md:text-5xl text-ink-900 mb-1"
-      style={{ letterSpacing: '-.02em' }}
-    >
-      Tofa Kimani Mwangi
-    </h1>
+              <h1 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 tracking-[-0.02em] mb-1">
+                {profile.name}
+              </h1>
 
-    <p
-      className="font-sans font-medium text-[15px] mb-4"
-      style={{ color: 'var(--accent-dark)' }}
-    >
-      Data Engineer | Software Engineering & Big Data
-    </p>
+              <p className="font-sans font-medium text-[15px] text-accent-dark mb-4">{profile.tagline}</p>
 
-    {/* Contact + Socials — single row */}
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-ink-400 font-sans">
-      
-      <span className="flex items-center gap-1.5 whitespace-nowrap">
-        <Mail size={12} aria-hidden />
-        mwangitofa@gmail.com
-      </span>
+              {/* Contact + Socials — single row */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-ink-500 font-sans">
+                <a href={`mailto:${profile.email}`} className="flex items-center gap-1.5 whitespace-nowrap hover:text-ink-900">
+                  <Mail size={12} aria-hidden /> {profile.email}
+                </a>
+                <a href={profile.phoneHref} className="flex items-center gap-1.5 whitespace-nowrap hover:text-ink-900">
+                  <Phone size={12} aria-hidden /> {profile.phone}
+                </a>
+                <span className="flex items-center gap-1.5 whitespace-nowrap">
+                  <MapPin size={12} aria-hidden /> {profile.location}
+                </span>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 hover:text-ink-900 transition-colors whitespace-nowrap"
+                >
+                  <GithubGlyph size={14} /> GitHub
+                </a>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 hover:text-ink-900 transition-colors whitespace-nowrap"
+                >
+                  <LinkedinGlyph size={14} /> LinkedIn
+                </a>
+              </div>
+            </div>
 
-      <span className="flex items-center gap-1.5 whitespace-nowrap">
-        <Phone size={12} aria-hidden />
-        +254 759 799 624
-      </span>
-
-      <span className="flex items-center gap-1.5 whitespace-nowrap">
-        <MapPin size={12} aria-hidden />
-        Nairobi, Kenya
-      </span>
-
-      <a
-        href="https://github.com/TofaKM"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        className="inline-flex items-center gap-1.5 text-ink-500 hover:text-[var(--accent-dark)] transition-colors whitespace-nowrap"
-      >
-        <GithubGlyph size={18} strokeWidth={1.8} />
-        <span>GitHub</span>
-      </a>
-
-      <a
-        href="https://www.linkedin.com/in/tofa-mwangi"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        className="inline-flex items-center gap-1.5 text-ink-500 hover:text-[var(--accent-dark)] transition-colors whitespace-nowrap"
-      >
-        <LinkedinGlyph size={18} strokeWidth={1.8} />
-        <span>LinkedIn</span>
-      </a>
-
-    </div>
-  </div>
-
-  {/* CV Actions */}
-  <div className="flex gap-2.5 shrink-0">
-    <a
-      href={CV_FILE}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
-    >
-      <Eye size={15} aria-hidden />
-      View CV
-    </a>
-
-    <a
-      href={CV_FILE}
-      download
-      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-doc font-medium text-[13px] font-sans border border-border text-ink-700 hover:border-accent hover:text-accent-dark transition-colors"
-    >
-      <Download size={14} strokeWidth={2} aria-hidden />
-      Download CV
-    </a>
-  </div>
-</div>
+            {/* CV Actions */}
+            <div className="flex gap-2.5 shrink-0">
+              <a href={profile.cv} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                <Eye size={15} aria-hidden /> View CV
+              </a>
+              <a href={profile.cv} download className="btn btn-primary">
+                <Download size={14} strokeWidth={2} aria-hidden /> Download CV
+              </a>
+            </div>
+          </div>
 
 
           {/* Profile Summary */}
@@ -147,7 +107,7 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
                   </div>
                   <span
                     className="text-[10px] text-ink-400 font-mono px-2.5 py-1 rounded-doc"
-                    style={{ background: 'var(--sidebar-bg)' }}
+                    style={{ background: 'var(--surface-2)' }}
                   >
                     {job.period}
                   </span>
@@ -196,7 +156,7 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
           <div className="flex items-center gap-2">
             <span
               className="text-[10px] text-ink-400 font-mono px-2.5 py-1 rounded-doc"
-              style={{ background: 'var(--sidebar-bg)' }}
+              style={{ background: 'var(--surface-2)' }}
             >
               {edu.period}
             </span>
@@ -266,7 +226,7 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
                       ? 'border-accent/40'
                       : 'border-border'
                   }`}
-                  style={cert.status === 'in-progress' ? { background: 'rgba(162,121,63,.06)' } : { background: 'var(--sidebar-bg)' }}
+                  style={cert.status === 'in-progress' ? { background: 'rgba(162,121,63,.06)' } : { background: 'var(--surface-2)' }}
                 >
                   <div className="flex items-start gap-3">
                     <CertIcon size={18} className="text-accent-dark mt-0.5 shrink-0" aria-hidden />

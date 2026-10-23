@@ -12,10 +12,11 @@ export default function ProjectsClient() {
   const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter)
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+    <div>
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading
+            as="h1"
             eyebrow="Portfolio"
             title="Things I've built"
             subtitle="Full-stack applications and data engineering projects."
@@ -28,12 +29,12 @@ export default function ProjectsClient() {
               <button
                 key={c}
                 onClick={() => setFilter(c)}
-                className={`px-4 py-2 rounded-doc text-[12.5px] font-medium font-sans capitalize transition-all border ${
+                aria-pressed={filter === c}
+                className={`px-4 py-2 rounded-doc text-[12.5px] font-medium font-sans capitalize transition-colors border ${
                   filter === c
-                    ? 'text-white border-transparent shadow-sm'
-                    : 'bg-white border-[#DCDFDD] text-ink-500 hover:text-ink-900 hover:border-[#A2793F]'
+                    ? 'bg-navy border-navy text-white'
+                    : 'bg-white border-border text-ink-500 hover:text-ink-900 hover:border-accent'
                 }`}
-                style={filter === c ? { background: 'var(--accent-dark)', borderColor: 'var(--accent-dark)' } : {}}
               >
                 {c}
               </button>

@@ -6,8 +6,8 @@ import SectionHeading from '@/components/ui/SectionHeading'
 
 export default function TimelineSection({ work, education }: { work: WorkExperience[]; education: Education[] }) {
   return (
-    <section className="py-20 px-8 md:px-14">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-20 px-5 md:px-10">
+      <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
           {/* Work */}

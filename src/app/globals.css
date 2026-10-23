@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Design tokens — SUZA (documentation-control) theme ────────── */
+/* ─── Design tokens — cream / white / navy / gold (Agri-Link family) ─ */
 :root {
   --bg:          #F4F5F3;
-  --sidebar-bg:  #ECEDEB; /* light neutral surface — used for subtle section/pill backgrounds elsewhere in the app. The actual <Sidebar> is navy via the `bg-navy` Tailwind class directly, not this variable. */
+  --surface-2:   #ECEDEB; /* subtle alternate section background */
   --surface:     #FFFFFF;
+  --navy:        #0F2436;
+  --navy-2:      #16334F;
   --border:      #DCDFDD;
   --accent:      #A2793F; /* bronze */
   --accent-dark: #7C5A2E;
@@ -16,11 +18,11 @@
   --ink-500:     #5C6772;
   --ink-300:     #8A939C;
   --ok:          #3E6B52;
-  --sidebar-w:   260px;
+  --nav-h:       56px;
 }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -85,12 +87,38 @@ body {
   font-weight: 500;
 }
 
-/* ─── Nav active ─────────────────────────────────── */
-.nav-active {
-  background: rgba(255,255,255,.1);
-  color: #fff;
-  font-weight: 600;
+/* ─── Eyebrow (small gold uppercase label above headings) ─ */
+.eyebrow {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
 }
+
+/* ─── Buttons ────────────────────────────────────── */
+/* Primary = solid navy, secondary = white with a border; square corners. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .625rem 1.25rem;
+  border-radius: 2px;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.btn-primary { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
+.btn-primary:hover:not(:disabled) { background: var(--navy-2); border-color: var(--navy-2); }
+.btn-secondary { background: #fff; color: var(--ink-700); border: 1px solid var(--border); }
+.btn-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--ink-900); }
+
+/* Visible keyboard focus everywhere. */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ─── Page transitions ───────────────────────────── */
 /* Single, understated fade + slight slide — no bounce/spring easing. */
@@ -102,11 +130,3 @@ body {
 
 /* ─── Timeline ───────────────────────────────────── */
 .timeline-line { background: var(--border); }
-
-/* ─── Sidebar overlay (mobile) ───────────────────── */
-.sidebar-overlay {
-  position: fixed; inset: 0;
-  background: rgba(15,36,54,.55);
-  backdrop-filter: blur(2px);
-  z-index: 39;
-}
