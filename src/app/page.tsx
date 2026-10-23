@@ -15,39 +15,28 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Thin divider */}
-      <div className="mx-8 md:mx-14 divider" />
+      <div className="mx-5 md:mx-10 divider" />
 
       <FeaturedProjects />
       <SkillsPreview />
       <Testimonials />
 
       {/* CTA */}
-      <section className="py-24 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
-          <div className="card text-center py-16 px-8">
-            <p className="text-[10px] font-semibold uppercase tracking-[.2em] font-sans mb-5"
-               style={{ color: 'var(--accent-dark)' }}>
-              Let&rsquo;s Work Together
-            </p>
+      <section className="py-24 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center py-16 px-8 rounded-doc border border-accent/30 bg-accent-tint">
+            <p className="eyebrow mb-5">Let&rsquo;s Work Together</p>
             <h2 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 leading-tight mb-5">
-              Got a project in{' '}
-              <span className="italic" style={{ color: 'var(--accent-dark)' }}>mind?</span>
+              Got a project in <span className="italic text-accent-dark">mind?</span>
             </h2>
             <p className="text-ink-500 text-[15px] font-sans mb-9 max-w-lg mx-auto leading-relaxed">
               I&rsquo;m open to data engineering roles, full-stack opportunities, and interesting collaborations. Let&rsquo;s build something great.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/contact"
-                className="px-7 py-3 rounded-doc font-medium text-[13.5px] font-sans text-white hover:opacity-90 transition-opacity shadow-sm"
-                style={{ background: 'var(--accent-dark)' }}
-              >
+              <Link href="/contact" className="btn btn-primary px-7 py-3">
                 Start a Conversation
               </Link>
-              <Link
-                href="/cv"
-                className="px-7 py-3 rounded-doc font-medium text-[13.5px] font-sans text-ink-600 border border-[#DCDFDD] hover:border-[#A2793F] hover:text-ink-900 transition-all"
-              >
+              <Link href="/cv" className="btn btn-secondary px-7 py-3">
                 View My CV
               </Link>
             </div>

@@ -6,9 +6,9 @@ import SectionHeading from '@/components/ui/SectionHeading'
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-8 md:px-14" style={{ background: 'var(--sidebar-bg)' }}>
-      <div className="max-w-5xl mx-auto">
-        <SectionHeading eyebrow="Social Proof" title="What people say" align="center" className="mb-14" />
+    <section className="py-24 px-5 md:px-10" style={{ background: 'var(--surface-2)' }}>
+      <div className="max-w-6xl mx-auto">
+        <SectionHeading eyebrow="Social Proof" title="What people say" className="mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((t, i) => (
             <motion.div

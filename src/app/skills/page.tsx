@@ -52,15 +52,15 @@ const order = [
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen">
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+    <div>
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading
+            as="h1"
             eyebrow="Tech Stack"
             title="Skills & Expertise"
             subtitle="Technologies and tools I use daily — from building UIs to designing and processing data pipelines."
-            align="center"
-            className="mb-20"
+            className="mb-14"
           />
 
           <div className="space-y-14">

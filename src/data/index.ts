@@ -1,5 +1,19 @@
 import { Project, Skill, Testimonial, WorkExperience, Education, Certification } from '@/types'
 
+/** Identity and contact details — the one place the name, title and links live. */
+export const profile = {
+  name: 'Tofa Kimani Mwangi',
+  shortName: 'Tofa Kimani',
+  tagline: 'Data Engineer & Full-Stack Developer',
+  location: 'Nairobi, Kenya',
+  email: 'mwangitofa@gmail.com',
+  phone: '+254 759 799 624',
+  phoneHref: 'tel:+254759799624',
+  github: 'https://github.com/TofaKM',
+  linkedin: 'https://www.linkedin.com/in/tofa-mwangi',
+  cv: '/documents/Tofa-CV.pdf',
+} as const
+
 export const projects: Project[] = [
  
   {

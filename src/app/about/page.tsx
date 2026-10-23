@@ -32,21 +32,16 @@ export default function AboutPage() {
   const completedCerts = certifications.filter(c => c.status === 'completed').length
 
   return (
-    <div className="min-h-screen">
+    <div>
       {/* Hero */}
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Text */}
             <div>
-              <p className="text-[11px] uppercase tracking-[.2em] font-medium font-sans mb-4 text-accent-dark">
-                About Me
-              </p>
+              <p className="eyebrow mb-3">About Me</p>
 
-              <h1
-                className="font-serif font-bold text-5xl md:text-6xl text-ink-900 leading-tight mb-6"
-                style={{ letterSpacing: '-.02em' }}
-              >
+              <h1 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 leading-tight tracking-[-0.02em] mb-6">
                 Hey, I&rsquo;m <span className="italic text-accent-dark">Tofa</span>
               </h1>
 
@@ -175,14 +170,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <div className="mx-8 md:mx-14 divider" />
+      <div className="mx-5 md:mx-10 divider" />
 
       {/* Philosophy */}
       <section
-        className="py-20 px-8 md:px-14"
-        style={{ background: 'var(--sidebar-bg)' }}
+        className="py-20 px-5 md:px-10"
+        style={{ background: 'var(--surface-2)' }}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <SectionHeading
             eyebrow="Philosophy"
             title="How I think about building"

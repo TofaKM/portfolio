@@ -41,8 +41,8 @@ const barColors: Record<string, string> = {
 export default function SkillsPreview() {
   return (
     <section
-      className="py-24 px-8 md:px-14"
-      style={{ background: 'var(--sidebar-bg)' }}
+      className="py-24 px-5 md:px-10"
+      style={{ background: 'var(--surface-2)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">

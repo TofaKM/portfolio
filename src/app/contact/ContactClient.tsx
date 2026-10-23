@@ -75,22 +75,17 @@ export default function ContactClient() {
   })
 
   return (
-    <div className="min-h-screen">
-      <section className="py-20 px-8 md:px-14">
-        <div className="max-w-5xl mx-auto">
+    <div>
+      <section className="pt-14 pb-20 px-5 md:px-10">
+        <div className="max-w-6xl mx-auto">
 
           {/* Header */}
-          <div className="text-center mb-14">
-            <p className="text-[11px] uppercase tracking-[.2em] font-medium font-sans mb-4"
-               style={{ color: 'var(--accent-dark)' }}>
-              Get In Touch
-            </p>
-            <h1 className="font-serif font-bold text-4xl md:text-5xl text-ink-900 mb-4"
-                style={{ letterSpacing: '-.02em' }}>
-              Let&rsquo;s{' '}
-              <span className="italic" style={{ color: 'var(--accent-dark)' }}>Connect</span>
+          <div className="mb-12">
+            <p className="eyebrow mb-3">Get In Touch</p>
+            <h1 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 tracking-[-0.02em] mb-3">
+              Let&rsquo;s <span className="italic text-accent-dark">Connect</span>
             </h1>
-            <p className="text-ink-500 text-[15px] font-sans max-w-md mx-auto leading-relaxed">
+            <p className="text-ink-500 text-[15px] font-sans max-w-2xl leading-relaxed">
               Open to Data Engineering roles, Full-Stack opportunities, and interesting collaborations.
             </p>
           </div>
@@ -279,8 +274,7 @@ export default function ContactClient() {
                     <button
                       type="submit"
                       disabled={status === 'sending'}
-                      className="w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-doc font-medium text-[13.5px] font-sans text-white hover:opacity-90 transition-opacity disabled:opacity-60 shadow-sm"
-                      style={{ background: 'var(--accent-dark)' }}
+                      className="btn btn-primary w-full py-3.5"
                     >
                       {status === 'sending' ? (
                         <>
