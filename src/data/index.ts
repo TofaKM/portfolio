@@ -17,7 +17,7 @@ export const profile = {
   phone: '+254 759 799 624',
   phoneHref: 'tel:+254759799624',
   github: 'https://github.com/TofaKM',
-  linkedin: 'https://www.linkedin.com/in/tofa-mwangi',
+  linkedin: 'https://www.linkedin.com/in/tofa-mwangi117',
   cv: '/documents/Tofa-CV.pdf',
 } as const
 
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     description: 'Comprehensive e-commerce web application built as KCA University Final Year Project.',
     longDescription: 'Developed a full e-commerce web application as my Final Year Project at KCA University, showcasing full-stack capabilities across the entire development lifecycle — from database design to a deployed frontend. Demonstrates knowledge from Data Analytics, Database Systems, and Software Engineering coursework.',
     tech: ['JavaScript', 'React', 'Node.js', 'MySQL', 'Bootstrap'],
-    github: 'https://github.com/TofaKM',
+    github: 'https://github.com/TofaKM/Advanced-E-commerce-Website',
     featured: false,
     category: 'fullstack',
     year: '2025',

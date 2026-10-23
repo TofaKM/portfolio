@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tofa Kimani Mwangi — CV</title>
+<meta name="author" content="Tofa Kimani Mwangi">
+<style>
+  @page { size: Letter; margin: 0.42in 0.5in 0.42in 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.21; color: #000; }
+  a { color: inherit; }
+  header { text-align: center; border-bottom: 1.2px solid #000; padding-bottom: 5px; }
+  h1 { font-size: 21pt; font-weight: 700; line-height: 1.1; }
+  .headline { font-weight: 700; font-size: 11.4pt; margin-top: 2px; }
+  .roles { font-size: 10.4pt; margin-top: 1px; }
+  .contact { color: #555; font-size: 10.6pt; margin-top: 2px; }
+  .contact a { color: #000; font-weight: 700; }
+  .sep { margin: 0 5px; color: #777; }
+  h2 { text-align: center; font-size: 10.8pt; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
+       border-bottom: .8px solid #777; padding-bottom: 2px; margin: 8px 0 4px; }
+  p { margin: 0; }
+  /* Real list markers (not positioned pseudo-elements) so the PDF's text
+     stays in reading order for applicant-tracking systems. */
+  .skills { list-style: disc outside; padding-left: 22px; }
+  .skills li { margin-bottom: 0.5px; padding-left: 2px; }
+  .entry { margin-top: 4px; break-inside: avoid; }
+  .entry + .entry { margin-top: 6px; }
+  .title { font-weight: 700; }
+  .badge { font-weight: 400; font-style: italic; }
+  .meta { display: flex; justify-content: space-between; font-style: italic; color: #333; }
+  ul.b { list-style: disc outside; padding-left: 16px; margin-top: 1px; }
+  ul.b li { margin-bottom: 1px; }
+  .link { font-size: 9.4pt; text-decoration: underline; display: inline-block; margin-top: 1px; }
+  .refs p { margin-left: 14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tofa Kimani Mwangi</h1>
+  <div class="headline">Software Engineer — Full-Stack, Data &amp; Analytics</div>
+  <div class="roles">Full-Stack &amp; Backend Development | Data Engineering | Data Analytics | DevOps &amp; Deployment</div>
+  <div class="contact">
+    mwangitofa@gmail.com<span class="sep">|</span>+254 759 799 624<span class="sep">|</span>Nairobi, Kenya<span class="sep">|</span><a href="https://tofa-mwangi.vercel.app">Portfolio</a><span class="sep">|</span><a href="https://www.linkedin.com/in/tofa-mwangi117">LinkedIn</a><span class="sep">|</span><a href="https://github.com/TofaKM">GitHub</a>
+  </div>
+</header>
+
+<h2>Professional Summary</h2>
+<p>Software engineer and Applied Computing graduate working across full-stack development, backend systems, data engineering, data analytics and deployment. Designed, built and deployed Agri-Link, an ERP and point-of-sale system now in trial at a Kenyan agrovet (Java, Spring Boot, PostgreSQL, Next.js), and engineered production-style ETL pipelines and star-schema data warehouses with PySpark, Apache Airflow and Docker. ALX-certified Data Engineer, comfortable from database design to the browser to production, and ready to step into software engineering, full-stack, backend, data engineering, data analytics or DevOps roles.</p>
+
+<h2>Technical Skills</h2>
+<ul class="skills">
+  <li><b>Programming Languages</b>: Python, Java, JavaScript, TypeScript, SQL, Bash, C#.</li>
+  <li><b>Backend &amp; API Engineering</b>: Spring Boot, Node.js, Express, RESTful APIs, JWT Authentication, Role-Based Access Control (RBAC), Flyway Migrations.</li>
+  <li><b>Frontend</b>: Next.js, React, TypeScript, Tailwind CSS, HTML/CSS, Bootstrap.</li>
+  <li><b>Big Data &amp; Data Engineering</b>: PySpark, Apache Spark, Apache Airflow, ETL/ELT Pipelines, Data Warehousing, Dimensional Modeling (Star Schema), BigQuery, Pandas, NumPy.</li>
+  <li><b>Data Analytics</b>: Power BI, Advanced Excel, Matplotlib, Jupyter Notebook, Data Cleaning &amp; Validation, Reporting.</li>
+  <li><b>Databases</b>: PostgreSQL (incl. Row-Level Security), MySQL, MongoDB, SQLAlchemy, Database Indexing, Query Optimization, Schema Normalization.</li>
+  <li><b>DevOps, Testing &amp; Deployment</b>: Docker, Docker Compose, Linux, Git/GitHub, CI/CD (GitHub Actions), Vercel, Testcontainers, Playwright.</li>
+  <li><b>Architecture &amp; Data Quality</b>: System Design, RESTful APIs, Monolith Architecture, Multi-Tenant Data Isolation, Concurrency Control, Idempotency, Double-Entry Ledger Integrity, Pipeline Testing &amp; Quality Gates, Schema Enforcement, Lineage &amp; Auditability.</li>
+  <li><b>Soft Skills</b>: Critical Thinking, Cross-Functional Collaboration, Problem-Solving &amp; Troubleshooting, Technical Communication, Requirements Gathering, Attention to Detail, Time Management, Stakeholder Alignment, Adaptability, Agile Methodology.</li>
+</ul>
+
+<h2>Work Experience</h2>
+
+<div class="entry">
+  <div class="title">Full-Stack Software Engineer — Agri-Link ERP &amp; Point of Sale <span class="badge">(Freelance)</span></div>
+  <div class="meta"><span>Agrovet shop, Kenya</span><span>2026 – Present</span></div>
+  <ul class="b">
+    <li>Gathered requirements with the owner and staff and designed an ERP and point of sale covering the till, stock and warehouses, purchasing, customer accounts and a weekly day-old-chick booking cycle; now in trial in the shop.</li>
+    <li>Built the backend in Java 21 and Spring Boot with PostgreSQL 16: 35 Flyway migrations, JWT authentication, role checks on every route and row-level security isolating each business’s data.</li>
+    <li>Built the frontend in Next.js, React and TypeScript around one spreadsheet-style grid used by every screen, so staff work the way they did in Excel (keyboard navigation, paste from Excel, filters, Excel/CSV export).</li>
+    <li>Posted every sale, payment and delivery as a balanced double-entry transaction to an append-only ledger; used idempotency keys and row locks so money and stock stay correct under real use; covered it with 106 backend tests on real PostgreSQL (Testcontainers) and end-to-end Playwright tests, deployed with Docker Compose.</li>
+  </ul>
+  <a class="link" href="https://github.com/TofaKM/Agri-Link-Showcase">github.com/TofaKM/Agri-Link-Showcase</a>
+</div>
+
+<div class="entry">
+  <div class="title">Corporate Governance Data Analyst – Virtual Assistant</div>
+  <div class="meta"><span>Minerva Analytics (Remote)</span><span>January 2026 – April 2026</span></div>
+  <ul class="b">
+    <li>Audited public company filings, annual reports, and proxy statements to log board structure changes, executive leadership shifts, and committee appointments.</li>
+    <li>Captured and verified financial metrics, director independence data, and board governance updates with high accuracy across global markets.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="title">IT Intern</div>
+  <div class="meta"><span>Social Health Authority, Nanyuki, Kenya</span><span>September 2024 – December 2024</span></div>
+  <ul class="b">
+    <li>Cleaned and prepared large-scale datasets using Excel and internal diagnostic tools, reducing reporting errors and optimizing data integrity.</li>
+    <li>Conducted operational data analysis to identify bottlenecks and collaborated with cross-functional teams to redesign IT workflows, accelerating report generation.</li>
+    <li>Resolved technical hardware, software, and network issues across computer systems to ensure high uptime for critical user applications.</li>
+  </ul>
+</div>
+
+<h2>Projects</h2>
+
+<div class="entry">
+  <div class="title">Zuri Mobile Customer Churn ETL Pipeline</div>
+  <div class="meta"><span>PySpark, Apache Airflow, PostgreSQL, Docker Compose</span><span>June 2026</span></div>
+  <ul class="b">
+    <li>Engineered a production-style telecom churn pipeline processing 10,000 records using PySpark for data validation, deduplication, and standardization.</li>
+    <li>Designed a PostgreSQL star-schema data warehouse to optimize dimensional modeling and analytics performance.</li>
+    <li>Orchestrated automated, repeatable staging-to-live data workflows using Apache Airflow and Docker Compose.</li>
+  </ul>
+  <a class="link" href="https://github.com/TofaKM/zuri-mobile-churn-pipeline">github.com/TofaKM/zuri-mobile-churn-pipeline</a>
+</div>
+
+<div class="entry">
+  <div class="title">Hospital Data ETL Pipeline</div>
+  <div class="meta"><span>Docker, Python, SQL, ETL Architecture</span><span>June 2026</span></div>
+  <ul class="b">
+    <li>Developed a containerized ETL pipeline in Docker to automate healthcare data ingestion, cleaning, and transformation.</li>
+    <li>Structured end-to-end data workflows generating high-precision datasets for operational analysis and clinical reporting.</li>
+    <li>Automated routine transformations to allow non-technical stakeholders direct access to accurate business insights.</li>
+  </ul>
+  <a class="link" href="https://github.com/TofaKM/etl_hospital_pipeline">github.com/TofaKM/etl_hospital_pipeline</a>
+</div>
+
+<div class="entry">
+  <div class="title">Chap Mall E-Commerce Platform</div>
+  <div class="meta"><span>Next.js, Node.js, PostgreSQL, RESTful APIs</span><span>July 2025</span></div>
+  <ul class="b">
+    <li>Architected a multi-tier e-commerce platform featuring Role-Based Access Control (RBAC) across customer, vendor, and admin roles.</li>
+    <li>Engineered RESTful APIs and optimized PostgreSQL database queries to handle complex relational data with high data integrity.</li>
+    <li>Built inventory tracking logic for live availability updates and implemented secure authentication to lower page latency.</li>
+  </ul>
+  <a class="link" href="https://github.com/TofaKM/Advanced-E-commerce-Website">github.com/TofaKM/Advanced-E-commerce-Website</a>
+</div>
+
+<h2>Certifications</h2>
+<ul class="b">
+  <li><b>Data Engineer Certificate</b> – ALX Africa (Aug 2026) — ETL/ELT Pipelines, Data Warehousing, Airflow, Spark, Dimensional Modeling, SQL/Python Automation.</li>
+  <li><b>Python for Data Science</b> – ALX Africa (Apr 2026) — Pandas, NumPy, SciPy, Automated Data Extraction, Statistical Hypothesis Testing.</li>
+  <li><b>Data Analytics Certificate</b> – ALX Africa (Sep 2025) — MySQL Querying, Power BI Dashboarding, Data Visualization, Professional Reporting, Excel.</li>
+  <li><b>Introduction to Machine Learning</b> – Cisco &amp; IBM (Feb 2025) — Supervised/Unsupervised Learning, Model Evaluation, Predictive Analytics (Python).</li>
+  <li><b>Data Analytics</b> – Cisco Academy (Aug 2024) — Data Lifecycle Management, Data Cleaning, Advanced Excel, SQL Analysis.</li>
+</ul>
+
+<h2>Education</h2>
+
+<div class="entry">
+  <div class="title">B.Sc. Applied Computing (Computer Science)</div>
+  <div class="meta"><span>KCA University, Nairobi, Kenya</span><span>September 2020 – November 2025</span></div>
+  <ul class="b">
+    <li>Core Coursework: Data Structures &amp; Algorithms (DSA), Systems Analysis &amp; Design, Database Management Systems (DBMS), Relational Database Normalization, SDLC.</li>
+    <li>Capstone Project: Engineered a full-stack e-commerce application using JavaScript, Node.js, React, and MySQL featuring optimized relational schemas and Role-Based Access Control (RBAC).</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="title">High School Certificate</div>
+  <div class="meta"><span>Ndururumo High School, Nyahururu, Kenya</span><span>January 2016 – November 2019</span></div>
+  <ul class="b">
+    <li>Achieved Mean Grade B+ (71 points), focusing on Mathematics, Physics, and Computer Studies.</li>
+    <li>Served as Academic Secretary, leading peer tutoring initiatives and managing academic schedules.</li>
+  </ul>
+</div>
+
+<h2>Interests</h2>
+<p><b>Professional Interests &amp; Research</b>: System Architecture, AI &amp; ML, Tech News, Cloud Data Architecture, Real-Time Data Streaming, Distributed Systems &amp; Microservices</p>
+<p><b>Activities &amp; Hobbies</b>: Football, Badminton, Outdoor Activities, Gardening, Animations</p>
+
+<h2>References</h2>
+<ul class="b">
+  <li><b>Dacosta Otekoh</b> — <i>Human Resources (HR)</i> | +254 701 563 588 | dacostaotekoh@gmail.com</li>
+  <li><b>Francis Ngugi</b> — <i>Software Engineer</i> | +254 707 574 430 | francisngugi518@gmail.com</li>
+</ul>
+
+</body>
+</html>
