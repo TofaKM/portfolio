@@ -6,10 +6,15 @@ export interface Project {
   tech: string[]
   github?: string
   demo?: string
+  /** Public write-up when the source itself is private. */
+  caseStudy?: string
+  image?: { src: string; alt: string }
   featured: boolean
   category: string
   year: string
   status: 'completed' | 'in-progress'
+  /** Shown instead of the generic "In Progress" badge, e.g. "In shop trial". */
+  statusNote?: string
 }
 
 export interface Skill {

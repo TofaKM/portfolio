@@ -178,18 +178,13 @@ export default function SkillsPage() {
             </h3>
 
             <p className="text-ink-500 text-[13px] font-sans mb-5">
-              Actively picking up new tools through the ALX Data Engineering
-              Program and an in-progress Spark project — these aren&rsquo;t
-              reflected in the proficiency bars above since they&rsquo;re not
-              yet demonstrated in a completed project.
+              Next on the list — these aren&rsquo;t in the proficiency bars
+              above because they aren&rsquo;t yet demonstrated in a finished
+              project.
             </p>
 
             <div className="flex flex-wrap gap-2">
               {[
-                'Java',
-                'Spring Boot',
-                'Apache Spark',
-                'Apache Airflow',
                 'Cloud Databases',
                 'C++ Fundamentals',
               ].map((item) => (

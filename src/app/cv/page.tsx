@@ -293,11 +293,11 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
                 },
                 {
                   label: 'Programming Languages',
-                  items: ['Python','JavaScript','C#','C++ (learning)','SQL','Java (learning)'],
+                  items: ['Python','Java','JavaScript','TypeScript','SQL','C#','C++ (learning)'],
                 },
                 {
                   label: 'Web Development',
-                  items: ['Next.js','Node.js','Springboot(learning)','Express', 'Bootstrap', 'TailwindCSS','REST APIs',],
+                  items: ['Next.js','React','Node.js','Spring Boot','Express', 'Bootstrap', 'TailwindCSS','REST APIs',],
                 },
                 {
                   label: 'Databases & Tools',
@@ -382,10 +382,20 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
                     <div className="flex flex-wrap gap-1.5">
                       {p.tech.slice(0, 5).map(t => <span key={t} className="tag">{t}</span>)}
                     </div>
-                    {p.status === 'in-progress' ? (
-                      <span className="text-[10px] font-medium font-sans mt-1 inline-block" style={{ color: 'var(--accent-dark)' }}>
-                        ● In Progress — not yet published
+                    {p.status === 'in-progress' && (
+                      <span className="text-[10px] font-medium font-sans mt-1 mr-3 inline-block" style={{ color: 'var(--accent-dark)' }}>
+                        ● {p.statusNote ?? 'In Progress'}
                       </span>
+                    )}
+                    {p.caseStudy ? (
+                      <a
+                        href={p.caseStudy}
+                        target="_blank" rel="noopener noreferrer"
+                        className="text-[10px] hover:underline mt-1 inline-block"
+                        style={{ color: 'var(--accent-dark)' }}
+                      >
+                        ↗ Case study: {p.caseStudy}
+                      </a>
                     ) : p.github ? (
                       <a
                         href={p.github}
