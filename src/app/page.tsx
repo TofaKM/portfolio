@@ -27,14 +27,14 @@ export default function HomePage() {
           <div className="card text-center py-16 px-8">
             <p className="text-[10px] font-semibold uppercase tracking-[.2em] font-sans mb-5"
                style={{ color: 'var(--accent-dark)' }}>
-              Let's Work Together
+              Let&rsquo;s Work Together
             </p>
             <h2 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 leading-tight mb-5">
               Got a project in{' '}
               <span className="italic" style={{ color: 'var(--accent-dark)' }}>mind?</span>
             </h2>
             <p className="text-ink-500 text-[15px] font-sans mb-9 max-w-lg mx-auto leading-relaxed">
-              I'm open to data engineering roles, full-stack opportunities, and interesting collaborations. Let's build something great.
+              I&rsquo;m open to data engineering roles, full-stack opportunities, and interesting collaborations. Let&rsquo;s build something great.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link

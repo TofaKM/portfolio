@@ -4,7 +4,7 @@ import {
   Rocket, Lightbulb, BarChart3, Cpu, Wrench, TrendingUp, FileCode2,
 } from 'lucide-react'
 import {GithubGlyph,LinkedinGlyph} from '@/components/icons/BrandGlyphs'
-import { workExperience, education, skills, projects, certifications } from '@/data'
+import { workExperience, education, projects, certifications } from '@/data'
 
 const CV_FILE = '/documents/Tofa-CV.pdf'
 
