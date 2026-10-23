@@ -118,8 +118,8 @@ export default function ContactClient() {
                 <h3 className="font-sans font-medium text-[13.5px] text-ink-900 mb-4">Find Me Online</h3>
                 <div className="space-y-3">
                   {[
-                    { href: 'https://github.com/TofaKM',                   icon: GithubGlyph,   label: 'GitHub',   handle: 'Tofa_KM',             external: true },
-                    { href: 'https://www.linkedin.com/in/tofa-mwangi',     icon: LinkedinGlyph, label: 'LinkedIn', handle: 'Tofa Mwangi',         external: true },
+                    { href: profile.github,                                icon: GithubGlyph,   label: 'GitHub',   handle: 'Tofa_KM',             external: true },
+                    { href: profile.linkedin,                              icon: LinkedinGlyph, label: 'LinkedIn', handle: 'Tofa Mwangi',         external: true },
                     { href: `mailto:${CONTACT_EMAIL}`,                     icon: Mail,          label: 'Email',    handle: CONTACT_EMAIL,         external: false },
                     { href: 'tel:+254759799624',                           icon: Phone,         label: 'Phone',    handle: '0759 799 624',        external: false },
                   ].map(({ href, icon: Icon, label, handle, external }) => (

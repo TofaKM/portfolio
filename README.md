@@ -58,7 +58,15 @@ Almost everything is data in **`src/data/index.ts`**:
 | `certifications` | Certifications page, CV, counts |
 | `testimonials` | Home page |
 
-Types are in `src/types/index.ts`. The CV PDF is `public/documents/Tofa-CV.pdf`.
+Types are in `src/types/index.ts`.
+
+**The CV PDF** (`public/documents/Tofa-CV.pdf`) is generated from `docs/cv.html`. After editing the HTML, print it with Chrome or Edge (headless works too):
+
+```bash
+msedge --headless=new --no-pdf-header-footer --print-to-pdf=public/documents/Tofa-CV.pdf docs/cv.html
+```
+
+Keep it to two pages, and keep bullets as real list items (`list-style: disc`) — positioned pseudo-element bullets scramble the text order that applicant-tracking systems read.
 
 ## Running locally
 
@@ -99,7 +107,7 @@ Designed and built with the assistance of **Claude (Anthropic)**: the audit and 
 **Tofa Kimani Mwangi** — Nairobi, Kenya
 
 - GitHub: [@TofaKM](https://github.com/TofaKM)
-- LinkedIn: [tofa-mwangi](https://www.linkedin.com/in/tofa-mwangi)
+- LinkedIn: [tofa-mwangi117](https://www.linkedin.com/in/tofa-mwangi117)
 - Email: mwangitofa@gmail.com
 
 ## License
