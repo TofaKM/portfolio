@@ -1,8 +1,7 @@
 'use client'
 import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
-import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
+import { MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { socialLinks, linkTarget } from '@/components/icons/social'
 import { SUBJECTS, LIMITS, validateContact, type ContactErrors, type ContactInput } from '@/lib/contact'
 import { delay } from '@/lib/delay'
 import { profile } from '@/data'
@@ -60,9 +59,9 @@ export default function ContactClient() {
 
   const inputCls = (invalid: boolean) => `
     w-full px-4 py-2.5 rounded-doc bg-white border
-    ${invalid ? 'border-red-600' : 'border-[#DCDFDD]'}
+    ${invalid ? 'border-red-600' : 'border-border'}
     text-ink-900 placeholder-ink-300
-    focus:outline-none focus:border-[#A2793F]
+    focus:outline-none focus:border-accent
     transition-colors text-[13px] font-sans
   `
   const labelCls = 'block text-[11px] font-medium text-ink-500 font-sans uppercase tracking-wider mb-2'
@@ -111,7 +110,7 @@ export default function ContactClient() {
 
               <div className="card">
                 <div className="flex items-center gap-2.5 mb-1.5">
-                  <MapPin size={13} style={{ color: 'var(--accent-dark)' }} />
+                  <MapPin size={13} className="text-accent-dark" />
                   <span className="font-sans font-medium text-[13.5px] text-ink-900">Location</span>
                 </div>
                 <p className="text-ink-500 text-[13px] font-sans">Nairobi, Kenya 🇰🇪</p>
@@ -121,26 +120,21 @@ export default function ContactClient() {
               <div className="card">
                 <h3 className="font-sans font-medium text-[13.5px] text-ink-900 mb-4">Find Me Online</h3>
                 <div className="space-y-3">
-                  {[
-                    { href: profile.github,                                icon: GithubGlyph,   label: 'GitHub',   handle: 'Tofa_KM',             external: true },
-                    { href: profile.linkedin,                              icon: LinkedinGlyph, label: 'LinkedIn', handle: 'Tofa Mwangi',         external: true },
-                    { href: `mailto:${CONTACT_EMAIL}`,                     icon: Mail,          label: 'Email',    handle: CONTACT_EMAIL,         external: false },
-                    { href: 'tel:+254759799624',                           icon: Phone,         label: 'Phone',    handle: '0759 799 624',        external: false },
-                  ].map(({ href, icon: Icon, label, handle, external }) => (
+                  {Object.values(socialLinks).map(l => (
                     <a
-                      key={label}
-                      href={href}
-                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      key={l.label}
+                      href={l.href}
+                      {...linkTarget(l)}
                       className="flex items-center gap-3 text-ink-500 hover:text-ink-900 transition-colors group"
                     >
                       <div
-                        className="w-8 h-8 rounded-doc border border-[#DCDFDD] flex items-center justify-center bg-white group-hover:border-[#A2793F] transition-colors"
+                        className="w-8 h-8 rounded-doc border border-border flex items-center justify-center bg-white group-hover:border-accent transition-colors"
                       >
-                        <Icon size={13} />
+                        <l.Icon size={13} />
                       </div>
                       <div>
-                        <div className="text-[10px] text-ink-300 font-sans">{label}</div>
-                        <div className="text-[12.5px] font-medium font-sans text-ink-700 group-hover:text-ink-900 transition-colors">{handle}</div>
+                        <div className="text-[10px] text-ink-300 font-sans">{l.label}</div>
+                        <div className="text-[12.5px] font-medium font-sans text-ink-700 group-hover:text-ink-900 transition-colors">{l.handle}</div>
                       </div>
                     </a>
                   ))}
@@ -152,25 +146,22 @@ export default function ContactClient() {
             <div style={delay(120)} className="enter lg:col-span-3">
               <div className="card">
                 {status === 'sent' ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: .95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-14 text-center"
+                  <div
+                    className="enter flex flex-col items-center justify-center py-14 text-center"
                     role="status"
                   >
-                    <CheckCircle size={48} className="mb-4" style={{ color: 'var(--accent)' }} />
+                    <CheckCircle size={48} className="mb-4 text-accent" />
                     <h3 className="font-serif font-semibold text-2xl text-ink-900 mb-2">Message Sent!</h3>
                     <p className="text-ink-500 text-[13px] font-sans">
                       Thanks for reaching out. I&rsquo;ll get back to you within 24 hours.
                     </p>
                     <button
                       onClick={() => { setStatus('idle'); setForm(EMPTY); setErrors({}); startedAt.current = 0 }}
-                      className="mt-6 text-[12px] font-sans hover:underline"
-                      style={{ color: 'var(--accent-dark)' }}
+                      className="mt-6 text-[12px] font-sans hover:underline text-accent-dark"
                     >
                       Send another message
                     </button>
-                  </motion.div>
+                  </div>
                 ) : (
                   <form onSubmit={handleSubmit} onFocusCapture={markStarted} noValidate className="space-y-5">
                     {status === 'error' && (

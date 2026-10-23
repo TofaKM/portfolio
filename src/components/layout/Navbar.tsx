@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
+import { socialLinks } from '@/components/icons/social'
 import { profile } from '@/data'
 import { navLinks } from './navLinks'
 
@@ -75,7 +75,7 @@ export default function Navbar() {
                     href={href}
                     aria-current={active ? 'page' : undefined}
                     className={`relative flex items-center px-3 text-[13.5px] font-sans transition-colors ${
-                      active ? 'text-white font-semibold' : 'text-[#B7C4D2] hover:text-white'
+                      active ? 'text-white font-semibold' : 'text-mist hover:text-white'
                     }`}
                   >
                     {label}
@@ -93,17 +93,14 @@ export default function Navbar() {
             <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden />
             Open to work
           </span>
-          {[
-            { href: profile.github,   label: 'GitHub',   Icon: GithubGlyph },
-            { href: profile.linkedin, label: 'LinkedIn', Icon: LinkedinGlyph },
-          ].map(({ href, label, Icon }) => (
+          {[socialLinks.github, socialLinks.linkedin].map(({ href, label, Icon }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="hidden sm:flex w-8 h-8 rounded-doc border border-white/20 items-center justify-center text-[#B7C4D2] hover:text-white hover:border-white/50 transition-colors"
+              className="hidden sm:flex w-8 h-8 rounded-doc border border-white/20 items-center justify-center text-mist hover:text-white hover:border-white/50 transition-colors"
             >
               <Icon size={15} />
             </a>
@@ -142,7 +139,7 @@ export default function Navbar() {
                       onClick={() => setOpen(false)}
                       aria-current={active ? 'page' : undefined}
                       className={`flex items-center gap-3 py-2.5 text-[14px] font-sans border-l-2 pl-3 ${
-                        active ? 'border-accent text-white font-semibold' : 'border-transparent text-[#B7C4D2] hover:text-white'
+                        active ? 'border-accent text-white font-semibold' : 'border-transparent text-mist hover:text-white'
                       }`}
                     >
                       {label}
@@ -151,7 +148,7 @@ export default function Navbar() {
                 )
               })}
             </ul>
-            <div className="flex items-center gap-4 mt-3 pt-3 border-t border-white/10 text-[12.5px] font-sans text-[#B7C4D2]">
+            <div className="flex items-center gap-4 mt-3 pt-3 border-t border-white/10 text-[12.5px] font-sans text-mist">
               <a href={profile.github} target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
               <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a>
               <span className="ml-auto inline-flex items-center gap-1.5 text-white text-[11px]">

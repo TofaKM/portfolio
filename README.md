@@ -13,7 +13,7 @@ Personal site of Tofa Kimani Mwangi, software engineer (full-stack, backend, dat
 | Framework | Next.js 16 (App Router), React 19, TypeScript 5 |
 | Styling | Tailwind CSS 3 with CSS-variable design tokens |
 | Fonts | Source Serif 4, Inter, IBM Plex Mono via `next/font` (self-hosted) |
-| Motion | CSS entrance and scroll-reveal; framer-motion only for interactions |
+| Motion | Plain CSS (entrance, scroll reveal) and a few lines of JS — no animation library |
 | Email | Contact form → `/api/contact` → Gmail SMTP via nodemailer |
 | Hosting | Vercel |
 
@@ -26,7 +26,7 @@ Personal site of Tofa Kimani Mwangi, software engineer (full-stack, backend, dat
 | `/projects` | All projects, filterable by category |
 | `/skills` | Every skill, grouped (languages, data engineering, web, databases, DevOps, professional and soft skills) |
 | `/certifications` | Credentials with links to the issuers for verification |
-| `/cv` | Full CV with view / download of the PDF |
+| `/cv` | The CV document itself (`docs/cv.html`, embedded) with view / download of the PDF |
 | `/contact` | Working contact form plus direct links |
 
 Also generated: `/sitemap.xml`, `/robots.txt` and a link-preview image (`/opengraph-image`).
@@ -60,7 +60,7 @@ Almost everything is data in **`src/data/index.ts`**:
 
 Types are in `src/types/index.ts`.
 
-**The CV PDF** (`public/documents/Tofa-CV.pdf`) is generated from `docs/cv.html`. After editing the HTML, print it with Chrome or Edge (headless works too):
+**The CV** has one source, `docs/cv.html`: the `/cv` page shows it (read at build time) and the PDF (`public/documents/Tofa-CV.pdf`) is printed from it. Its styles are all scoped to `.cv` so they work in both places. After editing the HTML, reprint the PDF with Chrome or Edge (headless works too):
 
 ```bash
 msedge --headless=new --no-pdf-header-footer --print-to-pdf=public/documents/Tofa-CV.pdf docs/cv.html

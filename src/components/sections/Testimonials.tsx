@@ -5,7 +5,7 @@ import { delay } from '@/lib/delay'
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-5 md:px-10" style={{ background: 'var(--surface-2)' }}>
+    <section className="py-24 px-5 md:px-10 bg-cream-200">
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="Social Proof" title="What people say" className="mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -25,8 +25,7 @@ export default function Testimonials() {
 
               <div className="flex items-center gap-3 relative z-10">
                 <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white font-serif font-bold text-[12px] shadow-sm"
-                  style={{ background: 'var(--accent-dark)' }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white font-serif font-bold text-[12px] shadow-sm bg-accent-dark"
                 >
                   {t.initials}
                 </div>

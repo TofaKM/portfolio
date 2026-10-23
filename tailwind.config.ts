@@ -31,6 +31,8 @@ const config: Config = {
           2: '#16334F',
         },
         border:        '#DCDFDD',
+        // Muted link text on the navy bar
+        mist:          '#B7C4D2',
         accent:        '#A2793F',
         'accent-dark': '#7C5A2E',
         'accent-tint': '#F1E7D8',
@@ -47,20 +49,6 @@ const config: Config = {
       },
       borderRadius: {
         doc: '2px',
-      },
-      animation: {
-        'fade-up': 'fadeUp .4s ease forwards',
-        'fade-in': 'fadeIn .3s ease forwards',
-      },
-      keyframes: {
-        fadeUp: {
-          from: { opacity: '0', transform: 'translateY(14px)' },
-          to:   { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeIn: {
-          from: { opacity: '0' },
-          to:   { opacity: '1' },
-        },
       },
     },
   },

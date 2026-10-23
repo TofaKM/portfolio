@@ -1,20 +1,9 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import type { Metadata } from 'next'
+import { Download, Eye } from 'lucide-react'
 import { pageMetadata } from '@/lib/metadata'
-import {
-  Download, Eye, Briefcase, GraduationCap, Award, Code, MapPin, Mail, Phone,
-  Rocket, Lightbulb, BarChart3, Cpu, Wrench, TrendingUp, FileCode2,
-} from 'lucide-react'
-import {GithubGlyph,LinkedinGlyph} from '@/components/icons/BrandGlyphs'
-import { workExperience, education, projects, certifications, profile, skillGroups } from '@/data'
-import SkillGroups from '@/components/ui/SkillGroups'
-
-const certIcons: Record<string, typeof BarChart3> = {
-  chart: BarChart3,
-  cpu: Cpu,
-  wrench: Wrench,
-  'trending-up': TrendingUp,
-  code: FileCode2,
-}
+import { profile } from '@/data'
 
 export const metadata: Metadata = pageMetadata({
   title: 'CV / Resume',
@@ -23,57 +12,38 @@ export const metadata: Metadata = pageMetadata({
   path: '/cv',
 })
 
+/**
+ * One source for the CV: docs/cv.html is printed to the PDF download and
+ * also shown here, so the page and the PDF can't drift apart. Read once at
+ * build time (the page is static). The file is our own, committed source.
+ */
+function readCv() {
+  const html = fs.readFileSync(path.join(process.cwd(), 'docs', 'cv.html'), 'utf8')
+  const css = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] ?? ''
+  const body = html.match(/<main class="cv">([\s\S]*?)<\/main>/)?.[1]
+  if (!body) throw new Error('docs/cv.html: <main class="cv"> not found')
+  // @page sizes the standalone PDF; on the site, leave printing to the browser.
+  return { css: css.replace(/@page\s*\{[^}]*\}/, ''), body }
+}
+
 export default function CVPage() {
+  const { css, body } = readCv()
+
   return (
     <div>
       <section className="pt-14 pb-20 px-5 md:px-10">
         <div className="max-w-6xl mx-auto">
-
-          {/* Header — title left, primary action top-right */}
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12">
+          {/* Header — label and intro left, actions top-right */}
+          <div className="enter flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
               <p className="eyebrow mb-3">Curriculum Vitae</p>
-
-              <h1 className="font-serif font-semibold text-4xl md:text-5xl text-ink-900 tracking-[-0.02em] mb-1">
-                {profile.name}
-              </h1>
-
-              <p className="font-sans font-medium text-[15px] text-accent-dark mb-4">{profile.tagline}</p>
-
-              {/* Contact + Socials — single row */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-ink-500 font-sans">
-                <a href={`mailto:${profile.email}`} className="flex items-center gap-1.5 whitespace-nowrap hover:text-ink-900">
-                  <Mail size={12} aria-hidden /> {profile.email}
-                </a>
-                <a href={profile.phoneHref} className="flex items-center gap-1.5 whitespace-nowrap hover:text-ink-900">
-                  <Phone size={12} aria-hidden /> {profile.phone}
-                </a>
-                <span className="flex items-center gap-1.5 whitespace-nowrap">
-                  <MapPin size={12} aria-hidden /> {profile.location}
-                </span>
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-ink-900 transition-colors whitespace-nowrap"
-                >
-                  <GithubGlyph size={14} /> GitHub
-                </a>
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-ink-900 transition-colors whitespace-nowrap"
-                >
-                  <LinkedinGlyph size={14} /> LinkedIn
-                </a>
-              </div>
+              <p className="text-ink-500 text-[15px] font-sans max-w-2xl leading-relaxed">
+                The same document as the PDF — read it here, or download it to send on.
+              </p>
             </div>
-
-            {/* CV Actions */}
             <div className="flex gap-2.5 shrink-0">
               <a href={profile.cv} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                <Eye size={15} aria-hidden /> View CV
+                <Eye size={15} aria-hidden /> View PDF
               </a>
               <a href={profile.cv} download className="btn btn-primary">
                 <Download size={14} strokeWidth={2} aria-hidden /> Download CV
@@ -81,275 +51,11 @@ export default function CVPage() {
             </div>
           </div>
 
-
-          {/* Profile Summary */}
-          <div className="card mb-5">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-4 flex items-center gap-2">
-              <span style={{ color: 'var(--accent)' }}>▸</span> Profile Summary
-            </h2>
-            <p className="text-ink-500 text-[13.5px] leading-relaxed font-sans">
-              Software engineer with a background in Applied Computing, working across full-stack development, backend services, data engineering, data analytics and deployment. Built and deployed Agri-Link, an ERP and point-of-sale system now in trial at a Kenyan agrovet (Spring Boot, PostgreSQL, Next.js), alongside production-style ETL pipelines with PySpark, Airflow and Docker. Comfortable from database design to the browser to production, and ready to step into software engineering, full-stack, backend, data engineering, data analytics or DevOps roles.
-            </p>
+          {/* The CV itself, on a sheet of "paper". Its name heading is the page's h1. */}
+          <style dangerouslySetInnerHTML={{ __html: css }} />
+          <div className="max-w-[850px] mx-auto bg-white border border-border rounded-doc shadow-sm px-5 py-8 sm:px-12 sm:py-12 overflow-x-auto">
+            <div className="cv" dangerouslySetInnerHTML={{ __html: body }} />
           </div>
-
-          {/* Work Experience */}
-          <div className="card mb-5">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-7 flex items-center gap-2">
-              <Briefcase size={15} style={{ color: 'var(--accent-dark)' }} /> Work Experience
-            </h2>
-            {workExperience.map((job, i) => (
-              <div key={`${job.company}-${i}`} className={i > 0 ? 'pt-6 mt-6 border-t border-[#DCDFDD]' : ''}>
-                <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                  <div>
-                    <h3 className="font-serif font-semibold text-[14px] text-ink-900">
-                      {job.role}
-                      {job.type && (
-                      <span className="ml-2 align-middle inline-block text-[9.5px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded-doc bg-accent-tint text-accent-dark border border-accent/30">
-                        {job.type}
-                      </span>
-                          )}
-                    </h3>
-                    <span className="font-sans text-[12px] font-medium" style={{ color: 'var(--accent-dark)' }}>
-                      {job.company} · {job.location}
-                    </span>
-                  </div>
-                  <span
-                    className="text-[10px] text-ink-400 font-mono px-2.5 py-1 rounded-doc"
-                    style={{ background: 'var(--surface-2)' }}
-                  >
-                    {job.period}
-                  </span>
-                </div>
-                <p className="text-ink-500 text-[12.5px] leading-relaxed font-sans mb-3">{job.description}</p>
-                <ul className="space-y-1.5 mb-3">
-                  {job.achievements.map(a => (
-                    <li key={a} className="flex items-start gap-2 text-[12px] text-ink-500 font-sans">
-                      <span style={{ color: 'var(--accent)' }} className="mt-0.5 shrink-0">›</span>{a}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-1.5">
-                  {job.tech.map(t => <span key={t} className="tag">{t}</span>)}
-                </div>
-                {job.link && (
-                  <a
-                    href={job.link.href}
-                    target="_blank" rel="noopener noreferrer"
-                    className="text-[10px] hover:underline mt-2 inline-block"
-                    style={{ color: 'var(--accent-dark)' }}
-                  >
-                    ↗ {job.link.label}: {job.link.href}
-                  </a>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Education */}
-          <div className="card mb-5">
-  <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-7 flex items-center gap-2">
-    <GraduationCap size={15} style={{ color: 'var(--accent-dark)' }} /> Education
-  </h2>
-
-  <div className="space-y-6">
-    {education.map((edu, i) => (
-      <div
-        key={`${edu.school}-${i}`}
-        className={i > 0 ? 'pt-6 border-t border-[#DCDFDD]' : ''}
-      >
-        <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
-          <div>
-            <h3 className="font-serif font-semibold text-[14px] text-ink-900">
-              {edu.degree}
-            </h3>
-            <p className="text-[12px] text-ink-500 font-sans">{edu.field}</p>
-
-            <span
-              className="font-sans text-[12px] font-medium"
-              style={{ color: 'var(--accent-dark)' }}
-            >
-              {edu.school} · {edu.location}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span
-              className="text-[10px] text-ink-400 font-mono px-2.5 py-1 rounded-doc"
-              style={{ background: 'var(--surface-2)' }}
-            >
-              {edu.period}
-            </span>
-
-            {edu.grade && (
-              <span
-                className="text-[10px] font-semibold px-2 py-1 rounded-doc"
-                style={{
-                  background: 'rgba(162,121,63,.2)',
-                  color: 'var(--accent-dark)',
-                }}
-              >
-                {edu.grade}
-              </span>
-            )}
-          </div>
-        </div>
-
-        <ul className="space-y-1 mt-2">
-          {edu.details.map(d => (
-            <li
-              key={d}
-              className="flex items-start gap-2 text-[12px] text-ink-500 font-sans"
-            >
-              <span
-                style={{ color: 'var(--accent)' }}
-                className="shrink-0"
-              >
-                ›
-              </span>
-              {d}
-            </li>
-          ))}
-        </ul>
-
-        {edu.certificate && (
-          <div className="mt-4">
-            <a
-              href={edu.certificate}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-semibold text-[12px] font-sans px-4 py-2 rounded-doc border border-[#DCDFDD] text-ink-700 hover:border-[var(--accent)] hover:text-[var(--accent-dark)] hover:bg-[#FAF9F6] transition-colors"
-            >
-              View Certificate
-            </a>
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-</div>
-
-
-          {/* Certifications */}
-          <div className="card mb-5">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-6 flex items-center gap-2">
-              <Award size={15} style={{ color: 'var(--accent)' }} /> Certifications
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {certifications.map(cert => {
-                const CertIcon = certIcons[cert.icon]
-                return (
-                <div
-                  key={cert.id}
-                  className={`p-4 rounded-doc border ${
-                    cert.status === 'in-progress'
-                      ? 'border-accent/40'
-                      : 'border-border'
-                  }`}
-                  style={cert.status === 'in-progress' ? { background: 'rgba(162,121,63,.06)' } : { background: 'var(--surface-2)' }}
-                >
-                  <div className="flex items-start gap-3">
-                    <CertIcon size={18} className="text-accent-dark mt-0.5 shrink-0" aria-hidden />
-                    <div>
-                      <div className="font-sans font-medium text-[12.5px] text-ink-900 mb-0.5">{cert.name}</div>
-                      <div className="text-ink-400 text-[11px] font-sans">{cert.issuer}</div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[10px] text-ink-300 font-mono">{cert.date}</span>
-                        {cert.status === 'in-progress' && (
-                          <span className="text-[10px] font-medium font-sans" style={{ color: 'var(--accent-dark)' }}>
-                            ● In Progress
-                          </span>
-                        )}
-                      </div>
-                      {cert.credentialUrl && (
-                        <a
-                          href={cert.credentialUrl}
-                          target="_blank" rel="noopener noreferrer"
-                          className="text-[10px] hover:underline mt-1 inline-block"
-                          style={{ color: 'var(--accent-dark)' }}
-                        >
-                          ↗ View Credential
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )})}
-            </div>
-          </div>
-
-          {/* Skills — same groups as the Skills page */}
-          <div className="card mb-5">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-6 flex items-center gap-2">
-              <Code size={15} style={{ color: 'var(--accent-dark)' }} /> Skills
-            </h2>
-            <SkillGroups groups={skillGroups} variant="compact" />
-          </div>
-
-          {/* Key Projects */}
-          <div className="card mb-5">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-6 flex items-center gap-2">
-              <Rocket size={15} className="text-accent-dark" aria-hidden /> Key Projects
-            </h2>
-            <div className="space-y-5">
-              {projects.map(p => (
-                <div key={p.id} className="flex items-start gap-3">
-                  <div
-                    className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                    style={{ background: 'var(--accent)' }}
-                  />
-                  <div>
-                    <div className="flex items-center gap-3 mb-0.5">
-                      <h3 className="font-sans font-medium text-[13.5px] text-ink-900">{p.title}</h3>
-                      <span className="text-[10px] text-ink-300 font-mono">{p.year}</span>
-                    </div>
-                    <p className="text-ink-500 text-[12px] leading-relaxed font-sans mb-2">{p.description}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {p.tech.slice(0, 5).map(t => <span key={t} className="tag">{t}</span>)}
-                    </div>
-                    {p.status === 'in-progress' && (
-                      <span className="text-[10px] font-medium font-sans mt-1 mr-3 inline-block" style={{ color: 'var(--accent-dark)' }}>
-                        ● {p.statusNote ?? 'In Progress'}
-                      </span>
-                    )}
-                    {p.caseStudy ? (
-                      <a
-                        href={p.caseStudy}
-                        target="_blank" rel="noopener noreferrer"
-                        className="text-[10px] hover:underline mt-1 inline-block"
-                        style={{ color: 'var(--accent-dark)' }}
-                      >
-                        ↗ Case study: {p.caseStudy}
-                      </a>
-                    ) : p.github ? (
-                      <a
-                        href={p.github}
-                        target="_blank" rel="noopener noreferrer"
-                        className="text-[10px] hover:underline mt-1 inline-block"
-                        style={{ color: 'var(--accent-dark)' }}
-                      >
-                        ↗ {p.github}
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Interests */}
-          <div className="card">
-            <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-4 flex items-center gap-2">
-              <Lightbulb size={15} className="text-accent-dark" aria-hidden /> Interests
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {['Artificial Intelligence', 'Machine Learning', 'Data Science', 'Analytics', 'Mobile App Development',
-                'Open Source', 'Tech Communities', 'GitHub', 'Kaggle', 'Video Editing', 'Digital Storytelling',
-                'Badminton', 'Outdoor Activities'].map(item => (
-                <span key={item} className="tag">{item}</span>
-              ))}
-            </div>
-          </div>
-
         </div>
       </section>
     </div>

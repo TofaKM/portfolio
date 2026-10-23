@@ -5,6 +5,7 @@ import { Target, Zap, BookOpen, CheckCircle2 } from 'lucide-react'
 import { workExperience, education, certifications, profile } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import TimelineSection from '@/components/sections/TimelineSection'
+import StatTile from '@/components/ui/StatTile'
 
 export const metadata: Metadata = pageMetadata({
   title: 'About',
@@ -153,17 +154,11 @@ export default function AboutPage() {
 
                 {/* Fact tiles — below the photo so they never cover it */}
                 <dl className="grid grid-cols-2 gap-3 mt-3">
-                  <div className="bg-white border border-border rounded-doc px-4 py-3">
-                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Certifications</dt>
-                    <dd className="font-mono font-semibold text-[20px] text-ink-900 mt-1 flex items-center gap-1.5">
-                      {completedCerts}
-                      <CheckCircle2 size={15} className="text-ok" aria-hidden />
-                    </dd>
-                  </div>
-                  <div className="bg-white border border-border rounded-doc px-4 py-3">
-                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Focus</dt>
-                    <dd className="font-mono font-semibold text-[17px] text-ink-900 mt-1.5 whitespace-nowrap">End-to-end</dd>
-                  </div>
+                  <StatTile
+                    label="Certifications"
+                    value={<>{completedCerts}<CheckCircle2 size={15} className="text-ok" aria-hidden /></>}
+                  />
+                  <StatTile label="Focus" value="End-to-end" compact />
                 </dl>
               </div>
             </div>
@@ -175,8 +170,7 @@ export default function AboutPage() {
 
       {/* Philosophy */}
       <section
-        className="py-20 px-5 md:px-10"
-        style={{ background: 'var(--surface-2)' }}
+        className="py-20 px-5 md:px-10 bg-cream-200"
       >
         <div className="max-w-6xl mx-auto">
           <SectionHeading

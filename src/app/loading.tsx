@@ -11,8 +11,8 @@ export default function Loading() {
           {[0, 1, 2].map(i => (
             <div
               key={i}
-              className="w-1.5 h-1.5 rounded-full animate-bounce"
-              style={{ background: 'var(--accent)', animationDelay: `${i * 0.15}s` }}
+              className="w-1.5 h-1.5 rounded-full animate-bounce bg-accent"
+              style={{ animationDelay: `${i * 0.15}s` }}
             />
           ))}
         </div>

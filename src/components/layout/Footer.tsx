@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
-import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
+import { socialLinks, linkTarget } from '@/components/icons/social'
 import { profile } from '@/data'
 import { navLinks } from './navLinks'
 
@@ -12,19 +11,15 @@ export default function Footer() {
           <p className="font-serif font-semibold text-[15px] text-ink-900">{profile.name}</p>
           <p className="text-[12.5px] text-ink-500 font-sans mt-1">{profile.tagline} · {profile.location}</p>
           <div className="flex items-center gap-2 mt-4">
-            {[
-              { href: profile.github,             label: 'GitHub',   Icon: GithubGlyph,   external: true },
-              { href: profile.linkedin,           label: 'LinkedIn', Icon: LinkedinGlyph, external: true },
-              { href: `mailto:${profile.email}`,  label: 'Email',    Icon: Mail,          external: false },
-            ].map(({ href, label, Icon, external }) => (
+            {[socialLinks.github, socialLinks.linkedin, socialLinks.email].map(l => (
               <a
-                key={label}
-                href={href}
-                aria-label={label}
-                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                key={l.label}
+                href={l.href}
+                aria-label={l.label}
+                {...linkTarget(l)}
                 className="w-8 h-8 rounded-doc border border-border bg-white flex items-center justify-center text-ink-500 hover:text-ink-900 hover:border-accent transition-colors"
               >
-                <Icon size={14} aria-hidden />
+                <l.Icon size={14} aria-hidden />
               </a>
             ))}
           </div>

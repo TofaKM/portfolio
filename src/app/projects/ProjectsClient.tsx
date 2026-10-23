@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { projects, categoryLabels } from '@/data'
 import ProjectCard from '@/components/ui/ProjectCard'
 import SectionHeading from '@/components/ui/SectionHeading'
@@ -41,24 +40,13 @@ export default function ProjectsClient() {
             ))}
           </div>
 
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {/* initial={false}: cards present on first render (and in the
-                server HTML) appear fully visible; only filter changes animate. */}
-            <AnimatePresence mode="popLayout" initial={false}>
-              {filtered.map((p, i) => (
-                <motion.div
-                  key={p.id}
-                  layout
-                  initial={{ opacity: 0, scale: .96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: .96 }}
-                  transition={{ duration: .25 }}
-                >
-                  <ProjectCard project={p} index={i} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {/* Cards that appear when the filter changes fade in via .reveal
+              (the inline script in layout.tsx picks up new nodes). */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map((p, i) => (
+              <ProjectCard key={p.id} project={p} index={i} />
+            ))}
+          </div>
         </div>
       </section>
     </div>
