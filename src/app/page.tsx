@@ -4,14 +4,43 @@ import FeaturedProjects from '@/components/sections/FeaturedProjects'
 import SkillsPreview from '@/components/sections/SkillsPreview'
 import Testimonials from '@/components/sections/Testimonials'
 import Link from 'next/link'
+import { profile, skillGroups } from '@/data'
+import { siteUrl } from '@/lib/site'
 
+// Title, description and link preview come from the site-wide defaults in layout.tsx.
 export const metadata: Metadata = {
-  title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
+  alternates: { canonical: '/' },
+}
+
+/** schema.org Person — helps search engines show a profile result. */
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: 'Software Engineer',
+  description: profile.openTo,
+  url: siteUrl,
+  email: `mailto:${profile.email}`,
+  image: `${siteUrl}/profile.jpg`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Nairobi', addressCountry: 'KE' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'KCA University' },
+    { '@type': 'EducationalOrganization', name: 'ALX Africa' },
+  ],
+  knowsAbout: skillGroups
+    .filter(g => ['languages', 'data-engineering', 'web', 'databases'].includes(g.id))
+    .flatMap(g => g.items),
+  sameAs: [profile.github, profile.linkedin],
 }
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // JSON data, not executable script; < is escaped so it can't close the tag.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
+      />
       <HeroSection />
 
       {/* Thin divider */}

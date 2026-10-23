@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import {
   Download, Eye, Briefcase, GraduationCap, Award, Code, MapPin, Mail, Phone,
   Rocket, Lightbulb, BarChart3, Cpu, Wrench, TrendingUp, FileCode2,
@@ -15,10 +16,12 @@ const certIcons: Record<string, typeof BarChart3> = {
   code: FileCode2,
 }
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'CV / Resume',
-  description: 'Professional CV of Tofa Kimani Mwangi — software engineer: full-stack, backend, data engineering, data analytics and deployment.',
-}
+  description:
+    'Professional CV of Tofa Kimani Mwangi — software engineer: full-stack, backend, data engineering, data analytics and deployment.',
+  path: '/cv',
+})
 
 export default function CVPage() {
   return (

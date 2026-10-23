@@ -16,7 +16,7 @@
   --ink-900:     #1B232B;
   --ink-700:     #33414C;
   --ink-500:     #5C6772;
-  --ink-300:     #8A939C;
+  --ink-300:     #626B74; /* darkened from #8A939C to pass WCAG AA (4.5:1) on cream, white and surface-2 */
   --ok:          #3E6B52;
   --nav-h:       56px;
 }
