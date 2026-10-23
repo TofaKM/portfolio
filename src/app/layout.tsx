@@ -33,7 +33,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tofa-mwangi.vercel.app'
+import { siteUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

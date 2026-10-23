@@ -7,9 +7,11 @@ import { delay } from '@/lib/delay'
 
 export default function ProjectCard({ project: p, index = 0 }: { project: Project; index?: number }) {
   const inProgress = p.status === 'in-progress'
+  // The whole card opens the best public link (case study → code → demo).
+  const href = p.caseStudy ?? p.github ?? (p.demo !== p.github ? p.demo : undefined)
 
   return (
-    <div style={delay(index * 60)} className="reveal card group cursor-default flex flex-col h-full">
+    <div style={delay(index * 60)} className="reveal card group relative flex flex-col h-full has-[h3_a:focus-visible]:outline has-[h3_a:focus-visible]:outline-2 has-[h3_a:focus-visible]:outline-accent">
       {/* Header: category / year / status */}
       <div className="flex items-center gap-2 mb-3">
         <span className="tag">{categoryLabels[p.category] ?? p.category}</span>
@@ -32,9 +34,20 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
 
       <div className="flex items-start justify-between gap-2 mb-2">
         <h3 className="font-serif font-semibold text-[15px] text-ink-900 leading-snug group-hover:text-[#7C5A2E] transition-colors">
-          {p.title}
+          {href ? (
+            // Stretched link: its ::after covers the card, so the card is
+            // clickable while the links below stay separately focusable.
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none"
+            >
+              {p.title}
+            </a>
+          ) : p.title}
         </h3>
-        <ArrowUpRight size={14} className="text-ink-300 group-hover:text-[#A2793F] transition-colors shrink-0 mt-0.5" />
+        {href && <ArrowUpRight size={14} className="text-ink-300 group-hover:text-[#A2793F] transition-colors shrink-0 mt-0.5" aria-hidden />}
       </div>
       <p className="text-ink-500 text-[13px] leading-relaxed mb-4 font-sans">{p.description}</p>
 
@@ -46,7 +59,7 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
       </div>
 
       {/* Links — pushed to the bottom of the card regardless of description length */}
-      <div className="mt-auto pt-1 flex items-center gap-4">
+      <div className="relative z-10 mt-auto pt-1 flex items-center gap-4">
         {p.github && (
           <a
             href={p.github}
