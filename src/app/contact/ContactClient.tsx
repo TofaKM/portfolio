@@ -5,6 +5,7 @@ import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-reac
 import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
 import { SUBJECTS, LIMITS, validateContact, type ContactErrors, type ContactInput } from '@/lib/contact'
 import { delay } from '@/lib/delay'
+import { profile } from '@/data'
 
 const EMPTY: ContactInput = { name: '', email: '', subject: '', message: '' }
 const CONTACT_EMAIL = 'mwangitofa@gmail.com'
@@ -87,7 +88,7 @@ export default function ContactClient() {
               Let&rsquo;s <span className="italic text-accent-dark">Connect</span>
             </h1>
             <p className="text-ink-500 text-[15px] font-sans max-w-2xl leading-relaxed">
-              Open to Data Engineering roles, Full-Stack opportunities, and interesting collaborations.
+              {profile.openTo}
             </p>
           </div>
 
@@ -100,7 +101,7 @@ export default function ContactClient() {
                   <span className="font-sans font-medium text-[13.5px] text-ink-900">Available Now</span>
                 </div>
                 <p className="text-ink-500 text-[12.5px] leading-relaxed font-sans">
-                  Actively looking for Data Engineering and Software Development roles. Response time: usually within 24 hours.
+                  Actively looking for software engineering, full-stack, backend, data and DevOps roles. Response time: usually within 24 hours.
                 </p>
               </div>
 

@@ -4,7 +4,14 @@ import { Project, SkillGroup, Testimonial, WorkExperience, Education, Certificat
 export const profile = {
   name: 'Tofa Kimani Mwangi',
   shortName: 'Tofa Kimani',
-  tagline: 'Data Engineer & Full-Stack Developer',
+  tagline: 'Software Engineer — Full-Stack, Data & Analytics',
+  /** Every role I'm ready to step into — used in the hero and metadata. */
+  roles: [
+    'Software Engineer', 'Full-Stack Developer', 'Backend Developer',
+    'Data Engineer', 'Data Analyst', 'DevOps & Deployment',
+  ],
+  openTo:
+    'Open to software engineering, full-stack, backend, data engineering, data analytics and DevOps roles — full-time, contract or freelance, remote or on-site.',
   location: 'Nairobi, Kenya',
   email: 'mwangitofa@gmail.com',
   phone: '+254 759 799 624',
@@ -184,6 +191,24 @@ export const testimonials: Testimonial[] = [
 ]
 
 export const workExperience: WorkExperience[] = [
+  {
+    company: 'Agrovet shop, Kenya',
+    type: 'Freelance',
+    role: 'Full-Stack Software Engineer — Agri-Link ERP & Point of Sale',
+    period: '2026 – Present',
+    location: 'Kenya',
+    description: 'Designed, built and deployed Agri-Link, an ERP and point-of-sale system for an agrovet that sells feeds, farm supplies and day-old chicks. Took it from the shop’s own spreadsheets to a working system now in trial at the till.',
+    achievements: [
+      'Gathered requirements with the owner and staff, then modelled the whole shop: till, stock and warehouses, purchasing, customer accounts and a weekly chick-booking cycle',
+      'Built the backend in Java 21 and Spring Boot with a PostgreSQL 16 database (35 Flyway migrations, row-level security, JWT auth and role checks on every route)',
+      'Built the frontend in Next.js, React and TypeScript, including one spreadsheet-style grid used by every screen so staff work the way they did in Excel',
+      'Made every sale, payment and delivery post a balanced double-entry transaction to an append-only ledger, with dashboard checks that the books match the stock',
+      'Made money and stock safe under real use: idempotency keys against double-recorded payments, row locks for two tills selling the last bag at once',
+      'Covered the system with 106 backend tests against real PostgreSQL (Testcontainers) and end-to-end Playwright tests, and run it with Docker Compose',
+    ],
+    tech: ['Java 21', 'Spring Boot', 'PostgreSQL', 'Next.js', 'React', 'TypeScript', 'Docker', 'Playwright'],
+    link: { href: 'https://github.com/TofaKM/Agri-Link-Showcase', label: 'Case study & screens' },
+  },
   {
     company: 'Minerva Analytics',
     role: 'Virtual Assistant / Corporate Governance Data Analyst',

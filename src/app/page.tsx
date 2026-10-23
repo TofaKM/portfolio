@@ -6,7 +6,7 @@ import Testimonials from '@/components/sections/Testimonials'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Tofa Kimani Mwangi — Data Engineer & Developer',
+  title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
 }
 
 export default function HomePage() {
@@ -30,7 +30,7 @@ export default function HomePage() {
               Got a project in <span className="italic text-accent-dark">mind?</span>
             </h2>
             <p className="text-ink-500 text-[15px] font-sans mb-9 max-w-lg mx-auto leading-relaxed">
-              I&rsquo;m open to data engineering roles, full-stack opportunities, and interesting collaborations. Let&rsquo;s build something great.
+              Whether it&rsquo;s a full-stack product, a backend service, a data pipeline, an analytics dashboard or getting something deployed — I&rsquo;m ready to step into the role your team needs. Full-time, contract or freelance.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link href="/contact" className="btn btn-primary px-7 py-3">

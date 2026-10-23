@@ -31,7 +31,14 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                     <div className="card hover:border-[#A2793F]/50">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
                         <div>
-                          <h3 className="font-serif font-semibold text-[14px] text-ink-900 leading-snug">{job.role}</h3>
+                          <h3 className="font-serif font-semibold text-[14px] text-ink-900 leading-snug">
+                            {job.role}
+                            {job.type && (
+                            <span className="ml-2 align-middle inline-block text-[9.5px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded-doc bg-accent-tint text-accent-dark border border-accent/30">
+                              {job.type}
+                            </span>
+                          )}
+                          </h3>
                           <div className="text-[12px] font-medium font-sans mt-0.5" style={{ color: 'var(--accent-dark)' }}>{job.company}</div>
                         </div>
                         <span className="text-[10px] text-ink-300 font-mono shrink-0 mt-0.5">{job.period}</span>
@@ -48,6 +55,16 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                       <div className="flex flex-wrap gap-1.5">
                         {job.tech.map(t => <span key={t} className="tag">{t}</span>)}
                       </div>
+                      {job.link && (
+                        <a
+                          href={job.link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center mt-3 text-[12px] font-medium font-sans text-accent-dark hover:underline"
+                        >
+                          ↗ {job.link.label}
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { certifications, projects, profile } from '@/data'
 import { delay } from '@/lib/delay'
 
-const roles = ['Data Engineer', 'Full-Stack Developer', 'Python Developer', 'SQL Specialist', 'Data Analyst']
 
 /* One staggered CSS entrance on load (.enter in globals.css) — runs without
    JavaScript, then everything holds still. The <h1> is not animated so it
@@ -35,16 +34,16 @@ export default function HeroSection() {
           </h1>
 
           <p className="enter font-mono text-[13px] text-ink-500 mb-6" style={delay(60)}>
-            {roles.join('  ·  ')}
+            {profile.roles.join('  ·  ')}
           </p>
 
           <p style={delay(120)} className="enter text-[15.5px] text-ink-500 max-w-xl leading-relaxed mb-8 font-sans">
             <strong className="text-ink-900 font-medium">Engineering software. Transforming data. Solving real problems.</strong>{' '}
-            I&rsquo;m a {profile.tagline} working across <strong className="text-ink-900 font-medium">web applications,
-            databases, and ETL pipelines</strong>. My experience spans healthcare data, corporate governance analytics,
+            I&rsquo;m a software engineer who works across the whole stack — <strong className="text-ink-900 font-medium">web
+            applications, backend services, databases, data pipelines, analytics and deployment</strong>. My experience spans healthcare data, corporate governance analytics,
             e-commerce platforms, retail ERP and point of sale, and containerized data workflows — with a focus on turning complex requirements and
             messy data into <strong className="text-ink-900 font-medium">reliable, scalable systems</strong>.
-            Currently, I&rsquo;m going deeper into <strong className="text-ink-900 font-medium">data engineering, big data, and scalable architecture</strong>.
+            I&rsquo;m comfortable from the database to the browser to production, and <strong className="text-ink-900 font-medium">ready to take on whichever role the team needs</strong>.
           </p>
 
           <div style={delay(180)} className="enter flex flex-wrap items-center gap-3 mb-6">

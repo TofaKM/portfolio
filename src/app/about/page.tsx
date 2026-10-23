@@ -8,7 +8,7 @@ import TimelineSection from '@/components/sections/TimelineSection'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn about Tofa Kimani — Data Engineer & Full-Stack Developer specializing in data engineering, ETL pipelines, scalable systems, and full-stack applications.',
+    'Learn about Tofa Kimani — software engineer working across full-stack development, backend systems, data engineering, data analytics and deployment.',
 }
 
 const philosophy = [
@@ -50,9 +50,9 @@ export default function AboutPage() {
                 <p>
                   I&rsquo;m a{' '}
                   <strong className="text-ink-700 font-medium">
-                    Data Engineer &amp; Full-Stack Developer
+                    software engineer
                   </strong>{' '}
-                  with a background in Applied Computing. My work sits at the intersection of{' '}
+                  with a background in Applied Computing, working across full-stack development, backend systems, data engineering, analytics and deployment. My work sits at the intersection of{' '}
                   <strong className="text-ink-700 font-medium">
                     software engineering, data engineering, and problem-solving
                   </strong>
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  I&rsquo;m currently going deeper into{' '}
+                  I&rsquo;m happy in any of those roles — building the product, the API, the pipeline or the dashboard, or getting it deployed — and I&rsquo;m currently going deeper into{' '}
                   <strong className="text-ink-700 font-medium">
                     data engineering, big data, and scalable systems
                   </strong>
@@ -119,7 +119,7 @@ export default function AboutPage() {
                   { l: 'Location', v: 'Kenya' },
                   { l: 'Status', v: 'Open to Opportunities' },
                   { l: 'Degree', v: 'BSc Applied Computing' },
-                  { l: 'Focus', v: 'Data Engineering & Full-Stack' },
+                  { l: 'Roles', v: 'Full-Stack · Backend · Data · DevOps' },
                 ].map(({ l, v }) => (
                   <div key={l} className="card py-3 px-4">
                     <div className="text-[10px] text-ink-300 font-mono uppercase tracking-wider mb-1">
@@ -159,8 +159,8 @@ export default function AboutPage() {
                     </dd>
                   </div>
                   <div className="bg-white border border-border rounded-doc px-4 py-3">
-                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Specialization</dt>
-                    <dd className="font-mono font-semibold text-[17px] text-ink-900 mt-1.5 whitespace-nowrap">Data + Dev</dd>
+                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Focus</dt>
+                    <dd className="font-mono font-semibold text-[17px] text-ink-900 mt-1.5 whitespace-nowrap">End-to-end</dd>
                   </div>
                 </dl>
               </div>
