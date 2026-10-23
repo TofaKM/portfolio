@@ -1,21 +1,14 @@
-'use client'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ExternalLink, ArrowUpRight, Clock, FileText } from 'lucide-react'
 import { GithubGlyph } from '@/components/icons/BrandGlyphs'
 import { Project } from '@/types'
+import { delay } from '@/lib/delay'
 
 export default function ProjectCard({ project: p, index = 0 }: { project: Project; index?: number }) {
   const inProgress = p.status === 'in-progress'
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.4, delay: index * 0.06, ease: 'easeOut' }}
-      className="card group cursor-default flex flex-col h-full"
-    >
+    <div style={delay(index * 60)} className="reveal card group cursor-default flex flex-col h-full">
       {/* Header: category / year / status */}
       <div className="flex items-center gap-2 mb-3">
         <span className="tag capitalize">{p.category}</span>
@@ -84,6 +77,6 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
           <span className="text-[12px] text-ink-300 font-sans">Not yet published on GitHub</span>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }

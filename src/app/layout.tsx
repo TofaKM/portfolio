@@ -4,7 +4,6 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ContactFab from '@/components/layout/ContactFab'
-import PageTransition from '@/components/ui/PageTransition'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 
 // next/font automatically:
@@ -61,6 +60,23 @@ export const metadata: Metadata = {
   },
 }
 
+/* Scroll reveal, run before first paint and before React hydrates (see the
+   .reveal notes in globals.css). Marks <html class="js"> so .reveal elements
+   may start hidden, then sets data-shown on each as it scrolls into view.
+   A MutationObserver picks up elements added by client-side navigation.
+   No IntersectionObserver → never hide anything. */
+const revealScript = `(function(){
+  var d=document.documentElement;
+  if(!('IntersectionObserver' in window))return;
+  d.classList.add('js');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.setAttribute('data-shown','');io.unobserve(e.target);}
+  });},{rootMargin:'0px 0px -40px 0px'});
+  function scan(){document.querySelectorAll('.reveal:not([data-shown])').forEach(function(el){io.observe(el);});}
+  new MutationObserver(scan).observe(d,{childList:true,subtree:true});
+  document.addEventListener('DOMContentLoaded',scan);
+})();`
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -68,13 +84,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${sourceSerif.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: revealScript }} />
+      </head>
       <body className="bg-cream-100 text-ink-900 min-h-screen flex flex-col">
         <Navbar />
         <ScrollProgress />
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {children}
         </main>
         <Footer />
         <ContactFab />

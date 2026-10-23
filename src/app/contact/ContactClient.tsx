@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
 import { SUBJECTS, LIMITS, validateContact, type ContactErrors, type ContactInput } from '@/lib/contact'
+import { delay } from '@/lib/delay'
 
 const EMPTY: ContactInput = { name: '', email: '', subject: '', message: '' }
 const CONTACT_EMAIL = 'mwangitofa@gmail.com'
@@ -143,12 +144,7 @@ export default function ContactClient() {
             </div>
 
             {/* Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: .5, delay: .15 }}
-              className="lg:col-span-3"
-            >
+            <div style={delay(120)} className="enter lg:col-span-3">
               <div className="card">
                 {status === 'sent' ? (
                   <motion.div
@@ -288,7 +284,7 @@ export default function ContactClient() {
                   </form>
                 )}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,8 +1,7 @@
-'use client'
-import { motion } from 'framer-motion'
 import { Quote } from 'lucide-react'
 import { testimonials } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
+import { delay } from '@/lib/delay'
 
 export default function Testimonials() {
   return (
@@ -11,14 +10,7 @@ export default function Testimonials() {
         <SectionHeading eyebrow="Social Proof" title="What people say" className="mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {testimonials.map((t, i) => (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: .45, delay: i * .09 }}
-              className="card group relative overflow-hidden"
-            >
+            <div key={t.id} style={delay(i * 90)} className="reveal card group relative overflow-hidden">
               {/* Large decorative quote */}
               <Quote
                 size={44}
@@ -42,7 +34,7 @@ export default function Testimonials() {
                   <div className="text-[11px] text-ink-400 font-sans">{t.role} · {t.company}</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -42,7 +42,9 @@ export default function ProjectsClient() {
           </div>
 
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <AnimatePresence mode="popLayout">
+            {/* initial={false}: cards present on first render (and in the
+                server HTML) appear fully visible; only filter changes animate. */}
+            <AnimatePresence mode="popLayout" initial={false}>
               {filtered.map((p, i) => (
                 <motion.div
                   key={p.id}

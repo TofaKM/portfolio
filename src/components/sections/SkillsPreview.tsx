@@ -1,10 +1,8 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { skills } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
+import { delay } from '@/lib/delay'
 
 const cats = [
   'frontend',
@@ -67,66 +65,43 @@ export default function SkillsPreview() {
               .filter((s) => s.category === cat)
               .slice(0, 4)
 
-            const accent = accentColors[cat]
-            const bar = barColors[cat]
-
             return (
-              <motion.div
+              <div
                 key={cat}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  delay: ci * 0.07,
-                }}
-                className="card hover:border-[#A2793F]/50"
+                style={delay(ci * 70)}
+                className="reveal card hover:border-[#A2793F]/50"
               >
                 <h3
                   className="text-[10px] font-semibold uppercase tracking-[.18em] mb-4 font-sans"
-                  style={{ color: accent }}
+                  style={{ color: accentColors[cat] }}
                 >
                   {labels[cat]}
                 </h3>
 
                 <ul className="space-y-3.5">
                   {catSkills.map((sk) => (
-                    <li
-                      key={sk.name}
-                      className="flex items-center gap-2.5"
-                    >
+                    <li key={sk.name} className="flex items-center gap-2.5">
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between mb-1">
                           <span className="text-[12px] text-ink-700 font-sans truncate">
                             {sk.name}
                           </span>
-
                           <span className="text-[10px] text-ink-300 font-mono ml-1 shrink-0">
                             {sk.level}%
                           </span>
                         </div>
 
                         <div className="h-[3px] rounded-full bg-[#DCDFDD] overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{
-                              width: `${sk.level}%`,
-                            }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.55,
-                              delay: 0.08 + ci * 0.05,
-                              ease: 'easeOut',
-                            }}
-                            className="h-full rounded-full"
-                            style={{ background: bar }}
+                          <div
+                            className="bar-fill"
+                            style={delay(80 + ci * 50, { '--level': sk.level / 100, background: barColors[cat] } as React.CSSProperties)}
                           />
                         </div>
                       </div>
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             )
           })}
         </div>
