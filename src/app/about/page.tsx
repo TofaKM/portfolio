@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import Image from 'next/image'
 import { Target, Zap, BookOpen, CheckCircle2 } from 'lucide-react'
 import { workExperience, education, certifications, profile } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import TimelineSection from '@/components/sections/TimelineSection'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'About',
   description:
     'Learn about Tofa Kimani — software engineer working across full-stack development, backend systems, data engineering, data analytics and deployment.',
-}
+  path: '/about',
+})
 
 const philosophy = [
   {

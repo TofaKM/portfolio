@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import { CheckCircle2, Clock, ExternalLink, BarChart3, Cpu, Wrench, TrendingUp, FileCode2 } from 'lucide-react'
 import { certifications } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Certifications',
-  description: 'Certifications and credentials earned by Tofa Kimani Mwangi in data engineering, analytics, and software development.',
-}
+  description:
+    'Certifications and credentials earned by Tofa Kimani Mwangi in data engineering, analytics, and software development.',
+  path: '/certifications',
+})
 
 const certIcons: Record<string, typeof BarChart3> = {
   chart: BarChart3,

@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import { skillGroups, projects } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import SkillGroups from '@/components/ui/SkillGroups'
 import { delay } from '@/lib/delay'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Skills',
   description:
     'Skills and tools of Tofa Kimani Mwangi — data engineering (Python, SQL, Spark, Airflow), web development (Spring Boot, Next.js, React), databases, DevOps, and professional and soft skills.',
-}
+  path: '/skills',
+})
 
 export default function SkillsPage() {
   const technical = skillGroups.filter(g => !['professional', 'soft', 'learning'].includes(g.id))

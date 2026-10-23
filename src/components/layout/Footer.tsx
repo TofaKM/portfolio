@@ -42,7 +42,8 @@ export default function Footer() {
           </ul>
         </nav>
       </div>
-      <div className="max-w-6xl mx-auto pb-8">
+      {/* Extra bottom space on phones so the floating buttons don't sit on the footer. */}
+      <div className="max-w-6xl mx-auto pb-36 sm:pb-8">
         <p className="text-[11px] text-ink-400 font-sans">© {new Date().getFullYear()} {profile.name}</p>
       </div>
     </footer>
