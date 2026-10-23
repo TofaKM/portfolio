@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { projects } from '@/data'
+import { projects, categoryLabels } from '@/data'
 import ProjectCard from '@/components/ui/ProjectCard'
 import SectionHeading from '@/components/ui/SectionHeading'
 
@@ -36,7 +36,7 @@ export default function ProjectsClient() {
                     : 'bg-white border-border text-ink-500 hover:text-ink-900 hover:border-accent'
                 }`}
               >
-                {c}
+                {c === 'all' ? 'All' : categoryLabels[c] ?? c}
               </button>
             ))}
           </div>

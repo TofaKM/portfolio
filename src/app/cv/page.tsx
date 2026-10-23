@@ -4,7 +4,8 @@ import {
   Rocket, Lightbulb, BarChart3, Cpu, Wrench, TrendingUp, FileCode2,
 } from 'lucide-react'
 import {GithubGlyph,LinkedinGlyph} from '@/components/icons/BrandGlyphs'
-import { workExperience, education, projects, certifications, profile } from '@/data'
+import { workExperience, education, projects, certifications, profile, skillGroups } from '@/data'
+import SkillGroups from '@/components/ui/SkillGroups'
 
 const certIcons: Record<string, typeof BarChart3> = {
   chart: BarChart3,
@@ -142,8 +143,9 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
         <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
           <div>
             <h3 className="font-serif font-semibold text-[14px] text-ink-900">
-              {edu.degree} in {edu.field}
+              {edu.degree}
             </h3>
+            <p className="text-[12px] text-ink-500 font-sans">{edu.field}</p>
 
             <span
               className="font-sans text-[12px] font-medium"
@@ -258,107 +260,12 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
             </div>
           </div>
 
-          {/* Technical Skills */}
+          {/* Skills — same groups as the Skills page */}
           <div className="card mb-5">
             <h2 className="font-serif font-semibold text-[15px] text-ink-900 mb-6 flex items-center gap-2">
               <Code size={15} style={{ color: 'var(--accent-dark)' }} /> Skills
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {[
-                {
-                  label: 'Data & Analytics',
-                  items: [
-                    'Power BI',
-                    'Excel',
-                    'Pandas',
-                    'NumPy',
-                    'Matplotlib',
-                    'MySQL (SQL)',
-                  ],
-                },
-                {
-                  label: 'Data Engineering',
-                  items: [
-                    'Data Cleaning',
-                    'Big Data Processing',
-                    'ETL Pipelines',
-                    'Data Modelling',
-                    'Relational Modeling (RDBMS)',
-                    'Data Warehousing',
-                    'Data Architecture',
-                    'Apache Airflow',
-                    'Apache Spark',
-                    'Docker',
-                  ],
-                },
-                {
-                  label: 'Programming Languages',
-                  items: ['Python','Java','JavaScript','TypeScript','SQL','C#','C++ (learning)'],
-                },
-                {
-                  label: 'Web Development',
-                  items: ['Next.js','React','Node.js','Spring Boot','Express', 'Bootstrap', 'TailwindCSS','REST APIs',],
-                },
-                {
-                  label: 'Databases & Tools',
-                  items: ['MySQL','PostgreSQL','Git','GitHub','VS Code',],
-                },
-                {
-                  label: 'Tools & Office Suite',
-                  items: ['Jupyter Notebook','Anaconda','Excel (Advanced)','CI/CD Basics','BigQuery','Microsoft PowerPoint','Microsoft Word',],
-                },
-                {
-                  label: 'Professional Skills',
-                  items: [
-        'Project Development',
-        'Documentation',
-        'Analytical Thinking',
-        'Technical Troubleshooting',
-        'System Optimization',
-        'Database Management',
-        'Debugging',
-        'Automation',
-        'Prompt Engineering',
-        'Technical Support',
-        'Agile/Scrum Methodology',
-        'Test-Driven Development',
-      ],
-    },
-    {
-      label: 'Soft Skills',
-      items: [
-        'Teamwork',
-        'Collaboration',
-        'Communication',
-        'Presentation',
-        'Leadership',
-        'Decision-Making',
-        'Problem-Solving',
-        'Critical Thinking',
-        'Time Management',
-        'Adaptability',
-      ],
-    },
-  ].map(({ label, items }) => (
-    <div key={label}>
-      <h3
-        className="text-[10px] font-semibold uppercase tracking-[.18em] mb-2.5 font-sans"
-        style={{ color: 'var(--accent-dark)' }}
-      >
-        {label}
-      </h3>
-
-      <div className="flex flex-wrap gap-1.5">
-        {items.map(item => (
-          <span key={item} className="tag">
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  ))}
-</div>
-
+            <SkillGroups groups={skillGroups} variant="compact" />
           </div>
 
           {/* Key Projects */}

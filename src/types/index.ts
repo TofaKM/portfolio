@@ -17,10 +17,17 @@ export interface Project {
   statusNote?: string
 }
 
-export interface Skill {
-  name: string
-  level: number
-  category: 'frontend' | 'backend' | 'database' | 'devops' | 'tools' |'data-engineering'
+export type SkillIcon =
+  | 'code' | 'workflow' | 'chart' | 'globe' | 'database'
+  | 'container' | 'wrench' | 'briefcase' | 'users' | 'sprout'
+
+export interface SkillGroup {
+  id: string
+  label: string
+  icon: SkillIcon
+  items: string[]
+  /** Short caveat shown under the group title. */
+  note?: string
 }
 
 export interface Testimonial {

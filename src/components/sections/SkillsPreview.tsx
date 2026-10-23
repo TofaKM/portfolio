@@ -1,110 +1,35 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { skills } from '@/data'
+import { skillGroups } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
-import { delay } from '@/lib/delay'
+import SkillGroups from '@/components/ui/SkillGroups'
 
-const cats = [
-  'frontend',
-  'backend',
-  'database',
-  'data-engineering',
-  'devops',
-] as const
-
-const labels: Record<string, string> = {
-  frontend: 'Frontend',
-  backend: 'Backend',
-  database: 'Databases',
-  'data-engineering': 'Data Engineering',
-  devops: 'Data & Analytics',
-}
-
-const accentColors: Record<string, string> = {
-  frontend: '#7C5A2E',
-  backend: '#7C5A2E',
-  database: '#A2793F',
-  'data-engineering': '#7C5A2E',
-  devops: '#7C5A2E',
-}
-
-const barColors: Record<string, string> = {
-  frontend: 'var(--accent)',
-  backend: 'var(--accent-dark)',
-  database: 'var(--accent)',
-  'data-engineering': 'var(--accent-dark)',
-  devops: 'var(--accent-dark)',
-}
+/** Home-page teaser: the six core technical areas, a few tags each. */
+const preview = ['languages', 'data-engineering', 'web', 'databases', 'analytics', 'devops']
 
 export default function SkillsPreview() {
+  const groups = preview
+    .map(id => skillGroups.find(g => g.id === id))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
+
   return (
-    <section
-      className="py-24 px-5 md:px-10"
-      style={{ background: 'var(--surface-2)' }}
-    >
+    <section className="py-24 px-5 md:px-10" style={{ background: 'var(--surface-2)' }}>
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <SectionHeading
             eyebrow="Expertise"
             title="Tools of the trade"
-            subtitle="Technologies I use daily to build full-stack apps and data pipelines."
+            subtitle="Technologies I use to build full-stack apps and data pipelines."
           />
-
           <Link
             href="/skills"
-            className="inline-flex items-center gap-2 text-[13px] font-medium font-sans shrink-0 hover:gap-3 transition-all"
-            style={{ color: 'var(--accent-dark)' }}
+            className="inline-flex items-center gap-2 text-[13px] font-medium font-sans shrink-0 hover:gap-3 transition-all text-accent-dark"
           >
             All skills <ArrowRight size={14} />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          {cats.map((cat, ci) => {
-            const catSkills = skills
-              .filter((s) => s.category === cat)
-              .slice(0, 4)
-
-            return (
-              <div
-                key={cat}
-                style={delay(ci * 70)}
-                className="reveal card hover:border-[#A2793F]/50"
-              >
-                <h3
-                  className="text-[10px] font-semibold uppercase tracking-[.18em] mb-4 font-sans"
-                  style={{ color: accentColors[cat] }}
-                >
-                  {labels[cat]}
-                </h3>
-
-                <ul className="space-y-3.5">
-                  {catSkills.map((sk) => (
-                    <li key={sk.name} className="flex items-center gap-2.5">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex justify-between mb-1">
-                          <span className="text-[12px] text-ink-700 font-sans truncate">
-                            {sk.name}
-                          </span>
-                          <span className="text-[10px] text-ink-300 font-mono ml-1 shrink-0">
-                            {sk.level}%
-                          </span>
-                        </div>
-
-                        <div className="h-[3px] rounded-full bg-[#DCDFDD] overflow-hidden">
-                          <div
-                            className="bar-fill"
-                            style={delay(80 + ci * 50, { '--level': sk.level / 100, background: barColors[cat] } as React.CSSProperties)}
-                          />
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
-        </div>
+        <SkillGroups groups={groups} limit={5} />
       </div>
     </section>
   )
