@@ -13,7 +13,7 @@ export default function SkillsPreview() {
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
 
   return (
-    <section className="py-24 px-5 md:px-10" style={{ background: 'var(--surface-2)' }}>
+    <section className="py-24 px-5 md:px-10 bg-cream-200">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <SectionHeading

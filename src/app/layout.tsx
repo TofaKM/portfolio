@@ -14,14 +14,15 @@ import ScrollProgress from '@/components/ui/ScrollProgress'
 
 const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  // Only the weights the design uses: body 400, headings 600, a few 700s.
+  weight: ['400', '600', '700'],
   variable: '--font-serif',
   display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 })

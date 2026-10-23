@@ -43,7 +43,7 @@ const nextConfig = {
 
   // Tree-shake heavy packages — stops them being bundled per-route
   experimental: {
-    optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizePackageImports: ['lucide-react'],
   },
 
   // HTTP caching headers for static assets.

@@ -4,6 +4,7 @@ import { skillGroups, projects } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import SkillGroups from '@/components/ui/SkillGroups'
 import { delay } from '@/lib/delay'
+import StatTile from '@/components/ui/StatTile'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Skills',
@@ -38,12 +39,7 @@ export default function SkillsPage() {
 
           {/* Summary tiles — Agri-Link dashboard style */}
           <dl style={delay(80)} className="enter grid grid-cols-2 md:grid-cols-4 gap-3 mb-14">
-            {stats.map(({ label, value }) => (
-              <div key={label} className="bg-white border border-border rounded-doc px-4 py-3">
-                <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">{label}</dt>
-                <dd className="font-mono font-semibold text-[22px] text-ink-900 mt-1">{value}</dd>
-              </div>
-            ))}
+            {stats.map(s => <StatTile key={s.label} {...s} />)}
           </dl>
 
           <h2 className="reveal font-serif font-semibold text-2xl text-ink-900 mb-5">Technical</h2>

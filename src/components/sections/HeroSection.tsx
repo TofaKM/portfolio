@@ -1,9 +1,10 @@
 import Image from 'next/image'
-import { ArrowRight, Download, Mail } from 'lucide-react'
-import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
+import { ArrowRight, Download } from 'lucide-react'
+import { socialLinks, linkTarget } from '@/components/icons/social'
 import Link from 'next/link'
 import { certifications, projects, profile } from '@/data'
 import { delay } from '@/lib/delay'
+import StatTile from '@/components/ui/StatTile'
 
 
 /* One staggered CSS entrance on load (.enter in globals.css) — runs without
@@ -62,32 +63,22 @@ export default function HeroSection() {
           </div>
 
           <div style={delay(220)} className="enter flex items-center gap-2 mb-10">
-            {[
-              { href: profile.github,            label: 'GitHub',   Icon: GithubGlyph,   external: true },
-              { href: profile.linkedin,          label: 'LinkedIn', Icon: LinkedinGlyph, external: true },
-              { href: `mailto:${profile.email}`, label: 'Email',    Icon: Mail,          external: false },
-            ].map(({ href, label, Icon, external }) => (
+            {[socialLinks.github, socialLinks.linkedin, socialLinks.email].map(l => (
               <a
-                key={label}
-                href={href}
-                aria-label={label}
-                {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                key={l.label}
+                href={l.href}
+                aria-label={l.label}
+                {...linkTarget(l)}
                 className="w-9 h-9 rounded-doc border border-border bg-white flex items-center justify-center text-ink-500 hover:text-ink-900 hover:border-accent transition-colors"
               >
-                <Icon size={16} aria-hidden />
+                <l.Icon size={16} aria-hidden />
               </a>
             ))}
           </div>
 
           {/* KPI cards — same pattern as the Agri-Link dashboard tiles */}
           <dl style={delay(260)} className="enter grid grid-cols-3 gap-3 max-w-lg">
-            {stats.map(({ label, value, note }) => (
-              <div key={label} className="bg-white border border-border rounded-doc px-4 py-3">
-                <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">{label}</dt>
-                <dd className="font-mono font-semibold text-[20px] text-ink-900 mt-1">{value}</dd>
-                <dd className="text-[11px] text-ink-400 font-sans mt-0.5">{note}</dd>
-              </div>
-            ))}
+            {stats.map(s => <StatTile key={s.label} {...s} />)}
           </dl>
         </div>
 

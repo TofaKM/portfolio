@@ -19,8 +19,7 @@ export default function FeaturedProjects() {
           />
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-[13px] font-medium font-sans shrink-0 hover:gap-3 transition-all"
-            style={{ color: 'var(--accent-dark)' }}
+            className="inline-flex items-center gap-2 text-[13px] font-medium font-sans shrink-0 hover:gap-3 transition-all text-accent-dark"
           >
             All projects <ArrowRight size={14} />
           </Link>

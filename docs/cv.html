@@ -5,36 +5,40 @@
 <title>Tofa Kimani Mwangi — CV</title>
 <meta name="author" content="Tofa Kimani Mwangi">
 <style>
+  /* Every rule is scoped to .cv so the same styles work standalone (this
+     file, printed to the PDF) and embedded in the /cv page of the site. */
   @page { size: Letter; margin: 0.42in 0.5in 0.42in 0.5in; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.21; color: #000; }
-  a { color: inherit; }
-  header { text-align: center; border-bottom: 1.2px solid #000; padding-bottom: 5px; }
-  h1 { font-size: 21pt; font-weight: 700; line-height: 1.1; }
-  .headline { font-weight: 700; font-size: 11.4pt; margin-top: 2px; }
-  .roles { font-size: 10.4pt; margin-top: 1px; }
-  .contact { color: #555; font-size: 10.6pt; margin-top: 2px; }
-  .contact a { color: #000; font-weight: 700; }
-  .sep { margin: 0 5px; color: #777; }
-  h2 { text-align: center; font-size: 10.8pt; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
+  body { margin: 0; } /* standalone file only; the site already resets it */
+  .cv, .cv * { box-sizing: border-box; margin: 0; padding: 0; }
+  .cv { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.21; color: #000; }
+  .cv a { color: inherit; }
+  .cv header { text-align: center; border-bottom: 1.2px solid #000; padding-bottom: 5px; }
+  .cv h1 { font-size: 21pt; font-weight: 700; line-height: 1.1; }
+  .cv .headline { font-weight: 700; font-size: 11.4pt; margin-top: 2px; }
+  .cv .roles { font-size: 10.4pt; margin-top: 1px; }
+  .cv .contact { color: #555; font-size: 10.6pt; margin-top: 2px; }
+  .cv .contact a { color: #000; font-weight: 700; }
+  .cv .sep { margin: 0 5px; color: #777; }
+  .cv h2 { text-align: center; font-size: 10.8pt; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
        border-bottom: .8px solid #777; padding-bottom: 2px; margin: 8px 0 4px; }
-  p { margin: 0; }
+  .cv p { margin: 0; }
   /* Real list markers (not positioned pseudo-elements) so the PDF's text
      stays in reading order for applicant-tracking systems. */
-  .skills { list-style: disc outside; padding-left: 22px; }
-  .skills li { margin-bottom: 0.5px; padding-left: 2px; }
-  .entry { margin-top: 4px; break-inside: avoid; }
-  .entry + .entry { margin-top: 6px; }
-  .title { font-weight: 700; }
-  .badge { font-weight: 400; font-style: italic; }
-  .meta { display: flex; justify-content: space-between; font-style: italic; color: #333; }
-  ul.b { list-style: disc outside; padding-left: 16px; margin-top: 1px; }
-  ul.b li { margin-bottom: 1px; }
-  .link { font-size: 9.4pt; text-decoration: underline; display: inline-block; margin-top: 1px; }
-  .refs p { margin-left: 14px; }
+  .cv .skills { list-style: disc outside; padding-left: 22px; }
+  .cv .skills li { margin-bottom: 0.5px; padding-left: 2px; }
+  .cv .entry { margin-top: 4px; break-inside: avoid; }
+  .cv .entry + .entry { margin-top: 6px; }
+  .cv .title { font-weight: 700; }
+  .cv .badge { font-weight: 400; font-style: italic; }
+  .cv .meta { display: flex; justify-content: space-between; font-style: italic; color: #333; }
+  .cv ul.b { list-style: disc outside; padding-left: 16px; margin-top: 1px; }
+  .cv ul.b li { margin-bottom: 1px; }
+  .cv .link { font-size: 9.4pt; text-decoration: underline; display: inline-block; margin-top: 1px; }
+  .cv .refs p { margin-left: 14px; }
 </style>
 </head>
 <body>
+<main class="cv">
 
 <header>
   <h1>Tofa Kimani Mwangi</h1>
@@ -165,5 +169,6 @@
 <h2>References</h2>
 <p>Available on request.</p>
 
+</main>
 </body>
 </html>

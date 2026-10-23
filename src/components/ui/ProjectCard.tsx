@@ -33,7 +33,7 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
       )}
 
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-serif font-semibold text-[15px] text-ink-900 leading-snug group-hover:text-[#7C5A2E] transition-colors">
+        <h3 className="font-serif font-semibold text-[15px] text-ink-900 leading-snug group-hover:text-accent-dark transition-colors">
           {href ? (
             // Stretched link: its ::after covers the card, so the card is
             // clickable while the links below stay separately focusable.
@@ -47,7 +47,7 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
             </a>
           ) : p.title}
         </h3>
-        {href && <ArrowUpRight size={14} className="text-ink-300 group-hover:text-[#A2793F] transition-colors shrink-0 mt-0.5" aria-hidden />}
+        {href && <ArrowUpRight size={14} className="text-ink-300 group-hover:text-accent transition-colors shrink-0 mt-0.5" aria-hidden />}
       </div>
       <p className="text-ink-500 text-[13px] leading-relaxed mb-4 font-sans">{p.description}</p>
 

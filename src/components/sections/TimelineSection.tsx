@@ -15,20 +15,19 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
             <div className="relative">
               {/* Thin vertical line */}
               <div
-                className="absolute left-4 top-2 bottom-2 w-px timeline-line"
-                style={{ background: 'var(--border)' }}
+                className="absolute left-4 top-2 bottom-2 w-px bg-border"
               />
               <div className="space-y-6">
                 {work.map((job, i) => (
                   <div key={`${job.company}-${i}`} style={delay(i * 90)} className="reveal relative pl-12">
                     {/* Node */}
                     <div
-                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-[#DCDFDD] flex items-center justify-center shadow-sm"
+                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-border flex items-center justify-center shadow-sm"
                     >
-                      <Briefcase size={13} style={{ color: 'var(--accent-dark)' }} />
+                      <Briefcase size={13} className="text-accent-dark" />
                     </div>
 
-                    <div className="card hover:border-[#A2793F]/50">
+                    <div className="card hover:border-accent/50">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
                         <div>
                           <h3 className="font-serif font-semibold text-[14px] text-ink-900 leading-snug">
@@ -39,7 +38,7 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                             </span>
                           )}
                           </h3>
-                          <div className="text-[12px] font-medium font-sans mt-0.5" style={{ color: 'var(--accent-dark)' }}>{job.company}</div>
+                          <div className="text-[12px] font-medium font-sans mt-0.5 text-accent-dark">{job.company}</div>
                         </div>
                         <span className="text-[10px] text-ink-300 font-mono shrink-0 mt-0.5">{job.period}</span>
                       </div>
@@ -47,7 +46,7 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                       <ul className="space-y-1 mb-3">
                         {job.achievements.map(a => (
                           <li key={a} className="flex items-start gap-2 text-[12px] text-ink-500 font-sans">
-                            <span className="mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>›</span>
+                            <span className="mt-0.5 shrink-0 text-accent">›</span>
                             {a}
                           </li>
                         ))}
@@ -77,23 +76,22 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
             <SectionHeading eyebrow="Learning" title="Education" className="mb-10" />
             <div className="relative">
               <div
-                className="absolute left-4 top-2 bottom-2 w-px timeline-line"
-                style={{ background: 'var(--border)' }}
+                className="absolute left-4 top-2 bottom-2 w-px bg-border"
               />
               <div className="space-y-6">
                 {education.map((edu, i) => (
                   <div key={`${edu.school}-${i}`} style={delay(i * 90)} className="reveal relative pl-12">
                     <div
-                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-[#DCDFDD] flex items-center justify-center shadow-sm"
+                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-border flex items-center justify-center shadow-sm"
                     >
-                      <GraduationCap size={13} style={{ color: 'var(--accent-dark)' }} />
+                      <GraduationCap size={13} className="text-accent-dark" />
                     </div>
 
-                    <div className="card hover:border-[#A2793F]/50">
+                    <div className="card hover:border-accent/50">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-1.5">
                         <div>
                           <h3 className="font-serif font-semibold text-[14px] text-ink-900 leading-snug">{edu.degree}</h3>
-                          <div className="text-[12px] font-medium font-sans mt-0.5" style={{ color: 'var(--accent-dark)' }}>{edu.school}</div>
+                          <div className="text-[12px] font-medium font-sans mt-0.5 text-accent-dark">{edu.school}</div>
                         </div>
                         <div className="flex flex-col items-end gap-1">
                           <span className="text-[10px] text-ink-300 font-mono shrink-0">{edu.period}</span>
@@ -111,7 +109,7 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                       <ul className="space-y-1">
                         {edu.details.map(d => (
                           <li key={d} className="flex items-start gap-2 text-[12px] text-ink-500 font-sans">
-                            <span className="mt-0.5 shrink-0" style={{ color: 'var(--accent)' }}>›</span>
+                            <span className="mt-0.5 shrink-0 text-accent">›</span>
                             {d}
                           </li>
                         ))}
