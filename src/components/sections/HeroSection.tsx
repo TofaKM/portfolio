@@ -50,7 +50,7 @@ export default function HeroSection() {
             <strong className="text-ink-900 font-medium">Engineering software. Transforming data. Solving real problems.</strong>{' '}
             I&rsquo;m a {profile.tagline} working across <strong className="text-ink-900 font-medium">web applications,
             databases, and ETL pipelines</strong>. My experience spans healthcare data, corporate governance analytics,
-            e-commerce platforms, and containerized data workflows — with a focus on turning complex requirements and
+            e-commerce platforms, retail ERP and point of sale, and containerized data workflows — with a focus on turning complex requirements and
             messy data into <strong className="text-ink-900 font-medium">reliable, scalable systems</strong>.
             Currently, I&rsquo;m going deeper into <strong className="text-ink-900 font-medium">data engineering, big data, and scalable architecture</strong>.
           </motion.p>

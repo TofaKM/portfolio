@@ -61,7 +61,7 @@ export default function AboutPage() {
                 <p>
                   I work across{' '}
                   <strong className="text-ink-700 font-medium">
-                    Python, SQL, PostgreSQL, MySQL, Node.js, Next.js, Docker, and REST APIs
+                    Python, Java, SQL, PostgreSQL, MySQL, Spring Boot, Node.js, Next.js, Docker, and REST APIs
                   </strong>
                   , with hands-on experience building full-stack applications, designing ETL pipelines,
                   managing relational data, and transforming messy datasets into structured,
@@ -84,11 +84,15 @@ export default function AboutPage() {
                   <strong className="text-ink-700 font-medium">
                     full-stack e-commerce platforms
                   </strong>{' '}
-                  to{' '}
+                  and{' '}
                   <strong className="text-ink-700 font-medium">
                     containerized healthcare ETL pipelines
-                  </strong>
-                  . These projects have pushed me beyond simply writing code and into thinking about
+                  </strong>{' '}
+                  to{' '}
+                  <strong className="text-ink-700 font-medium">
+                    Agri-Link, an ERP and point-of-sale system now in trial at a Kenyan agrovet
+                  </strong>{' '}
+                  (Spring Boot, PostgreSQL and Next.js). These projects have pushed me beyond simply writing code and into thinking about
                   architecture, data integrity, automation, performance, and how different parts of a
                   system work together.
                 </p>

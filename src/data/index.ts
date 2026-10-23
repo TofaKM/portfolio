@@ -15,7 +15,23 @@ export const profile = {
 } as const
 
 export const projects: Project[] = [
- 
+  {
+    id: '4',
+    title: 'Agri-Link — ERP & Point of Sale for Agrovets',
+    description: 'ERP and point of sale for agrovet shops: the till, stock, purchasing, customer accounts, weekly chick bookings and a double-entry ledger. Now in trial at a real shop in Kenya.',
+    longDescription: 'Agri-Link runs a whole agrovet shop — the shops that sell feeds, farm supplies and day-old chicks. A spreadsheet-style till prices from the catalogue and checks stock as you type (cash, M-Pesa, bank or on account); stock is held in lots per warehouse and sold oldest first; purchase orders are received against and flagged when short or dearer; customers carry credit limits and aged balances; and a weekly chick-booking cycle closes every Tuesday into a draft order to the hatchery. Every sale, payment and delivery posts a balanced double-entry transaction to an append-only ledger, and the dashboard checks that the books agree with the stock on the shelves. PostgreSQL row-level security keeps each business’s data separate, idempotency keys stop retried payments being recorded twice, and row locks make the last bag safe to sell from two tills at once. Covered by 106 backend tests against real PostgreSQL (Testcontainers) and end-to-end Playwright tests.',
+    tech: ['Java 21', 'Spring Boot', 'PostgreSQL', 'Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Flyway', 'Docker', 'Playwright', 'Testcontainers'],
+    caseStudy: 'https://github.com/TofaKM/Agri-Link-Showcase',
+    image: {
+      src: '/projects/agrilink-dashboard.png',
+      alt: 'Agri-Link dashboard: this week’s sales and profit, today’s open work, profit by product, stock on hand and ledger checks',
+    },
+    featured: true,
+    category: 'fullstack',
+    year: '2026',
+    status: 'in-progress',
+    statusNote: 'In shop trial',
+  },
   {
     id: '1',
     title: 'Final Year Project — Chap Mall App',
@@ -63,11 +79,14 @@ export const skills: Skill[] = [
   { name: 'Bootstrap', level: 75, category: 'frontend' },
   { name: 'HTML / CSS', level: 85, category: 'frontend' },
   { name: 'Tailwind.css', level: 85, category: 'frontend' },
+  { name: 'TypeScript', level: 75, category: 'frontend' },
   // Backend
   { name: 'Node.js', level: 78, category: 'backend' },
   { name: 'Express', level: 75, category: 'backend' },
   { name: 'Python', level: 85, category: 'backend' },
   { name: 'REST APIs', level: 80, category: 'backend' },
+  { name: 'Java', level: 70, category: 'backend' },
+  { name: 'Spring Boot', level: 70, category: 'backend' },
   { name: 'C#', level: 60, category: 'backend' },
   // Database
  

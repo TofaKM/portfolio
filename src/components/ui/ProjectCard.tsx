@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ExternalLink, ArrowUpRight, Clock } from 'lucide-react'
+import Image from 'next/image'
+import { ExternalLink, ArrowUpRight, Clock, FileText } from 'lucide-react'
 import { GithubGlyph } from '@/components/icons/BrandGlyphs'
 import { Project } from '@/types'
 
@@ -24,10 +25,16 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
         )}
         {inProgress && (
           <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wide text-accent-dark ml-auto">
-            <Clock size={10} aria-hidden /> In Progress
+            <Clock size={10} aria-hidden /> {p.statusNote ?? 'In Progress'}
           </span>
         )}
       </div>
+
+      {p.image && (
+        <div className="relative aspect-[16/10] -mx-2 mb-4 overflow-hidden rounded-doc border border-border bg-cream-100">
+          <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+        </div>
+      )}
 
       <div className="flex items-start justify-between gap-2 mb-2">
         <h3 className="font-serif font-semibold text-[15px] text-ink-900 leading-snug group-hover:text-[#7C5A2E] transition-colors">
@@ -64,7 +71,16 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
             <ExternalLink size={12} aria-hidden /> Demo
           </a>
         )}
-        {!p.github && !p.demo && (
+        {p.caseStudy && (
+          <a
+            href={p.caseStudy}
+            target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[12px] font-medium font-sans text-ink-700 hover:text-accent-dark transition-colors"
+          >
+            <FileText size={12} aria-hidden /> Case study
+          </a>
+        )}
+        {!p.github && !p.demo && !p.caseStudy && (
           <span className="text-[12px] text-ink-300 font-sans">Not yet published on GitHub</span>
         )}
       </div>
