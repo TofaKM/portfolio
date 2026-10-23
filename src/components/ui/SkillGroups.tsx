@@ -73,7 +73,7 @@ export default function SkillGroups({ groups, variant = 'cards', limit }: Props)
               {shown.map(item => (
                 <li key={item} className="tag">{item}</li>
               ))}
-              {more > 0 && <li className="tag bg-white">+{more} more</li>}
+              {more > 0 && <li className="tag bg-surface">+{more} more</li>}
             </ul>
           </section>
         )

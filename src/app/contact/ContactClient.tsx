@@ -58,7 +58,7 @@ export default function ContactClient() {
   }
 
   const inputCls = (invalid: boolean) => `
-    w-full px-4 py-2.5 rounded-doc bg-white border
+    w-full px-4 py-2.5 rounded-doc bg-surface border
     ${invalid ? 'border-red-600' : 'border-border'}
     text-ink-900 placeholder-ink-300
     focus:outline-none focus:border-accent
@@ -128,7 +128,7 @@ export default function ContactClient() {
                       className="flex items-center gap-3 text-ink-500 hover:text-ink-900 transition-colors group"
                     >
                       <div
-                        className="w-8 h-8 rounded-doc border border-border flex items-center justify-center bg-white group-hover:border-accent transition-colors"
+                        className="w-8 h-8 rounded-doc border border-border flex items-center justify-center bg-surface group-hover:border-accent transition-colors"
                       >
                         <l.Icon size={13} />
                       </div>

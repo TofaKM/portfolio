@@ -2,23 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Design tokens — cream / white / navy / gold (Agri-Link family) ─ */
+/* ─── Design tokens — cream / white / navy / gold (Agri-Link family) ─
+   Themed colours are RGB channels so Tailwind opacity modifiers work
+   (tailwind.config.ts maps them, e.g. bg-surface, text-ink-500, border-accent/30).
+   Dark values apply via [data-theme="dark"] (set before paint by the script in
+   layout.tsx from the visitor's choice or OS setting), or the OS setting alone
+   when JavaScript is off. */
 :root {
-  --bg:          #F4F5F3;
-  --surface-2:   #ECEDEB; /* subtle alternate section background */
-  --surface:     #FFFFFF;
+  --c-cream-50:      253 253 252;
+  --c-cream-100:     244 245 243;  /* page background */
+  --c-cream-200:     236 237 235;  /* alternate section background */
+  --c-cream-300:     220 223 221;
+  --c-cream-400:     199 205 206;
+  --c-surface:       255 255 255;  /* cards, inputs, tiles */
+  --c-border:        220 223 221;
+  --c-accent:        162 121  63;  /* bronze */
+  --c-accent-dark:   124  90  46;  /* gold text */
+  --c-accent-tint:   241 231 216;
+  --c-ok:             62 107  82;
+  --c-primary:        15  36  54;  /* navy */
+  --c-primary-hover:  22  51  79;
+  --c-on-primary:    255 255 255;
+  --c-ink-900:        27  35  43;
+  --c-ink-700:        51  65  76;
+  --c-ink-600:        70  83  94;
+  --c-ink-500:        92 103 114;
+  --c-ink-400:        94 103 112;
+  --c-ink-300:        98 107 116;  /* darkened from #8A939C to pass WCAG AA */
+  --c-ink-100:       199 205 206;
+  color-scheme: light;
+
+  /* Named shorthands used by the rules below */
+  --bg:          rgb(var(--c-cream-100));
+  --surface-2:   rgb(var(--c-cream-200));
+  --surface:     rgb(var(--c-surface));
+  --border:      rgb(var(--c-border));
+  --accent:      rgb(var(--c-accent));
+  --accent-dark: rgb(var(--c-accent-dark));
+  --accent-tint: rgb(var(--c-accent-tint));
+  --ink-900:     rgb(var(--c-ink-900));
+  --ink-700:     rgb(var(--c-ink-700));
+  --ink-500:     rgb(var(--c-ink-500));
+  --ink-300:     rgb(var(--c-ink-300));
+  --ok:          rgb(var(--c-ok));
   --navy:        #0F2436;
   --navy-2:      #16334F;
-  --border:      #DCDFDD;
-  --accent:      #A2793F; /* bronze */
-  --accent-dark: #7C5A2E;
-  --accent-tint: #F1E7D8;
-  --ink-900:     #1B232B;
-  --ink-700:     #33414C;
-  --ink-500:     #5C6772;
-  --ink-300:     #626B74; /* darkened from #8A939C to pass WCAG AA (4.5:1) on cream, white and surface-2 */
-  --ok:          #3E6B52;
   --nav-h:       56px;
+}
+
+:root[data-theme="dark"] {
+  --c-cream-50:       24  36  48;
+  --c-cream-100:      13  21  30;
+  --c-cream-200:      18  29  40;
+  --c-cream-300:      40  53  66;
+  --c-cream-400:      62  75  88;
+  --c-surface:        23  35  48;
+  --c-border:         46  60  75;
+  --c-accent:        201 154  85;
+  --c-accent-dark:   224 186 126;
+  --c-accent-tint:    52  42  28;
+  --c-ok:            110 178 140;
+  --c-primary:       201 154  85;  /* gold buttons on dark */
+  --c-primary-hover: 224 186 126;
+  --c-on-primary:     15  36  54;
+  --c-ink-900:       236 240 244;
+  --c-ink-700:       208 216 224;
+  --c-ink-600:       188 198 208;
+  --c-ink-500:       170 181 192;
+  --c-ink-400:       155 167 179;
+  --c-ink-300:       145 157 169;
+  --c-ink-100:        70  82  94;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --c-cream-50:       24  36  48;
+    --c-cream-100:      13  21  30;
+    --c-cream-200:      18  29  40;
+    --c-cream-300:      40  53  66;
+    --c-cream-400:      62  75  88;
+    --c-surface:        23  35  48;
+    --c-border:         46  60  75;
+    --c-accent:        201 154  85;
+    --c-accent-dark:   224 186 126;
+    --c-accent-tint:    52  42  28;
+    --c-ok:            110 178 140;
+    --c-primary:       201 154  85;  /* gold buttons on dark */
+    --c-primary-hover: 224 186 126;
+    --c-on-primary:     15  36  54;
+    --c-ink-900:       236 240 244;
+    --c-ink-700:       208 216 224;
+    --c-ink-600:       188 198 208;
+    --c-ink-500:       170 181 192;
+    --c-ink-400:       155 167 179;
+    --c-ink-300:       145 157 169;
+    --c-ink-100:        70  82  94;
+    color-scheme: dark;
+  }
 }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
@@ -48,7 +128,7 @@ body {
 ::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-::selection { background: rgba(162,121,63,.22); }
+::selection { background: rgb(var(--c-accent) / .25); }
 
 /* ─── Typography helpers ─────────────────────────── */
 .font-serif { font-family: var(--font-serif), Georgia, serif; }
@@ -60,7 +140,7 @@ body {
    previous lift + shadow-depth combination — keeps things professional
    and avoids the "bouncy" feel of a decorative hover animation. */
 .card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 2px;
   padding: 1.5rem;
@@ -83,7 +163,7 @@ body {
   font-family: var(--font-mono), monospace;
   background: var(--accent-tint);
   color: var(--accent-dark);
-  border: 1px solid rgba(162,121,63,.35);
+  border: 1px solid rgb(var(--c-accent) / .35);
   font-weight: 500;
 }
 
@@ -98,7 +178,7 @@ body {
 }
 
 /* ─── Buttons ────────────────────────────────────── */
-/* Primary = solid navy, secondary = white with a border; square corners. */
+/* Primary = solid navy (gold in dark mode), secondary = surface with a border; square corners. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -112,9 +192,9 @@ body {
   transition: background-color .15s ease, border-color .15s ease, color .15s ease;
 }
 .btn:disabled { opacity: .6; cursor: not-allowed; }
-.btn-primary { background: var(--navy); color: #fff; border: 1px solid var(--navy); }
-.btn-primary:hover:not(:disabled) { background: var(--navy-2); border-color: var(--navy-2); }
-.btn-secondary { background: #fff; color: var(--ink-700); border: 1px solid var(--border); }
+.btn-primary { background: rgb(var(--c-primary)); color: rgb(var(--c-on-primary)); border: 1px solid rgb(var(--c-primary)); }
+.btn-primary:hover:not(:disabled) { background: rgb(var(--c-primary-hover)); border-color: rgb(var(--c-primary-hover)); }
+.btn-secondary { background: var(--surface); color: var(--ink-700); border: 1px solid var(--border); }
 .btn-secondary:hover:not(:disabled) { border-color: var(--accent); color: var(--ink-900); }
 
 /* Visible keyboard focus everywhere. */

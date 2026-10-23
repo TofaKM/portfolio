@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { ArrowRight, Download } from 'lucide-react'
-import { socialLinks, linkTarget } from '@/components/icons/social'
 import Link from 'next/link'
 import { certifications, projects, profile } from '@/data'
 import { delay } from '@/lib/delay'
@@ -47,7 +46,7 @@ export default function HeroSection() {
             I&rsquo;m comfortable from the database to the browser to production, and <strong className="text-ink-900 font-medium">ready to take on whichever role the team needs</strong>.
           </p>
 
-          <div style={delay(180)} className="enter flex flex-wrap items-center gap-3 mb-6">
+          <div style={delay(180)} className="enter flex flex-wrap items-center gap-3 mb-10">
             <Link href="/projects" className="btn btn-primary">
               View Projects <ArrowRight size={14} strokeWidth={2} aria-hidden />
             </Link>
@@ -62,19 +61,6 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          <div style={delay(220)} className="enter flex items-center gap-2 mb-10">
-            {[socialLinks.github, socialLinks.linkedin, socialLinks.email].map(l => (
-              <a
-                key={l.label}
-                href={l.href}
-                aria-label={l.label}
-                {...linkTarget(l)}
-                className="w-9 h-9 rounded-doc border border-border bg-white flex items-center justify-center text-ink-500 hover:text-ink-900 hover:border-accent transition-colors"
-              >
-                <l.Icon size={16} aria-hidden />
-              </a>
-            ))}
-          </div>
 
           {/* KPI cards — same pattern as the Agri-Link dashboard tiles */}
           <dl style={delay(260)} className="enter grid grid-cols-3 gap-3 max-w-lg">
@@ -83,15 +69,15 @@ export default function HeroSection() {
         </div>
 
         {/* Headshot */}
-        <div style={delay(150)} className="enter hidden md:block">
-          <div className="relative aspect-[4/5] rounded-doc overflow-hidden border border-border bg-white p-2">
+        <div style={delay(150)} className="enter w-full max-w-[280px] mx-auto md:max-w-none">
+          <div className="relative aspect-[4/5] rounded-doc overflow-hidden border border-border bg-surface p-2">
             <div className="relative w-full h-full overflow-hidden rounded-doc">
               <Image
                 src="/profile.jpg"
                 alt={profile.name}
                 fill
                 priority
-                sizes="(min-width: 768px) 380px, 0px"
+                sizes="(min-width: 768px) 380px, 280px"
                 className="object-cover object-top"
               />
             </div>

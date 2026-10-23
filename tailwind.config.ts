@@ -1,5 +1,8 @@
 import type { Config } from 'tailwindcss'
 
+/** A themed colour: RGB channels from a CSS variable (light/dark values in globals.css). */
+const v = (name: string) => `rgb(var(--c-${name}) / <alpha-value>)`
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,37 +18,43 @@ const config: Config = {
         mono:  ['var(--font-mono)', 'monospace'],
       },
       colors: {
-        // "cream" kept as the token name for the light neutral scale so
-        // existing `bg-cream-*` usages across the app don't need touching —
-        // only the underlying values changed, from warm cream to the cool
-        // SUZA neutral (#F4F5F3 family).
+        // Light neutral scale (page and section backgrounds). Themed.
         cream: {
-          50:  '#FDFDFC',
-          100: '#F4F5F3',
-          200: '#ECEDEB',
-          300: '#DCDFDD',
-          400: '#C7CDCE',
+          50:  v('cream-50'),
+          100: v('cream-100'),
+          200: v('cream-200'),
+          300: v('cream-300'),
+          400: v('cream-400'),
         },
+        // Cards, inputs, tiles — white in light mode. Use this, not bg-white,
+        // for anything that should go dark in dark mode.
+        surface:       v('surface'),
+        border:        v('border'),
+        accent:        v('accent'),
+        'accent-dark': v('accent-dark'),
+        'accent-tint': v('accent-tint'),
+        ok:            v('ok'),
+        // Primary action (buttons, contact button, active filter): navy in
+        // light mode, gold in dark mode so it still stands out.
+        primary:         v('primary'),
+        'primary-hover': v('primary-hover'),
+        'on-primary':    v('on-primary'),
+        ink: {
+          900: v('ink-900'),
+          700: v('ink-700'),
+          600: v('ink-600'),
+          500: v('ink-500'),
+          400: v('ink-400'),
+          300: v('ink-300'),
+          100: v('ink-100'),
+        },
+        // The navbar stays navy in both themes — fixed values.
         navy: {
           DEFAULT: '#0F2436',
           2: '#16334F',
         },
-        border:        '#DCDFDD',
         // Muted link text on the navy bar
-        mist:          '#B7C4D2',
-        accent:        '#A2793F',
-        'accent-dark': '#7C5A2E',
-        'accent-tint': '#F1E7D8',
-        ok: '#3E6B52',
-        ink: {
-          900: '#1B232B',
-          700: '#33414C',
-          600: '#46535E',
-          500: '#5C6772',
-          400: '#5E6770',
-          300: '#626B74',
-          100: '#C7CDCE',
-        },
+        mist: '#B7C4D2',
       },
       borderRadius: {
         doc: '2px',

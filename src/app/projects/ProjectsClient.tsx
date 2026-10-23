@@ -31,8 +31,8 @@ export default function ProjectsClient() {
                 aria-pressed={filter === c}
                 className={`px-4 py-2 rounded-doc text-[12.5px] font-medium font-sans capitalize transition-colors border ${
                   filter === c
-                    ? 'bg-navy border-navy text-white'
-                    : 'bg-white border-border text-ink-500 hover:text-ink-900 hover:border-accent'
+                    ? 'bg-primary border-primary text-on-primary'
+                    : 'bg-surface border-border text-ink-500 hover:text-ink-900 hover:border-accent'
                 }`}
               >
                 {c === 'all' ? 'All' : categoryLabels[c] ?? c}

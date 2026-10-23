@@ -8,7 +8,7 @@ import { profile } from '@/data'
 import { navLinks } from './navLinks'
 
 const small =
-  'w-11 h-11 rounded-full bg-white text-navy border border-border flex items-center justify-center shadow-md shadow-navy/10 hover:border-accent hover:text-accent-dark transition-colors'
+  'w-11 h-11 rounded-full bg-surface text-ink-900 border border-border flex items-center justify-center shadow-md shadow-navy/10 hover:border-accent hover:text-accent-dark transition-colors'
 
 /**
  * Bottom-right stack on every page:
@@ -59,7 +59,7 @@ export default function FloatingActions() {
       {open && (
         <div
           id="quick-pages"
-          className="enter w-56 rounded-doc border border-border bg-white shadow-xl shadow-navy/15 overflow-hidden"
+          className="enter w-56 rounded-doc border border-border bg-surface shadow-xl shadow-navy/15 overflow-hidden"
         >
           <p className="px-4 pt-3 pb-2 text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Go to</p>
           <ul>
@@ -127,7 +127,7 @@ export default function FloatingActions() {
             href="/contact"
             aria-label="Contact me"
             title="Contact me"
-            className="w-14 h-14 rounded-full bg-navy text-white flex items-center justify-center shadow-lg shadow-navy/25 hover:bg-navy-2 transition-colors"
+            className="w-14 h-14 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg shadow-navy/25 hover:bg-primary-hover transition-colors"
           >
             <Mail size={20} aria-hidden />
           </Link>

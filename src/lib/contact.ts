@@ -42,7 +42,8 @@ export function validateContact(input: ContactInput): ContactErrors {
   if (!email) errors.email = 'Please enter your email address.'
   else if (email.length > LIMITS.email.max || !EMAIL_RE.test(email)) errors.email = 'That email address doesn’t look right.'
 
-  if (!(input.subject in SUBJECTS)) errors.subject = 'Please choose a subject.'
+  // Own keys only — `in` would also accept inherited names such as "toString".
+  if (!Object.hasOwn(SUBJECTS, input.subject)) errors.subject = 'Please choose a subject.'
 
   if (message.length < LIMITS.message.min) errors.message = `Please write at least ${LIMITS.message.min} characters.`
   else if (message.length > LIMITS.message.max) errors.message = `Please keep your message under ${LIMITS.message.max} characters.`
