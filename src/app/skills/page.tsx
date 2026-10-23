@@ -1,6 +1,4 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import type { Metadata } from 'next'
 import {
   Palette,
   Server,
@@ -12,6 +10,13 @@ import {
 } from 'lucide-react'
 import { skills } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
+import { delay } from '@/lib/delay'
+
+export const metadata: Metadata = {
+  title: 'Skills',
+  description:
+    'Skills and tools of Tofa Kimani Mwangi — data engineering (Python, SQL, Spark, Airflow), backend (Spring Boot, Node.js), frontend (Next.js, React) and databases.',
+}
 
 /* One consistent accent (bronze) across every category. */
 const catCfg = {
@@ -64,56 +69,28 @@ export default function SkillsPage() {
           />
 
           <div className="space-y-14">
-            {order.map((cat, ci) => {
+            {order.map((cat) => {
               const cfg = catCfg[cat]
-              const catSkills = skills.filter(
-                (s) => s.category === cat
-              )
+              const catSkills = skills.filter((s) => s.category === cat)
 
               return (
-                <motion.div
-                  key={cat}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    delay: ci * 0.05,
-                  }}
-                >
+                <div key={cat}>
                   {/* Category header */}
-                  <div className="flex items-center gap-3 mb-7">
-                    <cfg.Icon
-                      size={17}
-                      className="text-accent-dark"
-                      aria-hidden
-                    />
-
+                  <div className="reveal flex items-center gap-3 mb-7">
+                    <cfg.Icon size={17} className="text-accent-dark" aria-hidden />
                     <h2 className="font-serif font-semibold text-lg text-accent-dark">
                       {cfg.label}
                     </h2>
-
                     <div className="flex-1 h-px bg-border" />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {catSkills.map((sk, si) => (
-                      <motion.div
-                        key={sk.name}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.3,
-                          delay: si * 0.03,
-                        }}
-                        className="card"
-                      >
+                      <div key={sk.name} style={delay(si * 30)} className="reveal card">
                         <div className="flex justify-between items-baseline mb-3">
                           <h3 className="font-sans font-medium text-[13.5px] text-ink-900">
                             {sk.name}
                           </h3>
-
                           <span className="text-[11px] font-mono font-semibold text-accent-dark">
                             {sk.level}%
                           </span>
@@ -127,18 +104,9 @@ export default function SkillsPage() {
                           aria-valuemin={0}
                           aria-valuemax={100}
                         >
-                          <motion.div
-                            className="h-full w-full rounded-full origin-left bg-accent"
-                            initial={{ scaleX: 0 }}
-                            whileInView={{
-                              scaleX: sk.level / 100,
-                            }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.6,
-                              delay: 0.05 + si * 0.02,
-                              ease: 'easeOut',
-                            }}
+                          <div
+                            className="bar-fill bg-accent"
+                            style={delay(50 + si * 20, { '--level': sk.level / 100 } as React.CSSProperties)}
                           />
                         </div>
 
@@ -151,29 +119,18 @@ export default function SkillsPage() {
                                 : 'Learning'}
                           </span>
                         </div>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
 
           {/* Currently learning */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mt-16 card"
-          >
+          <div className="reveal mt-16 card">
             <h3 className="font-serif font-semibold text-[15px] text-ink-900 mb-2 flex items-center gap-2">
-              <Sprout
-                size={15}
-                className="text-accent-dark"
-                aria-hidden
-              />
-
+              <Sprout size={15} className="text-accent-dark" aria-hidden />
               Currently Learning
             </h3>
 
@@ -193,7 +150,7 @@ export default function SkillsPage() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

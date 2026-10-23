@@ -1,11 +1,10 @@
-'use client'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink, Clock, FileText } from 'lucide-react'
 import { GithubGlyph } from '@/components/icons/BrandGlyphs'
 import { projects } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
+import { delay } from '@/lib/delay'
 
 export default function FeaturedProjects() {
   const featured = projects.filter(p => p.featured)
@@ -32,13 +31,10 @@ export default function FeaturedProjects() {
             const inProgress = p.status === 'in-progress'
             const demo = p.demo && p.demo !== p.github ? p.demo : undefined
             return (
-              <motion.div
+              <div
                 key={p.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: .4, delay: i * .08, ease: 'easeOut' }}
-                className={`card ${p.image ? 'grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-8 items-start' : ''}`}
+                style={delay(i * 80)}
+                className={`reveal card ${p.image ? 'grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-8 items-start' : ''}`}
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-3">
@@ -100,7 +96,7 @@ export default function FeaturedProjects() {
                     </span>
                   </a>
                 )}
-              </motion.div>
+              </div>
             )
           })}
         </div>

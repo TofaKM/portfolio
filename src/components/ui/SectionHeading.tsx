@@ -1,6 +1,3 @@
-'use client'
-import { motion } from 'framer-motion'
-
 interface Props {
   eyebrow?: string
   title: string
@@ -13,14 +10,11 @@ interface Props {
 
 export default function SectionHeading({ eyebrow, title, subtitle, align = 'left', as: Tag = 'h2', className = '' }: Props) {
   const centered = align === 'center'
+  // A page title is above the fold: animate it on load (CSS only) rather
+  // than waiting for it to scroll into view.
+  const motion = Tag === 'h1' ? 'enter' : 'reveal'
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`${centered ? 'text-center' : ''} ${className}`}
-    >
+    <div className={`${motion} ${centered ? 'text-center' : ''} ${className}`}>
       {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
 
       <Tag
@@ -40,6 +34,6 @@ export default function SectionHeading({ eyebrow, title, subtitle, align = 'left
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   )
 }

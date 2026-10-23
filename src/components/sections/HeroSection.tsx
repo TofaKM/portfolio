@@ -1,22 +1,15 @@
-'use client'
-import { motion, type Variants } from 'framer-motion'
 import Image from 'next/image'
 import { ArrowRight, Download, Mail } from 'lucide-react'
 import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
 import Link from 'next/link'
 import { certifications, projects, profile } from '@/data'
+import { delay } from '@/lib/delay'
 
 const roles = ['Data Engineer', 'Full-Stack Developer', 'Python Developer', 'SQL Specialist', 'Data Analyst']
 
-/* Single staggered entrance — everything animates in once and then holds still. */
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-}
-const fade: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
-}
+/* One staggered CSS entrance on load (.enter in globals.css) — runs without
+   JavaScript, then everything holds still. The <h1> is not animated so it
+   paints immediately as the page's largest element. */
 
 export default function HeroSection() {
   const stats = [
@@ -28,34 +21,33 @@ export default function HeroSection() {
   return (
     <section className="px-5 md:px-10">
       <div className="max-w-6xl mx-auto w-full pt-14 pb-16 md:pt-20 md:pb-24 grid grid-cols-1 md:grid-cols-[1.45fr_1fr] gap-12 md:gap-16 items-center">
-        <motion.div variants={container} initial="hidden" animate="show">
-          <motion.p variants={fade} className="eyebrow mb-4 inline-flex items-center gap-2">
+        <div>
+          <p className="enter eyebrow mb-4 inline-flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden />
             Available · {profile.location}
-          </motion.p>
+          </p>
 
-          <motion.h1
-            variants={fade}
+          <h1
             className="font-serif font-semibold text-ink-900 leading-[1.08] tracking-[-0.015em] mb-4"
             style={{ fontSize: 'clamp(38px, 6.5vw, 64px)' }}
           >
             {profile.name}
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fade} className="font-mono text-[13px] text-ink-500 mb-6">
+          <p className="enter font-mono text-[13px] text-ink-500 mb-6" style={delay(60)}>
             {roles.join('  ·  ')}
-          </motion.p>
+          </p>
 
-          <motion.p variants={fade} className="text-[15.5px] text-ink-500 max-w-xl leading-relaxed mb-8 font-sans">
+          <p style={delay(120)} className="enter text-[15.5px] text-ink-500 max-w-xl leading-relaxed mb-8 font-sans">
             <strong className="text-ink-900 font-medium">Engineering software. Transforming data. Solving real problems.</strong>{' '}
             I&rsquo;m a {profile.tagline} working across <strong className="text-ink-900 font-medium">web applications,
             databases, and ETL pipelines</strong>. My experience spans healthcare data, corporate governance analytics,
             e-commerce platforms, retail ERP and point of sale, and containerized data workflows — with a focus on turning complex requirements and
             messy data into <strong className="text-ink-900 font-medium">reliable, scalable systems</strong>.
             Currently, I&rsquo;m going deeper into <strong className="text-ink-900 font-medium">data engineering, big data, and scalable architecture</strong>.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fade} className="flex flex-wrap items-center gap-3 mb-6">
+          <div style={delay(180)} className="enter flex flex-wrap items-center gap-3 mb-6">
             <Link href="/projects" className="btn btn-primary">
               View Projects <ArrowRight size={14} strokeWidth={2} aria-hidden />
             </Link>
@@ -68,9 +60,9 @@ export default function HeroSection() {
             >
               Say Hello <ArrowRight size={14} strokeWidth={2} aria-hidden />
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fade} className="flex items-center gap-2 mb-10">
+          <div style={delay(220)} className="enter flex items-center gap-2 mb-10">
             {[
               { href: profile.github,            label: 'GitHub',   Icon: GithubGlyph,   external: true },
               { href: profile.linkedin,          label: 'LinkedIn', Icon: LinkedinGlyph, external: true },
@@ -86,10 +78,10 @@ export default function HeroSection() {
                 <Icon size={16} aria-hidden />
               </a>
             ))}
-          </motion.div>
+          </div>
 
           {/* KPI cards — same pattern as the Agri-Link dashboard tiles */}
-          <motion.dl variants={fade} className="grid grid-cols-3 gap-3 max-w-lg">
+          <dl style={delay(260)} className="enter grid grid-cols-3 gap-3 max-w-lg">
             {stats.map(({ label, value, note }) => (
               <div key={label} className="bg-white border border-border rounded-doc px-4 py-3">
                 <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">{label}</dt>
@@ -97,16 +89,11 @@ export default function HeroSection() {
                 <dd className="text-[11px] text-ink-400 font-sans mt-0.5">{note}</dd>
               </div>
             ))}
-          </motion.dl>
-        </motion.div>
+          </dl>
+        </div>
 
         {/* Headshot */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden md:block"
-        >
+        <div style={delay(150)} className="enter hidden md:block">
           <div className="relative aspect-[4/5] rounded-doc overflow-hidden border border-border bg-white p-2">
             <div className="relative w-full h-full overflow-hidden rounded-doc">
               <Image
@@ -119,7 +106,7 @@ export default function HeroSection() {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
