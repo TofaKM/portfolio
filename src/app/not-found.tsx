@@ -7,7 +7,7 @@ export default function NotFound() {
         <p className="font-serif font-bold text-8xl" style={{ color: 'var(--accent)', opacity: .3 }}>404</p>
         <h1 className="font-serif font-semibold text-3xl text-ink-900 mb-3 -mt-4">Page not found</h1>
         <p className="text-ink-500 text-[14px] font-sans mb-8 leading-relaxed">
-          The page you're looking for doesn't exist or has been moved.
+          The page you&rsquo;re looking for doesn&rsquo;t exist or has been moved.
         </p>
         <Link
           href="/"

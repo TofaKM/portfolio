@@ -121,11 +121,16 @@ function SidebarContent({ onClose, animate = true }: { onClose?: () => void; ani
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
+  const [lastPathname, setLastPathname] = useState(pathname)
 
-  useEffect(() => setMounted(true), [])
-  useEffect(() => setMobileOpen(false), [pathname])
+  // Close the drawer on any navigation (incl. browser back/forward) —
+  // adjusted during render rather than in an effect.
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname)
+    setMobileOpen(false)
+  }
+
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -138,7 +143,7 @@ export default function Sidebar() {
         className="hidden md:flex flex-col fixed left-0 top-0 h-screen z-40 border-r border-white/10"
         style={{ width: 'var(--sidebar-w)' }}
       >
-        {mounted && <SidebarContent animate />}
+        <SidebarContent animate />
       </aside>
 
       {/* ── Mobile topbar ── */}

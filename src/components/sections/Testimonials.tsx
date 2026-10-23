@@ -27,7 +27,7 @@ export default function Testimonials() {
               />
 
               <p className="text-ink-500 leading-relaxed mb-6 text-[14px] font-sans italic relative z-10">
-                "{t.text}"
+                &ldquo;{t.text}&rdquo;
               </p>
 
               <div className="flex items-center gap-3 relative z-10">
