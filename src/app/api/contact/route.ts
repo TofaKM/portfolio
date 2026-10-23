@@ -34,9 +34,9 @@ export async function POST(req: Request) {
   }
 
   const user = process.env.GMAIL_USER
-  const pass = process.env.GMAIL_APP_PASSWORD
+  const pass = process.env.GMAIL_APP_PASS
   if (!user || !pass) {
-    console.error('Contact form: GMAIL_USER / GMAIL_APP_PASSWORD are not set')
+    console.error('Contact form: GMAIL_USER / GMAIL_APP_PASS are not set')
     return NextResponse.json({ ok: false, error: 'The contact form isn’t set up yet.' }, { status: 503 })
   }
 
