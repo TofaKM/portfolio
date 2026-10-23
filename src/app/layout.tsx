@@ -3,7 +3,7 @@ import { Source_Serif_4, Inter, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import ContactFab from '@/components/layout/ContactFab'
+import FloatingActions from '@/components/layout/FloatingActions'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 
 // next/font automatically:
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   icons:{
     icon:'/tm_svg.svg'
   },
-  title: { default: 'Tofa Kimani Mwangi — Data Engineer & Developer', template: '%s | Tofa Kimani' },
-  description: 'Data Engineer and Full-Stack Developer from Nairobi, Kenya. Specialising in Python, SQL, React, and data pipelines. BSc Applied Computing — KCA University.',
-  keywords: ['Data Engineer', 'Software Developer', 'Python', 'SQL', 'React', 'Nairobi', 'Kenya', 'KCA University', 'ALX'],
+  title: { default: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data', template: '%s | Tofa Kimani' },
+  description: 'Software engineer from Nairobi, Kenya, working across full-stack development, backend systems, data engineering, data analytics and deployment — Java, Spring Boot, Python, SQL, Next.js and Docker. BSc Applied Computing, KCA University.',
+  keywords: ['Software Engineer', 'Full-Stack Developer', 'Backend Developer', 'Data Engineer', 'Data Analyst', 'DevOps', 'Java', 'Spring Boot', 'Python', 'SQL', 'Next.js', 'React', 'Nairobi', 'Kenya', 'KCA University', 'ALX'],
   authors: [{ name: 'Tofa Kimani Mwangi' }],
   creator: 'Tofa Kimani Mwangi',
   openGraph: {
@@ -50,13 +50,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Tofa Kimani Portfolio',
-    title: 'Tofa Kimani Mwangi — Data Engineer & Developer',
-    description: 'Data Engineer and Full-Stack Developer from Nairobi, Kenya.',
+    title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
+    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, data engineering, analytics and deployment.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tofa Kimani Mwangi — Data Engineer & Developer',
-    description: 'Data Engineer and Full-Stack Developer from Nairobi, Kenya.',
+    title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
+    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, data engineering, analytics and deployment.',
   },
 }
 
@@ -94,7 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
-        <ContactFab />
+        <FloatingActions />
       </body>
     </html>
   )

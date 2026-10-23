@@ -41,6 +41,10 @@ export interface Testimonial {
 
 export interface WorkExperience {
   company: string
+  /** e.g. 'Freelance' — shown as a badge next to the role. */
+  type?: string
+  /** Public write-up of the work (case study, repo). */
+  link?: { href: string; label: string }
   role: string
   period: string
   location: string

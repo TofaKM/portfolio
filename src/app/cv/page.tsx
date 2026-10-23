@@ -17,7 +17,7 @@ const certIcons: Record<string, typeof BarChart3> = {
 
 export const metadata: Metadata = {
   title: 'CV / Resume',
-  description: 'Professional CV of Tofa Kimani Mwangi — Data Engineer & Full-Stack Developer.',
+  description: 'Professional CV of Tofa Kimani Mwangi — software engineer: full-stack, backend, data engineering, data analytics and deployment.',
 }
 
 export default function CVPage() {
@@ -85,10 +85,7 @@ export default function CVPage() {
               <span style={{ color: 'var(--accent)' }}>▸</span> Profile Summary
             </h2>
             <p className="text-ink-500 text-[13.5px] leading-relaxed font-sans">
-              Data Engineer & Full-Stack Developer with a background in Applied Computing, bridging software engineering, live data analysis,
-and innovation-driven research. Skilled in building robust ETL pipelines, full-stack web applications (Next.js) with databases such
-as PostgreSQL, AI prompting, and translating real-time insights into actionable strategy. Passionate about optimizing data workflows
-and leveraging modern tech to deliver scalable, high-impact digital solutions
+              Software engineer with a background in Applied Computing, working across full-stack development, backend services, data engineering, data analytics and deployment. Built and deployed Agri-Link, an ERP and point-of-sale system now in trial at a Kenyan agrovet (Spring Boot, PostgreSQL, Next.js), alongside production-style ETL pipelines with PySpark, Airflow and Docker. Comfortable from database design to the browser to production, and ready to step into software engineering, full-stack, backend, data engineering, data analytics or DevOps roles.
             </p>
           </div>
 
@@ -101,7 +98,14 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
               <div key={`${job.company}-${i}`} className={i > 0 ? 'pt-6 mt-6 border-t border-[#DCDFDD]' : ''}>
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                   <div>
-                    <h3 className="font-serif font-semibold text-[14px] text-ink-900">{job.role}</h3>
+                    <h3 className="font-serif font-semibold text-[14px] text-ink-900">
+                      {job.role}
+                      {job.type && (
+                      <span className="ml-2 align-middle inline-block text-[9.5px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded-doc bg-accent-tint text-accent-dark border border-accent/30">
+                        {job.type}
+                      </span>
+                          )}
+                    </h3>
                     <span className="font-sans text-[12px] font-medium" style={{ color: 'var(--accent-dark)' }}>
                       {job.company} · {job.location}
                     </span>
@@ -124,6 +128,16 @@ and leveraging modern tech to deliver scalable, high-impact digital solutions
                 <div className="flex flex-wrap gap-1.5">
                   {job.tech.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
+                {job.link && (
+                  <a
+                    href={job.link.href}
+                    target="_blank" rel="noopener noreferrer"
+                    className="text-[10px] hover:underline mt-2 inline-block"
+                    style={{ color: 'var(--accent-dark)' }}
+                  >
+                    ↗ {job.link.label}: {job.link.href}
+                  </a>
+                )}
               </div>
             ))}
           </div>

@@ -6,7 +6,7 @@
 export const SUBJECTS = {
   job: 'Job Opportunity',
   freelance: 'Freelance Project',
-  data: 'Data Engineering Work',
+  data: 'Data Engineering / Analytics Work',
   collab: 'Collaboration',
   hi: 'Just saying hi!',
 } as const
