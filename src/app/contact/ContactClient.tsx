@@ -1,26 +1,78 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Phone, Send, CheckCircle } from 'lucide-react'
+import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
+import { SUBJECTS, LIMITS, validateContact, type ContactErrors, type ContactInput } from '@/lib/contact'
+
+const EMPTY: ContactInput = { name: '', email: '', subject: '', message: '' }
+const CONTACT_EMAIL = 'mwangitofa@gmail.com'
 
 export default function ContactClient() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
+  const [form, setForm] = useState<ContactInput>(EMPTY)
+  const [website, setWebsite] = useState('') // honeypot
+  const [errors, setErrors] = useState<ContactErrors>({})
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [serverError, setServerError] = useState('')
+
+  const update = (field: keyof ContactInput, value: string) => {
+    setForm(prev => ({ ...prev, [field]: value }))
+    // Clear a field's error as soon as the visitor starts fixing it.
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: undefined }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const found = validateContact(form)
+    setErrors(found)
+    if (Object.keys(found).length > 0) {
+      document.getElementById(`contact-${Object.keys(found)[0]}`)?.focus()
+      return
+    }
+
     setStatus('sending')
-    await new Promise(r => setTimeout(r, 1400))
-    setStatus('sent')
+    setServerError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, website }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.ok) {
+        setStatus('sent')
+        return
+      }
+      if (data.errors) setErrors(data.errors)
+      setServerError(data.error ?? 'Something went wrong.')
+      setStatus('error')
+    } catch {
+      setServerError('Couldn’t reach the server — check your connection.')
+      setStatus('error')
+    }
   }
 
-  const inputCls = `
-    w-full px-4 py-2.5 rounded-doc bg-white border border-[#DCDFDD]
+  const inputCls = (invalid: boolean) => `
+    w-full px-4 py-2.5 rounded-doc bg-white border
+    ${invalid ? 'border-red-600' : 'border-[#DCDFDD]'}
     text-ink-900 placeholder-ink-300
     focus:outline-none focus:border-[#A2793F]
     transition-colors text-[13px] font-sans
   `
+  const labelCls = 'block text-[11px] font-medium text-ink-500 font-sans uppercase tracking-wider mb-2'
+
+  const fieldError = (field: keyof ContactInput) =>
+    errors[field] ? (
+      <p id={`contact-${field}-error`} className="mt-1.5 text-[11.5px] text-red-700 font-sans">
+        {errors[field]}
+      </p>
+    ) : null
+
+  const a11y = (field: keyof ContactInput) => ({
+    id: `contact-${field}`,
+    'aria-invalid': !!errors[field],
+    'aria-describedby': errors[field] ? `contact-${field}-error` : undefined,
+  })
 
   return (
     <div className="min-h-screen">
@@ -35,7 +87,7 @@ export default function ContactClient() {
             </p>
             <h1 className="font-serif font-bold text-4xl md:text-5xl text-ink-900 mb-4"
                 style={{ letterSpacing: '-.02em' }}>
-              Let's{' '}
+              Let&rsquo;s{' '}
               <span className="italic" style={{ color: 'var(--accent-dark)' }}>Connect</span>
             </h1>
             <p className="text-ink-500 text-[15px] font-sans max-w-md mx-auto leading-relaxed">
@@ -69,15 +121,15 @@ export default function ContactClient() {
                 <h3 className="font-sans font-medium text-[13.5px] text-ink-900 mb-4">Find Me Online</h3>
                 <div className="space-y-3">
                   {[
-                    { href: 'https://github.com/TofaKM',                   icon: GithubGlyph,   label: 'GitHub',   handle: 'Tofa_KM' },
-                    { href: 'https://www.linkedin.com/in/tofa-mwangi',     icon: LinkedinGlyph, label: 'LinkedIn', handle: 'Tofa Mwangi' },
-                    { href: 'mailto:mwangitofa@gmail.com',                 icon: Mail,     label: 'Email',    handle: 'mwangitofa@gmail.com' },
-                    { href: 'tel:+254759799624',                           icon: Phone,    label: 'Phone',    handle: '0759 799 624' },
-                  ].map(({ href, icon: Icon, label, handle }) => (
+                    { href: 'https://github.com/TofaKM',                   icon: GithubGlyph,   label: 'GitHub',   handle: 'Tofa_KM',             external: true },
+                    { href: 'https://www.linkedin.com/in/tofa-mwangi',     icon: LinkedinGlyph, label: 'LinkedIn', handle: 'Tofa Mwangi',         external: true },
+                    { href: `mailto:${CONTACT_EMAIL}`,                     icon: Mail,          label: 'Email',    handle: CONTACT_EMAIL,         external: false },
+                    { href: 'tel:+254759799624',                           icon: Phone,         label: 'Phone',    handle: '0759 799 624',        external: false },
+                  ].map(({ href, icon: Icon, label, handle, external }) => (
                     <a
                       key={label}
                       href={href}
-                      target="_blank" rel="noopener noreferrer"
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="flex items-center gap-3 text-ink-500 hover:text-ink-900 transition-colors group"
                     >
                       <div
@@ -108,14 +160,15 @@ export default function ContactClient() {
                     initial={{ opacity: 0, scale: .95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex flex-col items-center justify-center py-14 text-center"
+                    role="status"
                   >
                     <CheckCircle size={48} className="mb-4" style={{ color: 'var(--accent)' }} />
                     <h3 className="font-serif font-semibold text-2xl text-ink-900 mb-2">Message Sent!</h3>
                     <p className="text-ink-500 text-[13px] font-sans">
-                      Thanks for reaching out. I'll get back to you within 24 hours.
+                      Thanks for reaching out. I&rsquo;ll get back to you within 24 hours.
                     </p>
                     <button
-                      onClick={() => { setStatus('idle'); setForm({ name: '', email: '', subject: '', message: '' }) }}
+                      onClick={() => { setStatus('idle'); setForm(EMPTY); setErrors({}) }}
                       className="mt-6 text-[12px] font-sans hover:underline"
                       style={{ color: 'var(--accent-dark)' }}
                     >
@@ -123,57 +176,103 @@ export default function ContactClient() {
                     </button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                    {status === 'error' && (
+                      <div role="alert" className="flex items-start gap-2.5 p-3.5 rounded-doc border border-red-200 bg-red-50 text-[12.5px] text-red-800 font-sans">
+                        <AlertCircle size={15} className="shrink-0 mt-0.5" aria-hidden />
+                        <p>
+                          {serverError}{' '}
+                          You can email me directly at{' '}
+                          <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium underline">{CONTACT_EMAIL}</a>.
+                        </p>
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {[
-                        { n: 'name',  l: 'Your Name',      p: 'Jane Smith',        t: 'text' },
-                        { n: 'email', l: 'Email Address',  p: 'jane@example.com',  t: 'email' },
-                      ].map(f => (
-                        <div key={f.n}>
-                          <label className="block text-[11px] font-medium text-ink-500 font-sans uppercase tracking-wider mb-2">
-                            {f.l}
-                          </label>
-                          <input
-                            type={f.t}
-                            name={f.n}
-                            value={form[f.n as keyof typeof form]}
-                            onChange={e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))}
-                            placeholder={f.p}
-                            required
-                            className={inputCls}
-                          />
-                        </div>
-                      ))}
+                      <div>
+                        <label htmlFor="contact-name" className={labelCls}>Your Name</label>
+                        <input
+                          {...a11y('name')}
+                          type="text"
+                          name="name"
+                          autoComplete="name"
+                          value={form.name}
+                          onChange={e => update('name', e.target.value)}
+                          placeholder="Jane Smith"
+                          maxLength={LIMITS.name.max}
+                          required
+                          className={inputCls(!!errors.name)}
+                        />
+                        {fieldError('name')}
+                      </div>
+                      <div>
+                        <label htmlFor="contact-email" className={labelCls}>Email Address</label>
+                        <input
+                          {...a11y('email')}
+                          type="email"
+                          name="email"
+                          autoComplete="email"
+                          value={form.email}
+                          onChange={e => update('email', e.target.value)}
+                          placeholder="jane@example.com"
+                          maxLength={LIMITS.email.max}
+                          required
+                          className={inputCls(!!errors.email)}
+                        />
+                        {fieldError('email')}
+                      </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-medium text-ink-500 font-sans uppercase tracking-wider mb-2">Subject</label>
+                      <label htmlFor="contact-subject" className={labelCls}>Subject</label>
                       <select
+                        {...a11y('subject')}
                         name="subject"
                         value={form.subject}
-                        onChange={e => setForm(prev => ({ ...prev, subject: e.target.value }))}
+                        onChange={e => update('subject', e.target.value)}
                         required
-                        className={inputCls + ' appearance-none'}
+                        className={inputCls(!!errors.subject)}
                       >
                         <option value="">Select a subject...</option>
-                        <option value="job">Job Opportunity</option>
-                        <option value="freelance">Freelance Project</option>
-                        <option value="data">Data Engineering Work</option>
-                        <option value="collab">Collaboration</option>
-                        <option value="hi">Just saying hi!</option>
+                        {Object.entries(SUBJECTS).map(([value, label]) => (
+                          <option key={value} value={value}>{label}</option>
+                        ))}
                       </select>
+                      {fieldError('subject')}
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-medium text-ink-500 font-sans uppercase tracking-wider mb-2">Message</label>
+                      <div className="flex items-baseline justify-between">
+                        <label htmlFor="contact-message" className={labelCls}>Message</label>
+                        <span className="text-[10.5px] text-ink-300 font-mono" aria-hidden>
+                          {form.message.length}/{LIMITS.message.max}
+                        </span>
+                      </div>
                       <textarea
+                        {...a11y('message')}
                         name="message"
                         value={form.message}
-                        onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
+                        onChange={e => update('message', e.target.value)}
                         placeholder="Tell me about your opportunity or project..."
+                        maxLength={LIMITS.message.max}
                         required
-                        rows={5}
-                        className={inputCls + ' resize-none'}
+                        rows={6}
+                        className={inputCls(!!errors.message) + ' resize-y min-h-[140px]'}
+                      />
+                      {fieldError('message')}
+                    </div>
+
+                    {/* Honeypot — hidden from people and screen readers; bots fill it in. */}
+                    <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                      <label htmlFor="contact-website">Website</label>
+                      <input
+                        id="contact-website"
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={website}
+                        onChange={e => setWebsite(e.target.value)}
                       />
                     </div>
 
