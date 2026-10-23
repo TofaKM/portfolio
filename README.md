@@ -98,6 +98,24 @@ GitHub Actions (`.github/workflows/ci.yml`) runs lint, type-check and build on e
 
 Without the Gmail variables the form says it isn't set up yet and shows the email address instead. On Vercel, changing a variable takes effect after a redeploy.
 
+## Security
+
+**Contact form (`/api/contact`)** — checked in this order, cheapest first:
+
+1. Same-site only: requests whose `Origin` isn't this site get 403.
+2. JSON only, at most 16 KB.
+3. Rate limit (`src/lib/rateLimit.ts`): 3 messages per IP per 10 minutes, 10 per day, and 40 per hour overall to stay inside Gmail's daily sending limit. Over the limit → 429 with `Retry-After`.
+4. Bot filters: a hidden honeypot field, and a minimum fill time of 3 s (the form sends how long the visitor took). Bots get a fake success and nothing is sent.
+5. Validation (`src/lib/contact.ts`), header values stripped of line breaks, message HTML-escaped.
+
+The in-code rate limit lives in each server instance's memory. For a limit that holds across all of Vercel's instances, also add a **Vercel Firewall rule**: Project → *Firewall* → *Configure* → *New Rule* — If *Request Path* equals `/api/contact` and *Method* equals `POST`, then **Rate Limit**: fixed window, 60 s, 5 requests, keyed by IP, action *Deny* (429). Publish.
+
+**Headers** (`next.config.js`): a Content-Security-Policy allowing only same-origin resources (plus Vercel's preview toolbar), `frame-ancestors 'none'`, `object-src 'none'`, `form-action 'self'`; plus `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy` and `Permissions-Policy`. HSTS is added by Vercel. Scripts allow `'unsafe-inline'` because Next's hydration scripts are inline on statically rendered pages.
+
+**Dependencies:** Dependabot (`.github/dependabot.yml`) opens PRs for npm and GitHub Actions updates; CI must pass before merging.
+
+**Personal data:** the public CV lists references as "available on request" rather than publishing their phone numbers and emails.
+
 ## Built with Claude
 
 Designed and built with the assistance of **Claude (Anthropic)**: the audit and phased fixes, the working contact form, the Agri-Link-style navbar and design system, server-visible animations, grouped skills, SEO files and CI.

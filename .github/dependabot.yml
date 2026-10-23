@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # npm packages — security fixes arrive as PRs; routine updates grouped weekly.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  # GitHub Actions used by CI.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

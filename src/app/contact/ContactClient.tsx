@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { GithubGlyph, LinkedinGlyph } from '@/components/icons/BrandGlyphs'
@@ -16,6 +16,10 @@ export default function ContactClient() {
   const [errors, setErrors] = useState<ContactErrors>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [serverError, setServerError] = useState('')
+  // When the visitor first touched the form — sent as "elapsed" so the API can
+  // drop submissions made faster than a person could type them.
+  const startedAt = useRef(0)
+  const markStarted = () => { if (!startedAt.current) startedAt.current = Date.now() }
 
   const update = (field: keyof ContactInput, value: string) => {
     setForm(prev => ({ ...prev, [field]: value }))
@@ -38,7 +42,7 @@ export default function ContactClient() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, website }),
+        body: JSON.stringify({ ...form, website, elapsed: startedAt.current ? Date.now() - startedAt.current : 0 }),
       })
       const data = await res.json().catch(() => ({}))
       if (res.ok && data.ok) {
@@ -160,7 +164,7 @@ export default function ContactClient() {
                       Thanks for reaching out. I&rsquo;ll get back to you within 24 hours.
                     </p>
                     <button
-                      onClick={() => { setStatus('idle'); setForm(EMPTY); setErrors({}) }}
+                      onClick={() => { setStatus('idle'); setForm(EMPTY); setErrors({}); startedAt.current = 0 }}
                       className="mt-6 text-[12px] font-sans hover:underline"
                       style={{ color: 'var(--accent-dark)' }}
                     >
@@ -168,7 +172,7 @@ export default function ContactClient() {
                     </button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <form onSubmit={handleSubmit} onFocusCapture={markStarted} noValidate className="space-y-5">
                     {status === 'error' && (
                       <div role="alert" className="flex items-start gap-2.5 p-3.5 rounded-doc border border-red-200 bg-red-50 text-[12.5px] text-red-800 font-sans">
                         <AlertCircle size={15} className="shrink-0 mt-0.5" aria-hidden />
