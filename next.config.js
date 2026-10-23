@@ -27,30 +27,34 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Cache public assets (profile.jpg etc) for 30 days
+        // Public files (profile.jpg, screenshots, logo) keep their names when
+        // replaced, so cache for a day and revalidate in the background
+        // rather than pinning an old photo for a month.
         source: '/(.*)\\.(jpg|jpeg|png|webp|avif|svg|ico|woff2)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
           },
         ],
       },
       {
-        // Security + performance headers on all pages
+        // Security headers on all pages. (HSTS is added by Vercel. No font
+        // preconnect: next/font self-hosts the fonts.)
         source: '/(.*)',
         headers: [
           { key: 'X-Content-Type-Options',   value: 'nosniff' },
           { key: 'X-Frame-Options',          value: 'SAMEORIGIN' },
           { key: 'Referrer-Policy',          value: 'strict-origin-when-cross-origin' },
-          // Tell browser to preconnect to Google Fonts early
-          {
-            key: 'Link',
-            value: '<https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin',
-          },
+          { key: 'Permissions-Policy',       value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
     ]
+  },
+
+  // Browsers and crawlers still ask for /favicon.ico; point it at the logo.
+  async redirects() {
+    return [{ source: '/favicon.ico', destination: '/tm_svg.svg', permanent: true }]
   },
 }
 module.exports = nextConfig

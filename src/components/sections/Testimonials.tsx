@@ -13,6 +13,7 @@ export default function Testimonials() {
             <div key={t.id} style={delay(i * 90)} className="reveal card group relative overflow-hidden">
               {/* Large decorative quote */}
               <Quote
+                aria-hidden
                 size={44}
                 className="absolute top-4 right-4 transition-opacity duration-200"
                 style={{ color: 'rgba(162,121,63,.18)' }}
