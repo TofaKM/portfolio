@@ -14,6 +14,9 @@ Personal site of Tofa Kimani Mwangi, software engineer (full-stack, backend, dat
 | Styling | Tailwind CSS 3 with CSS-variable design tokens |
 | Fonts | Source Serif 4, Inter, IBM Plex Mono via `next/font` (self-hosted) |
 | Motion | Plain CSS (entrance, scroll reveal) and a few lines of JS — no animation library |
+| Themes | Light and dark (toggle in the navbar; follows the OS setting until chosen) |
+| Analytics | Vercel Web Analytics and Speed Insights |
+| Tests | Vitest (unit), Playwright (end-to-end, desktop and phone) |
 | Email | Contact form → `/api/contact` → Gmail SMTP via nodemailer |
 | Hosting | Vercel |
 
@@ -84,8 +87,14 @@ npm run dev                  # http://localhost:3000
 | `npm run build` / `npm start` | Production build / serve it |
 | `npm run lint` | ESLint (flat config, `eslint-config-next`) |
 | `npm run typecheck` | `tsc --noEmit` |
+| `npm test` | Unit tests (Vitest): contact validation, rate limiter |
+| `npm run test:e2e` | End-to-end tests (Playwright) against the production build — run `npm run build` first. Locally they use the installed Microsoft Edge; set `PW_CHANNEL=chrome` to use Chrome instead |
 
-GitHub Actions (`.github/workflows/ci.yml`) runs lint, type-check and build on every pull request and push to `main`.
+GitHub Actions (`.github/workflows/ci.yml`) runs lint, type-check, unit tests, build and the end-to-end tests on every pull request and push to `main`.
+
+**Dark mode:** colours are RGB-channel CSS variables (`--c-*` in `globals.css`) with light values on `:root` and dark values under `[data-theme="dark"]`; Tailwind maps them (`bg-surface`, `text-ink-500`, `bg-primary`…). Use `bg-surface` rather than `bg-white` for anything that should go dark. The navy navbar and the CV "paper" stay the same in both themes.
+
+**Analytics:** enable *Web Analytics* and *Speed Insights* in the Vercel project for data to appear.
 
 ## Environment variables
 

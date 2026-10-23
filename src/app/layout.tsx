@@ -5,6 +5,8 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import FloatingActions from '@/components/layout/FloatingActions'
 import ScrollProgress from '@/components/ui/ScrollProgress'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // next/font automatically:
 // - Self-hosts the font (zero Google request at runtime)
@@ -61,6 +63,14 @@ export const metadata: Metadata = {
   },
 }
 
+/* Theme, applied before first paint so there's no flash: the visitor's saved
+   choice (ThemeToggle), else the OS setting. */
+const themeScript = `(function(){try{
+  var t=localStorage.getItem('theme');
+  if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  document.documentElement.setAttribute('data-theme',t);
+}catch(e){}})();`
+
 /* Scroll reveal, run before first paint and before React hydrates (see the
    .reveal notes in globals.css). Marks <html class="js"> so .reveal elements
    may start hidden, then sets data-shown on each as it scrolls into view.
@@ -86,6 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${sourceSerif.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: revealScript }} />
       </head>
       <body className="bg-cream-100 text-ink-900 min-h-screen flex flex-col">
@@ -96,6 +107,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
         <FloatingActions />
+        {/* Vercel Web Analytics + Speed Insights (enable both in the Vercel dashboard). Same-origin scripts, no cookies. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

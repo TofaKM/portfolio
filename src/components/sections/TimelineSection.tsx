@@ -22,7 +22,7 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                   <div key={`${job.company}-${i}`} style={delay(i * 90)} className="reveal relative pl-12">
                     {/* Node */}
                     <div
-                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-border flex items-center justify-center shadow-sm"
+                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-surface border border-border flex items-center justify-center shadow-sm"
                     >
                       <Briefcase size={13} className="text-accent-dark" />
                     </div>
@@ -82,7 +82,7 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                 {education.map((edu, i) => (
                   <div key={`${edu.school}-${i}`} style={delay(i * 90)} className="reveal relative pl-12">
                     <div
-                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-white border border-border flex items-center justify-center shadow-sm"
+                      className="absolute left-0 top-1.5 w-8 h-8 rounded-doc bg-surface border border-border flex items-center justify-center shadow-sm"
                     >
                       <GraduationCap size={13} className="text-accent-dark" />
                     </div>

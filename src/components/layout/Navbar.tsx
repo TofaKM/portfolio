@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { socialLinks } from '@/components/icons/social'
 import { profile } from '@/data'
 import { navLinks } from './navLinks'
+import ThemeToggle from './ThemeToggle'
 
 /** White tile with a navy serif monogram — reads on the navy bar. */
 function Monogram() {
@@ -93,6 +94,7 @@ export default function Navbar() {
             <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden />
             Open to work
           </span>
+          <ThemeToggle className="flex w-8 h-8 rounded-doc border border-white/20 items-center justify-center text-mist hover:text-white hover:border-white/50 transition-colors" />
           {[socialLinks.github, socialLinks.linkedin].map(({ href, label, Icon }) => (
             <a
               key={label}

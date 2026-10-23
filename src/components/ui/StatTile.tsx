@@ -14,7 +14,7 @@ interface Props {
  */
 export default function StatTile({ label, value, note, compact }: Props) {
   return (
-    <div className="bg-white border border-border rounded-doc px-4 py-3">
+    <div className="bg-surface border border-border rounded-doc px-4 py-3">
       <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">{label}</dt>
       <dd
         className={`font-mono font-semibold text-ink-900 mt-1 flex items-center gap-1.5 ${

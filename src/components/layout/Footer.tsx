@@ -17,7 +17,7 @@ export default function Footer() {
                 href={l.href}
                 aria-label={l.label}
                 {...linkTarget(l)}
-                className="w-8 h-8 rounded-doc border border-border bg-white flex items-center justify-center text-ink-500 hover:text-ink-900 hover:border-accent transition-colors"
+                className="w-8 h-8 rounded-doc border border-border bg-surface flex items-center justify-center text-ink-500 hover:text-ink-900 hover:border-accent transition-colors"
               >
                 <l.Icon size={14} aria-hidden />
               </a>

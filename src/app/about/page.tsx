@@ -140,7 +140,7 @@ export default function AboutPage() {
             {/* Avatar block */}
             <div className="flex justify-center lg:justify-end">
               <div className="w-[300px]">
-                <div className="relative h-[360px] rounded-doc border border-border bg-white p-2">
+                <div className="relative h-[360px] rounded-doc border border-border bg-surface p-2">
                   <div className="relative w-full h-full overflow-hidden rounded-doc">
                     <Image
                       src="/profile.jpg"
