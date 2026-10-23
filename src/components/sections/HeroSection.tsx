@@ -14,7 +14,7 @@ const roles = ['Data Engineer', 'Full-Stack Developer', 'Python Developer', 'SQL
 export default function HeroSection() {
   const stats = [
     { label: 'Projects',       value: String(projects.length),       note: 'Data & full-stack' },
-    { label: 'Certifications', value: String(certifications.length), note: 'Cisco · IBM · ALX' },
+    { label: 'Certifications', value: String(certifications.filter(c => c.status === 'completed').length), note: 'Cisco · IBM · ALX' },
     { label: 'Degree',         value: 'BSc',                         note: 'KCA University' },
   ]
 

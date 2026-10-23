@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Target, Zap, BookOpen, CheckCircle2 } from 'lucide-react'
-import { workExperience, education, certifications } from '@/data'
+import { workExperience, education, certifications, profile } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import TimelineSection from '@/components/sections/TimelineSection'
 
@@ -135,39 +136,33 @@ export default function AboutPage() {
 
             {/* Avatar block */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative">
-                <div
-                  className="absolute -inset-6 rounded-doc border border-accent/30"
-                  aria-hidden
-                />
-
-                <div className="relative w-[260px] h-[260px] rounded-doc border-2 border-border bg-cream-200 flex items-center justify-center">
-                  <span className="font-serif font-bold text-8xl text-accent-dark/35">
-                    TK
-                  </span>
-                </div>
-
-                {/* Floating fact cards */}
-                <div className="absolute -bottom-4 -left-6 card px-3.5 py-2 bg-white shadow-sm">
-                  <div className="text-[9px] text-ink-300 font-mono uppercase tracking-wider">
-                    certifications
-                  </div>
-
-                  <div className="font-serif font-bold text-xl text-accent-dark flex items-center gap-1.5">
-                    {completedCerts}
-                    <CheckCircle2 size={15} className="text-ok" aria-hidden />
+              <div className="w-[300px]">
+                <div className="relative h-[360px] rounded-doc border border-border bg-white p-2">
+                  <div className="relative w-full h-full overflow-hidden rounded-doc">
+                    <Image
+                      src="/profile.jpg"
+                      alt={profile.name}
+                      fill
+                      sizes="300px"
+                      className="object-cover object-top"
+                    />
                   </div>
                 </div>
 
-                <div className="absolute -top-4 -right-6 card px-3.5 py-2 bg-white shadow-sm">
-                  <div className="text-[9px] text-ink-300 font-mono uppercase tracking-wider">
-                    specialization
+                {/* Fact tiles — below the photo so they never cover it */}
+                <dl className="grid grid-cols-2 gap-3 mt-3">
+                  <div className="bg-white border border-border rounded-doc px-4 py-3">
+                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Certifications</dt>
+                    <dd className="font-mono font-semibold text-[20px] text-ink-900 mt-1 flex items-center gap-1.5">
+                      {completedCerts}
+                      <CheckCircle2 size={15} className="text-ok" aria-hidden />
+                    </dd>
                   </div>
-
-                  <div className="font-serif font-bold text-xl text-accent-dark">
-                    Data + Dev
+                  <div className="bg-white border border-border rounded-doc px-4 py-3">
+                    <dt className="text-[10px] font-sans uppercase tracking-[.16em] text-accent-dark">Specialization</dt>
+                    <dd className="font-mono font-semibold text-[17px] text-ink-900 mt-1.5 whitespace-nowrap">Data + Dev</dd>
                   </div>
-                </div>
+                </dl>
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ExternalLink, Clock, FileText } from 'lucide-react'
 import { GithubGlyph } from '@/components/icons/BrandGlyphs'
-import { projects } from '@/data'
+import { projects, categoryLabels } from '@/data'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { delay } from '@/lib/delay'
 
@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
           <SectionHeading
             eyebrow="Selected Work"
             title="Projects I've shipped"
-            subtitle="Full-stack applications and data engineering projects, from scratch to production."
+            subtitle="Full-stack systems and data pipelines, designed and built end to end."
           />
           <Link
             href="/projects"
@@ -38,7 +38,7 @@ export default function FeaturedProjects() {
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-3">
-                    <span className="tag capitalize">{p.category}</span>
+                    <span className="tag">{categoryLabels[p.category] ?? p.category}</span>
                     <span className="text-[11px] text-ink-300 font-mono">{p.year}</span>
                     {inProgress && (
                       <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wide text-accent-dark ml-auto">

@@ -1,4 +1,4 @@
-import { Project, Skill, Testimonial, WorkExperience, Education, Certification } from '@/types'
+import { Project, SkillGroup, Testimonial, WorkExperience, Education, Certification } from '@/types'
 
 /** Identity and contact details — the one place the name, title and links live. */
 export const profile = {
@@ -13,6 +13,12 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/tofa-mwangi',
   cv: '/documents/Tofa-CV.pdf',
 } as const
+
+/** Display names for Project.category. */
+export const categoryLabels: Record<string, string> = {
+  fullstack: 'Full-stack',
+  data: 'Data engineering',
+}
 
 export const projects: Project[] = [
   {
@@ -39,8 +45,7 @@ export const projects: Project[] = [
     longDescription: 'Developed a full e-commerce web application as my Final Year Project at KCA University, showcasing full-stack capabilities across the entire development lifecycle — from database design to a deployed frontend. Demonstrates knowledge from Data Analytics, Database Systems, and Software Engineering coursework.',
     tech: ['JavaScript', 'React', 'Node.js', 'MySQL', 'Bootstrap'],
     github: 'https://github.com/TofaKM',
-    demo: 'https://github.com/TofaKM',
-    featured: true,
+    featured: false,
     category: 'fullstack',
     year: '2025',
     status: 'completed',
@@ -71,64 +76,84 @@ export const projects: Project[] = [
   },
 ]
 
-export const skills: Skill[] = [
-  // Frontend
-  { name: 'React.js', level: 80, category: 'frontend' },
-  { name: 'Next.js', level: 75, category: 'frontend' },
-  { name: 'JavaScript', level: 82, category: 'frontend' },
-  { name: 'Bootstrap', level: 75, category: 'frontend' },
-  { name: 'HTML / CSS', level: 85, category: 'frontend' },
-  { name: 'Tailwind.css', level: 85, category: 'frontend' },
-  { name: 'TypeScript', level: 75, category: 'frontend' },
-  // Backend
-  { name: 'Node.js', level: 78, category: 'backend' },
-  { name: 'Express', level: 75, category: 'backend' },
-  { name: 'Python', level: 85, category: 'backend' },
-  { name: 'REST APIs', level: 80, category: 'backend' },
-  { name: 'Java', level: 70, category: 'backend' },
-  { name: 'Spring Boot', level: 70, category: 'backend' },
-  { name: 'C#', level: 60, category: 'backend' },
-  // Database
- 
-  { name: 'PostgreSQL', level: 72, category: 'database' },
-  { name: 'MongoDB', level: 65, category: 'database' },
-  { name: 'Database Design', level: 78, category: 'database' },
-  // DevOps / Data
-  { name: 'Pandas', level: 82, category: 'devops' },
-  { name: 'NumPy', level: 78, category: 'devops' },
-  { name: 'Matplotlib', level: 75, category: 'devops' },
-  { name: 'Power BI', level: 80, category: 'devops' },
-  // Tools
-  { name: 'Git / GitHub', level: 85, category: 'tools' },
-  { name: 'Docker', level: 68, category: 'tools' },
-  { name: 'Excel', level: 88, category: 'tools' },
-  { name: 'VS Code', level: 92, category: 'tools' },
-  { name: 'Postman', level: 75, category: 'tools' },
-  //Data Engineering
-  { name: 'Python', level: 80, category: 'data-engineering' },
-{ name: 'Pandas', level: 80, category: 'data-engineering' },
-{ name: 'NumPy', level: 75, category: 'data-engineering' },
-{ name: 'Jupyter Notebook', level: 85, category: 'data-engineering' },
-{ name: 'Anaconda', level: 80, category: 'data-engineering' },
-{ name: 'Excel (Advanced)', level: 85, category: 'data-engineering' },
-{ name: 'MySQL', level: 80, category: 'data-engineering' },
-{ name: 'PostgreSQL', level: 80, category: 'data-engineering' },
-{ name: 'BigQuery', level: 75, category: 'data-engineering' },
-{ name: 'Git', level: 80, category: 'data-engineering' },
-{ name: 'GitHub', level: 80, category: 'data-engineering' },
-{ name: 'CI/CD Basics', level: 65, category: 'data-engineering' },
-{ name: 'Docker', level: 75, category: 'data-engineering' },
-{ name: 'Docker Images', level: 70, category: 'data-engineering' },
-{ name: 'Apache Spark', level: 70, category: 'data-engineering' },
-{ name: 'Apache Airflow', level: 70, category: 'data-engineering' },
-{ name: 'ETL Pipelines', level: 75, category: 'data-engineering' },
-{ name: 'Data Cleaning', level: 80, category: 'data-engineering' },
-{ name: 'Big Data Processing', level: 70, category: 'data-engineering' },
-{ name: 'Data Modelling', level: 75, category: 'data-engineering' },
-{ name: 'Relational Modeling (RDBMS)', level: 75, category: 'data-engineering' },
-{ name: 'Data Warehousing Concepts', level: 75, category: 'data-engineering' },
-{ name: 'Data Architecture', level: 70, category: 'data-engineering' },
-
+/**
+ * Every skill, grouped — the single source for the Skills page, the CV and
+ * the home-page preview. No percentages: the grouping and the projects that
+ * use each skill say more than a self-scored bar.
+ */
+export const skillGroups: SkillGroup[] = [
+  {
+    id: 'languages',
+    label: 'Programming Languages',
+    icon: 'code',
+    items: ['Python', 'SQL', 'Java', 'JavaScript', 'TypeScript', 'C#'],
+  },
+  {
+    id: 'data-engineering',
+    label: 'Data Engineering',
+    icon: 'workflow',
+    items: [
+      'ETL / ELT Pipelines', 'Apache Spark (PySpark)', 'Apache Airflow', 'Data Modelling',
+      'Star-Schema Data Warehousing', 'Relational Modelling (RDBMS)', 'Data Architecture',
+      'Big Data Processing', 'Data Cleaning', 'Data Validation & Quality',
+    ],
+  },
+  {
+    id: 'analytics',
+    label: 'Data & Analytics',
+    icon: 'chart',
+    items: ['Pandas', 'NumPy', 'Matplotlib', 'Power BI', 'Excel (Advanced)', 'Jupyter Notebook'],
+  },
+  {
+    id: 'web',
+    label: 'Web Development',
+    icon: 'globe',
+    items: ['Next.js', 'React', 'Node.js', 'Express', 'Spring Boot', 'REST APIs', 'HTML / CSS', 'Tailwind CSS', 'Bootstrap'],
+  },
+  {
+    id: 'databases',
+    label: 'Databases',
+    icon: 'database',
+    items: ['PostgreSQL', 'MySQL', 'MongoDB', 'BigQuery', 'Database Design', 'SQLAlchemy', 'Flyway Migrations'],
+  },
+  {
+    id: 'devops',
+    label: 'DevOps & Testing',
+    icon: 'container',
+    items: ['Docker', 'Docker Compose', 'CI/CD Basics', 'Testcontainers', 'Playwright'],
+  },
+  {
+    id: 'tools',
+    label: 'Tools & Office',
+    icon: 'wrench',
+    items: ['Git', 'GitHub', 'VS Code', 'Postman', 'Anaconda', 'Microsoft Word', 'Microsoft PowerPoint'],
+  },
+  {
+    id: 'professional',
+    label: 'Professional Skills',
+    icon: 'briefcase',
+    items: [
+      'Project Development', 'Documentation', 'Analytical Thinking', 'Technical Troubleshooting',
+      'System Optimization', 'Database Management', 'Debugging', 'Automation', 'Prompt Engineering',
+      'Technical Support', 'Agile / Scrum', 'Test-Driven Development',
+    ],
+  },
+  {
+    id: 'soft',
+    label: 'Soft Skills',
+    icon: 'users',
+    items: [
+      'Teamwork', 'Collaboration', 'Communication', 'Presentation', 'Leadership', 'Decision-Making',
+      'Problem-Solving', 'Critical Thinking', 'Time Management', 'Adaptability',
+    ],
+  },
+  {
+    id: 'learning',
+    label: 'Currently Learning',
+    icon: 'sprout',
+    note: 'Next on the list — not yet shown in a finished project.',
+    items: ['Cloud Databases', 'C++ Fundamentals'],
+  },
 ]
 
 export const testimonials: Testimonial[] = [
@@ -152,13 +177,28 @@ export const testimonials: Testimonial[] = [
     id: '3',
     name: 'Francis Ngugi',
     role: 'Software Engineer',
-    company: 'Reina Classic -Nairobi',
+    company: 'Reina Classic, Nairobi',
     initials: 'FN',
     text: 'A hard-working and fast-learning developer. Tofa\'s ability to pick up new tools and apply them to real problems is impressive. He is professional, collaborative, and genuinely committed to growing his craft.',
   },
 ]
 
 export const workExperience: WorkExperience[] = [
+  {
+    company: 'Minerva Analytics',
+    role: 'Virtual Assistant / Corporate Governance Data Analyst',
+    period: 'January 2026 – April 2026',
+    location: 'Remote',
+    description: 'Provided virtual assistance and corporate governance data support to Dacosta Otekoh, contributing to the collection, validation, and organization of company and board-level information across global markets.',
+    achievements: [
+      'Reviewed public company filings, annual reports, and proxy statements to identify and document board structure changes, executive leadership updates, and committee appointments',
+      'Captured, verified, and maintained financial metrics, director independence information, and corporate governance data with a high level of accuracy',
+      'Assisted Dacosta Otekoh with research, data entry, data validation, document review, and organization of governance-related information',
+      'Supported virtual administrative and data management tasks, ensuring information was accurately recorded, organized, and delivered within required timelines',
+      'Conducted detailed online research and cross-checked information from multiple sources to improve data accuracy and reliability'
+    ],
+    tech: ['Corporate Governance Research', 'Data Analysis', 'Data Validation', 'Excel', 'Online Research', 'Virtual Assistance'],
+  },
   {
     company: 'Social Health Authority',
     role: 'IT Intern',
@@ -173,24 +213,25 @@ export const workExperience: WorkExperience[] = [
     ],
     tech: ['Excel', 'Data Cleaning', 'IT Support', 'Networking', 'Troubleshooting'],
   },
-  {
-    company: 'Minerva Analytics',
-    role: 'Virtual Assistant / Corporate Governance Data Analyst',
-    period: 'January 2026 – April 2026',
-    location: 'Remote',
-    description: 'Provided virtual assistance and corporate governance data support to DaCosta, contributing to the collection, validation, and organization of company and board-level information across global markets.',
-    achievements: [
-      'Reviewed public company filings, annual reports, and proxy statements to identify and document board structure changes, executive leadership updates, and committee appointments',
-      'Captured, verified, and maintained financial metrics, director independence information, and corporate governance data with a high level of accuracy',
-      'Assisted Dacosta Otekoh with research, data entry, data validation, document review, and organization of governance-related information',
-      'Supported virtual administrative and data management tasks, ensuring information was accurately recorded, organized, and delivered within required timelines',
-      'Conducted detailed online research and cross-checked information from multiple sources to improve data accuracy and reliability'
-    ],
-    tech: ['Corporate Governance Research', 'Data Analysis', 'Data Validation', 'Excel', 'Online Research', 'Virtual Assistance'],
-  },
 ]
 
 export const education: Education[] = [
+  {
+    school: 'ALX Africa',
+    degree: 'Data Engineering Program',
+    field: 'Data Engineering',
+    period: 'March 2025 – August 2026',
+    location: 'Remote / Online',
+    grade: 'Complete',
+    certificate: 'https://ehub.alxafrica.com/ob3/verify-certificate/aac32928-744d-42d4-beff-85b393b73d1a',
+    details: [
+      'Completed the ALX Data Engineering Program with practical training in data engineering, data pipelines, and big-data processing',
+      'Developed hands-on skills in Python, SQL, PostgreSQL, PySpark, Apache Airflow, and Docker',
+      'Built and automated ETL/ELT pipelines for data cleaning, transformation, validation, and processing',
+      'Designed data warehouses using dimensional modeling and star-schema architecture',
+      'Completed real-world projects focused on data processing, analytics, pipeline orchestration, and data quality',
+    ],
+  },
   {
     school: 'KCA University',
     degree: 'Bachelor of Science (BSc)',
@@ -210,29 +251,12 @@ export const education: Education[] = [
     field: 'Sciences & Computing',
     period: 'January 2016 – November 2019',
     location: 'Nyahururu, Kenya',
-    grade: 'B+ (71) ',
+    grade: 'B+ (71)',
     details: [
       'Studied Mathematics, Physics, Chemistry, Geography, Computer Studies, and CRE',
       'Active in student leadership — served as Academic Secretary in final year',
       'Participated in the National Mathematics Competition',
     ],
-  },
-  {
-    school: 'ALX Africa',
-    degree: 'Data Engineering Program',
-    field: 'Data Engineering',
-    period: 'March 2025 – August 2026',
-    location: 'Remote / Online',
-    grade: 'Complete',
-    certificate :'https://ehub.alxafrica.com/ob3/verify-certificate/aac32928-744d-42d4-beff-85b393b73d1a',
-    details: [
-      'Completed the ALX Data Engineering Program with practical training in data engineering, data pipelines, and big-data processing',
-      'Developed hands-on skills in Python, SQL, PostgreSQL, PySpark, Apache Airflow, and Docker',
-      'Built and automated ETL/ELT pipelines for data cleaning, transformation, validation, and processing',
-      'Designed data warehouses using dimensional modeling and star-schema architecture',
-      'Completed real-world projects focused on data processing, analytics, pipeline orchestration, and data quality',
-    ],
-
   },
 ]
 
@@ -261,8 +285,8 @@ export const certifications: Certification[] = [
     id: 'alx-data-engineering-program',
     name: 'ALX Data Engineering Program',
     issuer: 'ALX Africa',
-    date: 'March 2025 – August 2026',
-    credentialUrl :'https://ehub.alxafrica.com/ob3/verify-certificate/aac32928-744d-42d4-beff-85b393b73d1a',
+    date: 'August 2026',
+    credentialUrl: 'https://ehub.alxafrica.com/ob3/verify-certificate/aac32928-744d-42d4-beff-85b393b73d1a',
     icon: 'wrench',
     skills: ['Data Pipelines', 'Big Data', 'Python', 'SQL', 'ETL','Apache Spark','Apache Airflow','Data Warehouse'],
     status: 'completed',

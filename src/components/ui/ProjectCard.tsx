@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { ExternalLink, ArrowUpRight, Clock, FileText } from 'lucide-react'
 import { GithubGlyph } from '@/components/icons/BrandGlyphs'
 import { Project } from '@/types'
+import { categoryLabels } from '@/data'
 import { delay } from '@/lib/delay'
 
 export default function ProjectCard({ project: p, index = 0 }: { project: Project; index?: number }) {
@@ -11,7 +12,7 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
     <div style={delay(index * 60)} className="reveal card group cursor-default flex flex-col h-full">
       {/* Header: category / year / status */}
       <div className="flex items-center gap-2 mb-3">
-        <span className="tag capitalize">{p.category}</span>
+        <span className="tag">{categoryLabels[p.category] ?? p.category}</span>
         <span className="text-[11px] text-ink-300 font-mono">{p.year}</span>
         {p.featured && !inProgress && (
           <span className="text-[10px] font-mono uppercase tracking-wide text-accent-dark ml-auto">Featured</span>

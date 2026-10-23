@@ -99,6 +99,16 @@ export default function TimelineSection({ work, education }: { work: WorkExperie
                           </li>
                         ))}
                       </ul>
+                      {edu.certificate && (
+                        <a
+                          href={edu.certificate}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center mt-3 text-[12px] font-medium font-sans text-accent-dark hover:underline"
+                        >
+                          ↗ View certificate
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}
