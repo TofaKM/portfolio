@@ -125,6 +125,10 @@ The in-code rate limit lives in each server instance's memory. For a limit that 
 
 **References:** the CV lists Francis Ngugi and Dacosta Otekoh with their contact details, at Tofa's request.
 
+## How work is done
+
+[`CLAUDE.md`](CLAUDE.md) is the playbook for every change: the phase → branch → PR → CI → merge → verify-live cycle, project structure, reusable components, design tokens, security and rate limiting, SEO, tests and the definition of done. Claude Code reads it automatically; it doubles as a template for new Next.js sites.
+
 ## Built with Claude
 
 Designed and built with the assistance of **Claude (Anthropic)**: the audit and phased fixes, the working contact form, the Agri-Link-style navbar and design system, server-visible animations, grouped skills, SEO files and CI.
