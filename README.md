@@ -123,7 +123,7 @@ The in-code rate limit lives in each server instance's memory. For a limit that 
 
 **Dependencies:** Dependabot (`.github/dependabot.yml`) opens PRs for npm and GitHub Actions updates; CI must pass before merging.
 
-**Personal data:** the public CV lists references as "available on request" rather than publishing their phone numbers and emails.
+**References:** the CV lists Francis Ngugi and Dacosta Otekoh with their contact details, at Tofa's request.
 
 ## Built with Claude
 
