@@ -8,7 +8,7 @@ import { profile } from '@/data'
 export const metadata: Metadata = pageMetadata({
   title: 'CV / Resume',
   description:
-    'Professional CV of Tofa Kimani Mwangi — software engineer: full-stack, backend, data engineering, data analytics and deployment.',
+    'Professional CV of Tofa Kimani Mwangi — software engineer: full-stack, backend, AI and LLM integration, data engineering, data analytics, IT support and deployment.',
   path: '/cv',
 })
 

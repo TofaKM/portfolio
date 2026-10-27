@@ -10,7 +10,7 @@ import StatTile from '@/components/ui/StatTile'
 export const metadata: Metadata = pageMetadata({
   title: 'About',
   description:
-    'Learn about Tofa Kimani — software engineer working across full-stack development, backend systems, data engineering, data analytics and deployment.',
+    'Learn about Tofa Kimani — software engineer working across full-stack development, backend systems, AI and LLM integration, data engineering, data analytics, IT support and deployment.',
   path: '/about',
 })
 
@@ -55,7 +55,7 @@ export default function AboutPage() {
                   <strong className="text-ink-700 font-medium">
                     software engineer
                   </strong>{' '}
-                  with a background in Applied Computing, working across full-stack development, backend systems, data engineering, analytics and deployment. My work sits at the intersection of{' '}
+                  with a background in Applied Computing, working across full-stack development, backend systems, AI and LLM integration, data engineering, analytics, IT support and deployment. My work sits at the intersection of{' '}
                   <strong className="text-ink-700 font-medium">
                     software engineering, data engineering, and problem-solving
                   </strong>
