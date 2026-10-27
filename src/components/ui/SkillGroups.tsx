@@ -1,5 +1,5 @@
 import {
-  Code2, Workflow, BarChart3, Globe, Database, Container, Wrench, Briefcase, Users, Sprout,
+  Code2, Workflow, BarChart3, Globe, Database, Container, Wrench, Briefcase, Users, Sprout, Brain, Monitor,
   type LucideIcon,
 } from 'lucide-react'
 import type { SkillGroup, SkillIcon } from '@/types'
@@ -16,6 +16,8 @@ const icons: Record<SkillIcon, LucideIcon> = {
   briefcase: Briefcase,
   users: Users,
   sprout: Sprout,
+  brain: Brain,
+  monitor: Monitor,
 }
 
 interface Props {

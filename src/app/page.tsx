@@ -28,7 +28,7 @@ const personJsonLd = {
     { '@type': 'EducationalOrganization', name: 'ALX Africa' },
   ],
   knowsAbout: skillGroups
-    .filter(g => ['languages', 'data-engineering', 'web', 'databases'].includes(g.id))
+    .filter(g => ['languages', 'ai', 'data-engineering', 'web', 'databases'].includes(g.id))
     .flatMap(g => g.items),
   sameAs: [profile.github, profile.linkedin],
 }

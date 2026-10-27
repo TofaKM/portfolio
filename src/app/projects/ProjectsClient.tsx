@@ -4,7 +4,7 @@ import { projects, categoryLabels } from '@/data'
 import ProjectCard from '@/components/ui/ProjectCard'
 import SectionHeading from '@/components/ui/SectionHeading'
 
-const cats = ['all', 'fullstack', 'data']
+const cats = ['all', ...Object.keys(categoryLabels)]
 
 export default function ProjectsClient() {
   const [filter, setFilter] = useState('all')

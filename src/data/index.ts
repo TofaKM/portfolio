@@ -25,9 +25,23 @@ export const profile = {
 export const categoryLabels: Record<string, string> = {
   fullstack: 'Full-stack',
   data: 'Data engineering',
+  ai: 'AI & automation',
 }
 
 export const projects: Project[] = [
+  {
+    id: '5',
+    title: 'Job Agent — AI Job-Search Assistant',
+    description: 'A local AI job-search agent: collects jobs daily from five sources, screens and deduplicates them, judges fit against my CV with an LLM (Claude), and drafts tailored CVs and cover letters — with code checking every AI output.',
+    longDescription: 'Built a local AI job-search agent that collects jobs daily from five sources, including LinkedIn job-alert emails read through the Gmail API with OAuth 2.0, then normalizes, deduplicates (MinHash/LSH) and screens them. It integrates an LLM (Claude) using JSON-schema structured outputs validated with Pydantic, a retry with error feedback, prompt caching and a daily call budget, and treats job postings as untrusted input to resist prompt injection. AI output stays grounded: code computes the match score from the model’s judgements, rejects any cited CV line that doesn’t exist, and checks generated CVs and cover letters for numbers or skills not in the source before rendering PDFs. Covered by 381 automated tests (pytest, saved fixtures, mocked HTTP) and a golden-set evaluation that compares AI recommendations with my own verdicts.',
+    tech: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Pydantic', 'Next.js', 'TypeScript', 'Claude API', 'Docker Compose'],
+    privateSource: true,
+    featured: false,
+    category: 'ai',
+    year: '2026',
+    status: 'in-progress',
+    statusNote: 'In daily use',
+  },
   {
     id: '4',
     title: 'Agri-Link — ERP & Point of Sale for Agrovets',
@@ -96,6 +110,15 @@ export const skillGroups: SkillGroup[] = [
     items: ['Python', 'SQL', 'Java', 'JavaScript', 'TypeScript', 'C#'],
   },
   {
+    id: 'ai',
+    label: 'AI & LLM Engineering',
+    icon: 'brain',
+    items: [
+      'LLM Integration (Claude API)', 'Prompt Engineering', 'Structured Outputs (JSON Schema + Pydantic)',
+      'AI Output Validation', 'Prompt-Injection Defence', 'Prompt Caching',
+    ],
+  },
+  {
     id: 'data-engineering',
     label: 'Data Engineering',
     icon: 'workflow',
@@ -115,7 +138,7 @@ export const skillGroups: SkillGroup[] = [
     id: 'web',
     label: 'Web Development',
     icon: 'globe',
-    items: ['Next.js', 'React', 'Node.js', 'Express', 'Spring Boot', 'REST APIs', 'HTML / CSS', 'Tailwind CSS', 'Bootstrap'],
+    items: ['Next.js', 'React', 'Node.js', 'Express', 'Spring Boot', 'FastAPI', 'Pydantic', 'REST APIs', 'OAuth 2.0', 'HTML / CSS', 'Tailwind CSS', 'Bootstrap'],
   },
   {
     id: 'databases',
@@ -128,6 +151,12 @@ export const skillGroups: SkillGroup[] = [
     label: 'DevOps & Testing',
     icon: 'container',
     items: ['Docker', 'Docker Compose', 'CI/CD Basics', 'Testcontainers', 'Playwright'],
+  },
+  {
+    id: 'it-support',
+    label: 'IT Support',
+    icon: 'monitor',
+    items: ['IT Support', 'Networking', 'Hardware Troubleshooting', 'Software Troubleshooting', 'Network Troubleshooting'],
   },
   {
     id: 'tools',

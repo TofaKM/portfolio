@@ -88,7 +88,9 @@ export default function ProjectCard({ project: p, index = 0 }: { project: Projec
           </a>
         )}
         {!p.github && !p.demo && !p.caseStudy && (
-          <span className="text-[12px] text-ink-300 font-sans">Not yet published on GitHub</span>
+          <span className="text-[12px] text-ink-300 font-sans">
+            {p.privateSource ? 'Private repo — walkthrough on request' : 'Not yet published on GitHub'}
+          </span>
         )}
       </div>
     </div>
