@@ -5,7 +5,7 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import SkillGroups from '@/components/ui/SkillGroups'
 
 /** Home-page teaser: the six core technical areas, a few tags each. */
-const preview = ['languages', 'data-engineering', 'web', 'databases', 'analytics', 'devops']
+const preview = ['languages', 'ai', 'data-engineering', 'web', 'databases', 'devops']
 
 export default function SkillsPreview() {
   const groups = preview

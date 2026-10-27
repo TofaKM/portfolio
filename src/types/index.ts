@@ -15,9 +15,12 @@ export interface Project {
   status: 'completed' | 'in-progress'
   /** Shown instead of the generic "In Progress" badge, e.g. "In shop trial". */
   statusNote?: string
+  /** Source is in a private repo: say so instead of "not yet published". */
+  privateSource?: boolean
 }
 
 export type SkillIcon =
+  | 'brain' | 'monitor'
   | 'code' | 'workflow' | 'chart' | 'globe' | 'database'
   | 'container' | 'wrench' | 'briefcase' | 'users' | 'sprout'
 
