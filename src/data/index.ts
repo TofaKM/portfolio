@@ -4,14 +4,14 @@ import { Project, SkillGroup, Testimonial, WorkExperience, Education, Certificat
 export const profile = {
   name: 'Tofa Kimani Mwangi',
   shortName: 'Tofa Kimani',
-  tagline: 'Software Engineer — Full-Stack, Data & Analytics',
+  tagline: 'Software Engineer — Full-Stack, AI, Data & IT',
   /** Every role I'm ready to step into — used in the hero and metadata. */
   roles: [
-    'Software Engineer', 'Full-Stack Developer', 'Backend Developer',
-    'Data Engineer', 'Data Analyst', 'DevOps & Deployment',
+    'Software Engineer', 'AI Engineer', 'Full-Stack Developer', 'Backend Developer',
+    'Data Engineer', 'Data Analyst', 'IT Support Engineer', 'DevOps & Deployment',
   ],
   openTo:
-    'Open to software engineering, full-stack, backend, data engineering, data analytics and DevOps roles — full-time, contract or freelance, remote or on-site.',
+    'Open to software engineering, AI engineering, full-stack, backend, data engineering, data analytics, IT support and DevOps roles — full-time, contract or freelance, remote or on-site.',
   location: 'Nairobi, Kenya',
   email: 'mwangitofa@gmail.com',
   phone: '+254 759 799 624',

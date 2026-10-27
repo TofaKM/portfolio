@@ -40,7 +40,7 @@ export default function HeroSection() {
           <p style={delay(120)} className="enter text-[15.5px] text-ink-500 max-w-xl leading-relaxed mb-8 font-sans">
             <strong className="text-ink-900 font-medium">Engineering software. Transforming data. Solving real problems.</strong>{' '}
             I&rsquo;m a software engineer who works across the whole stack — <strong className="text-ink-900 font-medium">web
-            applications, backend services, databases, data pipelines, analytics and deployment</strong>. My experience spans healthcare data, corporate governance analytics,
+            applications, backend services, AI and LLM integration, databases, data pipelines, analytics, IT support and deployment</strong>. My experience spans healthcare data, corporate governance analytics,
             e-commerce platforms, retail ERP and point of sale, and containerized data workflows — with a focus on turning complex requirements and
             messy data into <strong className="text-ink-900 font-medium">reliable, scalable systems</strong>.
             I&rsquo;m comfortable from the database to the browser to production, and <strong className="text-ink-900 font-medium">ready to take on whichever role the team needs</strong>.

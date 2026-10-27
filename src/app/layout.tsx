@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   icons:{
     icon:'/tm_svg.svg'
   },
-  title: { default: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data', template: '%s | Tofa Kimani' },
-  description: 'Software engineer from Nairobi, Kenya, working across full-stack development, backend systems, data engineering, data analytics and deployment — Java, Spring Boot, Python, SQL, Next.js and Docker. BSc Applied Computing, KCA University.',
-  keywords: ['Software Engineer', 'Full-Stack Developer', 'Backend Developer', 'Data Engineer', 'Data Analyst', 'DevOps', 'Java', 'Spring Boot', 'Python', 'SQL', 'Next.js', 'React', 'Nairobi', 'Kenya', 'KCA University', 'ALX'],
+  title: { default: 'Tofa Kimani Mwangi — Software Engineer · AI · Full-Stack · Data · IT', template: '%s | Tofa Kimani' },
+  description: 'Software engineer from Nairobi, Kenya, working across full-stack development, backend systems, AI and LLM integration, data engineering, data analytics, IT support and deployment — Java, Spring Boot, Python, FastAPI, SQL, Next.js, Claude API and Docker. BSc Applied Computing, KCA University.',
+  keywords: ['Software Engineer', 'AI Engineer', 'LLM', 'Claude API', 'Prompt Engineering', 'Full-Stack Developer', 'Backend Developer', 'Data Engineer', 'Data Analyst', 'IT Support', 'DevOps', 'Java', 'Spring Boot', 'Python', 'SQL', 'Next.js', 'React', 'Nairobi', 'Kenya', 'KCA University', 'ALX'],
   authors: [{ name: 'Tofa Kimani Mwangi' }],
   creator: 'Tofa Kimani Mwangi',
   openGraph: {
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Tofa Kimani Portfolio',
-    title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
-    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, data engineering, analytics and deployment.',
+    title: 'Tofa Kimani Mwangi — Software Engineer · AI · Full-Stack · Data · IT',
+    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, AI & LLM integration, data engineering, analytics, IT support and deployment.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tofa Kimani Mwangi — Software Engineer · Full-Stack · Data',
-    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, data engineering, analytics and deployment.',
+    title: 'Tofa Kimani Mwangi — Software Engineer · AI · Full-Stack · Data · IT',
+    description: 'Software engineer from Nairobi, Kenya — full-stack, backend, AI & LLM integration, data engineering, analytics, IT support and deployment.',
   },
 }
 

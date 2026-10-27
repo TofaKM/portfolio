@@ -104,7 +104,7 @@ export default function ContactClient() {
                   <span className="font-sans font-medium text-[13.5px] text-ink-900">Available Now</span>
                 </div>
                 <p className="text-ink-500 text-[12.5px] leading-relaxed font-sans">
-                  Actively looking for software engineering, full-stack, backend, data and DevOps roles. Response time: usually within 24 hours.
+                  Actively looking for software engineering, AI, full-stack, backend, data, IT support and DevOps roles. Response time: usually within 24 hours.
                 </p>
               </div>
 
