@@ -7,10 +7,10 @@
 <style>
   /* Every rule is scoped to .cv so the same styles work standalone (this
      file, printed to the PDF) and embedded in the /cv page of the site. */
-  @page { size: Letter; margin: 0.42in 0.5in 0.42in 0.5in; }
+  @page { size: Letter; margin: 0.33in 0.48in 0.33in 0.48in; }
   body { margin: 0; } /* standalone file only; the site already resets it */
   .cv, .cv * { box-sizing: border-box; margin: 0; padding: 0; }
-  .cv { font-family: "Times New Roman", Times, serif; font-size: 10pt; line-height: 1.21; color: #000; }
+  .cv { font-family: "Times New Roman", Times, serif; font-size: 9.7pt; line-height: 1.16; color: #000; }
   .cv a { color: inherit; }
   .cv header { text-align: center; border-bottom: 1.2px solid #000; padding-bottom: 5px; }
   .cv h1 { font-size: 21pt; font-weight: 700; line-height: 1.1; }
@@ -20,19 +20,22 @@
   .cv .contact a { color: #000; font-weight: 700; }
   .cv .sep { margin: 0 5px; color: #777; }
   .cv h2 { text-align: center; font-size: 10.8pt; font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
-       border-bottom: .8px solid #777; padding-bottom: 2px; margin: 8px 0 4px; }
+       border-bottom: .8px solid #777; padding-bottom: 2px; margin: 6px 0 3px; }
+  /* Keep a section heading on the same page as its first entry. */
+  .cv h2 { break-after: avoid; page-break-after: avoid; }
   .cv p { margin: 0; }
   /* Real list markers (not positioned pseudo-elements) so the PDF's text
      stays in reading order for applicant-tracking systems. */
   .cv .skills { list-style: disc outside; padding-left: 22px; }
-  .cv .skills li { margin-bottom: 0.5px; padding-left: 2px; }
+  .cv .skills li { margin-bottom: 0; padding-left: 2px; }
   .cv .entry { margin-top: 4px; break-inside: avoid; }
-  .cv .entry + .entry { margin-top: 6px; }
+  .cv .entry + .entry { margin-top: 5px; }
   .cv .title { font-weight: 700; }
   .cv .badge { font-weight: 400; font-style: italic; }
   .cv .meta { display: flex; justify-content: space-between; font-style: italic; color: #333; }
   .cv ul.b { list-style: disc outside; padding-left: 16px; margin-top: 1px; }
-  .cv ul.b li { margin-bottom: 1px; }
+  .cv ul.b li { margin-bottom: 0; }
+  .cv .note { font-size: 9.4pt; font-style: italic; display: inline-block; margin-top: 1px; }
   .cv .link { font-size: 9.4pt; text-decoration: underline; display: inline-block; margin-top: 1px; }
   .cv .refs p { margin-left: 14px; }
 </style>
@@ -55,13 +58,15 @@
 <h2>Technical Skills</h2>
 <ul class="skills">
   <li><b>Programming Languages</b>: Python, Java, JavaScript, TypeScript, SQL, Bash, C#.</li>
-  <li><b>Backend &amp; API Engineering</b>: Spring Boot, Node.js, Express, RESTful APIs, JWT Authentication, Role-Based Access Control (RBAC), Flyway Migrations.</li>
+  <li><b>Backend &amp; API Engineering</b>: Spring Boot, Node.js, Express, FastAPI, Pydantic, RESTful APIs, JWT Authentication, OAuth 2.0, Role-Based Access Control (RBAC), Flyway Migrations.</li>
+  <li><b>AI &amp; LLM Engineering</b>: LLM Integration (Claude API), Prompt Engineering, Structured Outputs (JSON Schema + Pydantic), AI Output Validation, Prompt-Injection Defence, Prompt Caching.</li>
   <li><b>Frontend</b>: Next.js, React, TypeScript, Tailwind CSS, HTML/CSS, Bootstrap.</li>
   <li><b>Big Data &amp; Data Engineering</b>: PySpark, Apache Spark, Apache Airflow, ETL/ELT Pipelines, Data Warehousing, Dimensional Modeling (Star Schema), BigQuery, Pandas, NumPy.</li>
   <li><b>Data Analytics</b>: Power BI, Advanced Excel, Matplotlib, Jupyter Notebook, Data Cleaning &amp; Validation, Reporting.</li>
   <li><b>Databases</b>: PostgreSQL (incl. Row-Level Security), MySQL, MongoDB, SQLAlchemy, Database Indexing, Query Optimization, Schema Normalization.</li>
   <li><b>DevOps, Testing &amp; Deployment</b>: Docker, Docker Compose, Linux, Git/GitHub, CI/CD (GitHub Actions), Vercel, Testcontainers, Playwright.</li>
   <li><b>Architecture &amp; Data Quality</b>: System Design, RESTful APIs, Monolith Architecture, Multi-Tenant Data Isolation, Concurrency Control, Idempotency, Double-Entry Ledger Integrity, Pipeline Testing &amp; Quality Gates, Schema Enforcement, Lineage &amp; Auditability.</li>
+  <li><b>IT Support</b>: IT Support, Networking, Hardware/Software/Network Troubleshooting.</li>
   <li><b>Soft Skills</b>: Critical Thinking, Cross-Functional Collaboration, Problem-Solving &amp; Troubleshooting, Technical Communication, Requirements Gathering, Attention to Detail, Time Management, Stakeholder Alignment, Adaptability, Agile Methodology.</li>
 </ul>
 
@@ -99,6 +104,18 @@
 </div>
 
 <h2>Projects</h2>
+
+<div class="entry">
+  <div class="title">Job Agent — AI Job-Search Assistant</div>
+  <div class="meta"><span>Python, FastAPI, PostgreSQL, SQLAlchemy, Next.js, TypeScript, Claude API, Docker Compose</span><span>October 2026</span></div>
+  <ul class="b">
+    <li>Built a local AI job-search agent that collects jobs daily from five sources, including LinkedIn job-alert emails read through the Gmail API with OAuth 2.0, then normalizes, deduplicates (MinHash/LSH) and screens them.</li>
+    <li>Integrated an LLM (Claude) using JSON-schema structured outputs validated with Pydantic, a retry with error feedback, prompt caching and a daily call budget; job postings are handled as untrusted input to resist prompt injection.</li>
+    <li>Kept AI output grounded: code computes the match score from the model’s judgements, rejects any cited CV line that doesn’t exist, and checks generated CVs and cover letters for numbers or skills not in the source before rendering PDFs.</li>
+    <li>Covered the system with 381 automated tests (pytest, saved fixtures, mocked HTTP) and a golden-set evaluation that compares AI recommendations with my own verdicts.</li>
+  </ul>
+  <span class="note">Private repository — walkthrough on request</span>
+</div>
 
 <div class="entry">
   <div class="title">Zuri Mobile Customer Churn ETL Pipeline</div>
